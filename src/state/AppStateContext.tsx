@@ -2,6 +2,7 @@ import {
   createContext,
   useContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type PropsWithChildren
@@ -75,12 +76,24 @@ export const AppStateProvider = ({ children }: PropsWithChildren) => {
     void saveSnapshot(snapshot);
   }, [snapshot]);
 
-  const allItems = getAllItems(snapshot.customEntries);
-  const itemMap = getItemMap(snapshot.customEntries);
-  const dueReviewItems = getDueItemIds(snapshot.progress.reviewStates).map((itemId) => itemMap[itemId]).filter(Boolean);
-  const nextLesson = getNextLesson(snapshot.progress.completedLessons);
-  const currentUnit = getCurrentUnit(snapshot.progress.completedLessons);
-  const uiLanguageStage = getUiLanguageStage(snapshot.progress.completedLessons.length);
+  const allItems = useMemo(() => getAllItems(snapshot.customEntries), [snapshot.customEntries]);
+  const itemMap = useMemo(() => getItemMap(snapshot.customEntries), [snapshot.customEntries]);
+  const dueReviewItems = useMemo(
+    () => getDueItemIds(snapshot.progress.reviewStates).map((itemId) => itemMap[itemId]).filter(Boolean),
+    [itemMap, snapshot.progress.reviewStates]
+  );
+  const nextLesson = useMemo(
+    () => getNextLesson(snapshot.progress.completedLessons),
+    [snapshot.progress.completedLessons]
+  );
+  const currentUnit = useMemo(
+    () => getCurrentUnit(snapshot.progress.completedLessons),
+    [snapshot.progress.completedLessons]
+  );
+  const uiLanguageStage = useMemo(
+    () => getUiLanguageStage(snapshot.progress.completedLessons.length),
+    [snapshot.progress.completedLessons.length]
+  );
 
   const submitStudySession = (summary: StudySessionSummary) => {
     const studiedOn = getLocalDateKey(new Date(summary.studiedAt));

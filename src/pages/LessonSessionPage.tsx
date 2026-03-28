@@ -25,7 +25,7 @@ export default function LessonSessionPage() {
       setQuestions(buildLessonSession(lesson.id, lesson.targetItemIds, itemMap, snapshot.progress, lessonLanguageStage));
       setCompletion(null);
     }
-  }, [itemMap, lessonId, lessonLanguageStage]);
+  }, [lessonId, lessonLanguageStage]);
 
   if (!lesson) {
     return (
