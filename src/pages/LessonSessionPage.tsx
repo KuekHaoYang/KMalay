@@ -29,6 +29,8 @@ export default function LessonSessionPage() {
 
   useEffect(() => {
     if (lesson) {
+      // Saving the current lesson updates progress; that should not restart the session
+      // and erase the completion panel we just showed.
       setQuestions(
         buildLessonSession(lesson.id, lesson.targetItemIds, itemMap, snapshot.progress, lessonLanguageStage, {
           allItems,
@@ -37,7 +39,7 @@ export default function LessonSessionPage() {
       );
       setCompletion(null);
     }
-  }, [allItems, itemMap, lesson, lessonId, lessonLanguageStage, snapshot.progress, wordBankTokens]);
+  }, [allItems, itemMap, lesson, lessonId, lessonLanguageStage, wordBankTokens]);
 
   if (!lesson) {
     return (
