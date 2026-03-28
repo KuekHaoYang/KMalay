@@ -577,10 +577,19 @@ a {
   padding: 1rem;
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(16, 37, 66, 0.08);
+  content-visibility: auto;
+  contain-intrinsic-size: 18rem;
 }
 
 .lexicon-head h4 {
   margin: 0 0 0.25rem;
+}
+
+.lexicon-footer {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+  padding-top: 0.85rem;
 }
 
 .form-grid {

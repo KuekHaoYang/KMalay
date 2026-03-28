@@ -1,6 +1,9 @@
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { useAppState } from "../state/AppStateContext";
 import { getKindLabel, uiText } from "../lib/ui-language";
+
+const INITIAL_VISIBLE_COUNT = 180;
+const VISIBLE_BATCH_SIZE = 120;
 
 export default function LexiconPage() {
   const { allItems, addCustomEntry, uiLanguageStage } = useAppState();
@@ -9,6 +12,8 @@ export default function LexiconPage() {
   const [english, setEnglish] = useState("");
   const [note, setNote] = useState("");
   const [example, setExample] = useState("");
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const deferredSearch = useDeferredValue(search);
   const t = (englishText: string, malayText: string) => uiText(uiLanguageStage, englishText, malayText);
 
@@ -27,6 +32,41 @@ export default function LexiconPage() {
       );
     });
   }, [allItems, deferredSearch]);
+
+  useEffect(() => {
+    setVisibleCount(INITIAL_VISIBLE_COUNT);
+  }, [deferredSearch, allItems.length]);
+
+  const visibleItems = useMemo(
+    () => filteredItems.slice(0, visibleCount),
+    [filteredItems, visibleCount]
+  );
+  const hasMore = visibleItems.length < filteredItems.length;
+
+  useEffect(() => {
+    const node = loadMoreRef.current;
+
+    if (!node || !hasMore) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) {
+          return;
+        }
+
+        setVisibleCount((current) => Math.min(filteredItems.length, current + VISIBLE_BATCH_SIZE));
+      },
+      {
+        rootMargin: "640px 0px"
+      }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [filteredItems.length, hasMore]);
 
   return (
     <div className="page-stack">
@@ -94,6 +134,12 @@ export default function LexiconPage() {
           <div>
             <p className="eyebrow">{t("Search deck", "Cari dalam dek")}</p>
             <h3>{filteredItems.length} {t("visible entries", "entri kelihatan")}</h3>
+            <p className="muted-copy">
+              {t(
+                `Showing ${visibleItems.length} now. Scroll to keep loading more.`,
+                `Memaparkan ${visibleItems.length} sekarang. Skrol untuk terus memuatkan lagi.`
+              )}
+            </p>
           </div>
         </div>
         <input
@@ -103,7 +149,7 @@ export default function LexiconPage() {
           onChange={(event) => setSearch(event.target.value)}
         />
         <div className="lexicon-list">
-          {filteredItems.slice(0, 120).map((item) => (
+          {visibleItems.map((item) => (
             <article key={item.id} className="lexicon-card">
               <div className="lexicon-head">
                 <div>
@@ -124,6 +170,28 @@ export default function LexiconPage() {
             </article>
           ))}
         </div>
+        {hasMore ? (
+          <div ref={loadMoreRef} className="lexicon-footer">
+            <p className="muted-copy">
+              {t("Loading more entries as you scroll.", "Memuatkan lagi entri semasa anda menatal.")}
+            </p>
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={() =>
+                setVisibleCount((current) => Math.min(filteredItems.length, current + VISIBLE_BATCH_SIZE))
+              }
+            >
+              {t("Load more now", "Muat lagi sekarang")}
+            </button>
+          </div>
+        ) : (
+          <div className="lexicon-footer">
+            <p className="muted-copy">
+              {t("All matching entries are already on screen.", "Semua entri yang sepadan sudah dipaparkan.")}
+            </p>
+          </div>
+        )}
       </section>
     </div>
   );

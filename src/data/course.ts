@@ -8,6 +8,7 @@ import type {
   Unit
 } from "../types";
 import { expansionPackItems, expansionPackLessons, expansionPackUnits } from "./expansion-pack";
+import { linguisticsPackItems, linguisticsPackLessons, linguisticsPackUnits } from "./linguistics-pack";
 import { megaLexemePackItems, megaLexemePackLessons, megaLexemePackUnits } from "./mega-lexeme-pack";
 
 const defaultTemplates: ExerciseType[] = [
@@ -6600,7 +6601,7 @@ const units: Unit[] = [
 ];
 
 export const courseData: CourseData = {
-  items: [...items, ...expansionPackItems, ...megaLexemePackItems],
-  lessons: [...lessons, ...expansionPackLessons, ...megaLexemePackLessons],
-  units: [...units, ...expansionPackUnits, ...megaLexemePackUnits]
+  items: [...items, ...expansionPackItems, ...megaLexemePackItems, ...linguisticsPackItems],
+  lessons: [...lessons, ...expansionPackLessons, ...megaLexemePackLessons, ...linguisticsPackLessons],
+  units: [...units, ...expansionPackUnits, ...megaLexemePackUnits, ...linguisticsPackUnits]
 };
