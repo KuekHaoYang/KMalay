@@ -60,7 +60,10 @@ export const scoreReview = (
 
 export const applyStudyDay = (progress: UserProgress, studiedOn: string): UserProgress => {
   if (progress.lastStudyDate === studiedOn) {
-    return progress;
+    return {
+      ...progress,
+      sessionCount: progress.sessionCount + 1
+    };
   }
 
   const yesterday = addDays(studiedOn, -1);

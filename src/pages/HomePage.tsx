@@ -4,11 +4,15 @@ import { course, useAppState } from "../state/AppStateContext";
 import { lessonMap } from "../lib/content";
 
 export default function HomePage() {
-  const { snapshot, dueReviewItems, nextLessonId, currentUnitTitle, uiLanguageStage } = useAppState();
+  const { snapshot, dueReviewItems, nextLessonId, currentUnitTitle, uiLanguageStage, learnedWordCount } = useAppState();
   const nextLesson = nextLessonId ? lessonMap[nextLessonId] : undefined;
   const totalLessons = course.lessons.length;
   const completedLessons = snapshot.progress.completedLessons.length;
   const t = (english: string, malay: string) => uiText(uiLanguageStage, english, malay);
+  const learnedWordsLabel = t(
+    `You have learned ${new Intl.NumberFormat("en-US").format(learnedWordCount)} words.`,
+    `Anda telah mempelajari ${new Intl.NumberFormat("ms-MY").format(learnedWordCount)} perkataan.`
+  );
 
   return (
     <div className="page-stack">
@@ -22,6 +26,7 @@ export default function HomePage() {
               "KMalay masih guna laluan seperti Duolingo, tetapi matlamatnya ialah kelajuan: bahasa sekolah yang berguna, kosa kata harian sebenar, dan ulang kaji yang benar-benar menghidupkan semula perkataan yang lemah."
             )}
           </p>
+          <p className="lesson-chip">{learnedWordsLabel}</p>
         </div>
         <div className="hero-actions">
           <Link className="primary-button" to={nextLesson ? `/lesson/${nextLesson.id}` : "/path"}>

@@ -243,7 +243,8 @@ export const buildReviewSession = (
   languageStage = getUiLanguageStage(progress.completedLessons.length)
 ): SessionQuestion[] => {
   const dueItemIds = getDueItemIds(progress.reviewStates);
-  const selectedIds = (dueItemIds.length > 0 ? dueItemIds : fallbackItemIds).slice(0, 8);
+  const fallbackPool = shuffle(unique(fallbackItemIds), `review-fallback-${progress.sessionCount}`);
+  const selectedIds = (dueItemIds.length > 0 ? dueItemIds : fallbackPool).slice(0, 8);
   const items = selectedIds.map((itemId) => itemMap[itemId]).filter(Boolean);
   const pool = Object.values(itemMap);
 

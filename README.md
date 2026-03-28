@@ -6,11 +6,11 @@ It is designed around a Duolingo-like path, but the goal is not to imitate Duoli
 
 The current app includes:
 
-- A structured course path with 250 lessons across 50 units
+- A structured course path with 370 lessons across 60 units
 - Lesson sessions with multiple exercise types
 - Spiral review inside later lessons so old material keeps resurfacing
 - Progressive interface language stages from English to bilingual to Malay-only
-- A separate review queue with spaced repetition
+- A separate review queue with spaced repetition and continuous batch flow
 - A searchable lexicon
 - Manual custom vocabulary capture
 - Local backup export/import
@@ -80,6 +80,15 @@ KMalay uses two reinforcement layers:
    - This prevents the path from turning into disconnected islands of vocabulary.
 
 That second point matters. Without it, a learner can move forward and forget older words before the review queue catches them.
+
+### Word Counting
+
+KMalay tracks learnable Malay words by counting Malay word tokens across unique learned items.
+
+- A single lexeme like `pengaruh` counts as 1 word
+- A phrase like `kawalan politik itu ketat` counts as 4 words
+- The Home screen shows learned words based on completed lessons plus custom entries
+- The seeded curriculum now exceeds 5,000 learnable Malay words by that item-token count
 
 ## Tech Stack
 
@@ -546,11 +555,13 @@ then hosting and architecture decisions may change.
 
 Implemented now:
 
-- 250 seeded lessons
+- 370 seeded lessons
 - local-first progress
 - review scheduler
 - spiral resurfacing inside later lessons
 - staged UI language progression into Malay immersion
+- Home screen learned-word counter
+- continuous review flow without the old stop-start result screen
 - custom lexicon capture
 - export/import backups
 - PWA build

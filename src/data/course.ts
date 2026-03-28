@@ -7,6 +7,7 @@ import type {
   Phrase,
   Unit
 } from "../types";
+import { expansionPackItems, expansionPackLessons, expansionPackUnits } from "./expansion-pack";
 
 const defaultTemplates: ExerciseType[] = [
   "recognition",
@@ -6598,7 +6599,7 @@ const units: Unit[] = [
 ];
 
 export const courseData: CourseData = {
-  items,
-  lessons,
-  units
+  items: [...items, ...expansionPackItems],
+  lessons: [...lessons, ...expansionPackLessons],
+  units: [...units, ...expansionPackUnits]
 };

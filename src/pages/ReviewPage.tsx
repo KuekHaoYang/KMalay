@@ -1,5 +1,5 @@
-import { startTransition, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import StudySession from "../components/StudySession";
 import { buildReviewSession } from "../lib/session";
 import { uiText } from "../lib/ui-language";
@@ -7,48 +7,35 @@ import { course, useAppState } from "../state/AppStateContext";
 import type { StudySessionSummary } from "../types";
 
 export default function ReviewPage() {
-  const navigate = useNavigate();
   const { itemMap, snapshot, dueReviewItems, submitStudySession, uiLanguageStage } = useAppState();
-  const [completion, setCompletion] = useState<StudySessionSummary | null>(null);
-  const fallbackItemIds = snapshot.progress.completedLessons
-    .flatMap((lessonId) => course.lessons.find((lesson) => lesson.id === lessonId)?.targetItemIds ?? [])
-    .slice(0, 12);
+  const [pendingAdvance, setPendingAdvance] = useState(false);
+  const [sessionKey, setSessionKey] = useState(0);
+  const [lastBatch, setLastBatch] = useState<StudySessionSummary | null>(null);
+  const fallbackItemIds = useMemo(
+    () =>
+      snapshot.progress.completedLessons.flatMap(
+        (lessonId) => course.lessons.find((lesson) => lesson.id === lessonId)?.targetItemIds ?? []
+      ),
+    [snapshot.progress.completedLessons]
+  );
   const [questions, setQuestions] = useState(() =>
     buildReviewSession(itemMap, snapshot.progress, fallbackItemIds, uiLanguageStage)
   );
   const t = (english: string, malay: string) => uiText(uiLanguageStage, english, malay);
+  const reviewHeader =
+    dueReviewItems.length > 0
+      ? `${dueReviewItems.length} ${t("item(s) due now.", "item perlu dibuat sekarang.")}`
+      : t("No due cards. Continuous practice is active.", "Tiada kad tertunggak. Latihan berterusan sedang aktif.");
 
-  if (completion) {
-    return (
-      <section className="panel result-panel">
-        <p className="eyebrow">{t("Review logged", "Ulang kaji direkodkan")}</p>
-        <h2>{completion.passed ? t("Review queue cooled down.", "Barisan ulang kaji sudah reda.") : t("You found weak spots.", "Anda jumpa bahagian yang masih lemah.")}</h2>
-        <p>
-          {t("Accuracy", "Ketepatan")}: {Math.round(completion.accuracy * 100)}% • {t("XP gained", "XP diperoleh")}: {completion.earnedXp}
-        </p>
-        <div className="hero-actions">
-          <button
-            type="button"
-            className="primary-button"
-            onClick={() => {
-              startTransition(() => navigate("/"));
-            }}
-          >
-            {t("Back home", "Kembali ke utama")}
-          </button>
-          <button
-            type="button"
-            className="secondary-button"
-            onClick={() => {
-              startTransition(() => navigate("/path"));
-            }}
-          >
-            {t("Continue path", "Teruskan laluan")}
-          </button>
-        </div>
-      </section>
-    );
-  }
+  useEffect(() => {
+    if (!pendingAdvance) {
+      return;
+    }
+
+    setQuestions(buildReviewSession(itemMap, snapshot.progress, fallbackItemIds, uiLanguageStage));
+    setSessionKey((current) => current + 1);
+    setPendingAdvance(false);
+  }, [fallbackItemIds, itemMap, pendingAdvance, snapshot.progress, uiLanguageStage]);
 
   if (questions.length === 0) {
     return (
@@ -77,9 +64,15 @@ export default function ReviewPage() {
     <div className="page-stack">
       <section className="panel compact-panel">
         <p className="eyebrow">{t("Review queue", "Barisan ulang kaji")}</p>
-        <h2>{dueReviewItems.length} {t("item(s) due now.", "item perlu dibuat sekarang.")}</h2>
+        <h2>{reviewHeader}</h2>
+        {lastBatch && (
+          <p className="muted-copy">
+            {t("Last batch", "Kumpulan terakhir")}: {Math.round(lastBatch.accuracy * 100)}% • +{lastBatch.earnedXp} XP
+          </p>
+        )}
       </section>
       <StudySession
+        key={sessionKey}
         title={t("Review", "Ulang kaji")}
         subtitle={t("Fast resurfacing for anything weak or overdue.", "Munculkan semula dengan cepat apa-apa yang lemah atau tertunggak.")}
         languageStage={uiLanguageStage}
@@ -94,8 +87,8 @@ export default function ReviewPage() {
             results: payload.results
           };
           submitStudySession(summary);
-          setCompletion(summary);
-          setQuestions([]);
+          setLastBatch(summary);
+          setPendingAdvance(true);
         }}
       />
     </div>

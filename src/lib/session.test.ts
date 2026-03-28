@@ -1,5 +1,5 @@
 import { course, getItemMap } from "./content";
-import { buildLessonSession, isQuestionCorrect, normalizeMalayText } from "./session";
+import { buildLessonSession, buildReviewSession, isQuestionCorrect, normalizeMalayText } from "./session";
 import type { AppSnapshot } from "../types";
 
 const emptySnapshot: AppSnapshot = {
@@ -84,5 +84,34 @@ describe("lesson session builder", () => {
 
     expect(promptDrivenQuestion).toBeDefined();
     expect(promptDrivenQuestion?.prompt).toBe("bahagian teks untuk dibaca");
+  });
+});
+
+describe("review session builder", () => {
+  it("rotates fallback review items as review session count increases", () => {
+    const itemMap = getItemMap([]);
+    const fallbackItemIds = course.lessons
+      .slice(0, 3)
+      .flatMap((lesson) => lesson.targetItemIds);
+    const first = buildReviewSession(itemMap, emptySnapshot.progress, fallbackItemIds);
+    const later = buildReviewSession(
+      itemMap,
+      {
+        ...emptySnapshot.progress,
+        sessionCount: 5
+      },
+      fallbackItemIds
+    );
+
+    const firstIds = first
+      .filter((question) => question.type !== "pair-match")
+      .map((question) => question.itemId)
+      .slice(0, 6);
+    const laterIds = later
+      .filter((question) => question.type !== "pair-match")
+      .map((question) => question.itemId)
+      .slice(0, 6);
+
+    expect(laterIds).not.toEqual(firstIds);
   });
 });

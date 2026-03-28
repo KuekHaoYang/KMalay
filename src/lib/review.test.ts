@@ -1,4 +1,4 @@
-import { ensureReviewState, scoreReview } from "./review";
+import { applyStudyDay, ensureReviewState, scoreReview } from "./review";
 
 describe("review scheduler", () => {
   it("promotes intervals when answers are correct", () => {
@@ -23,5 +23,23 @@ describe("review scheduler", () => {
     expect(missed.repetitions).toBe(0);
     expect(missed.ease).toBe(2.5);
     expect(missed.dueDate).toBe("2026-03-28");
+  });
+
+  it("still counts multiple same-day study sessions", () => {
+    const baseProgress = {
+      completedLessons: [],
+      lessonScores: {},
+      xp: 0,
+      currentStreak: 1,
+      longestStreak: 1,
+      lastStudyDate: "2026-03-28",
+      reviewStates: {},
+      sessionCount: 2
+    };
+
+    const updated = applyStudyDay(baseProgress, "2026-03-28");
+
+    expect(updated.currentStreak).toBe(1);
+    expect(updated.sessionCount).toBe(3);
   });
 });

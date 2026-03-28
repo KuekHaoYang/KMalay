@@ -11,6 +11,7 @@ import { course, getAllItems, getCurrentUnit, getItemMap, getNextLesson, lessonM
 import { getDueItemIds } from "../lib/review";
 import { getLocalDateKey, scoreReview, applyStudyDay, ensureReviewState } from "../lib/review";
 import { getUiLanguageStage } from "../lib/ui-language";
+import { countLearnedWords } from "../lib/word-stats";
 import {
   defaultSnapshot,
   exportSnapshot,
@@ -38,6 +39,7 @@ interface AppStateContextValue {
   nextLessonId?: string;
   currentUnitTitle: string;
   uiLanguageStage: UiLanguageStage;
+  learnedWordCount: number;
   submitStudySession: (summary: StudySessionSummary) => void;
   addCustomEntry: (input: CreateCustomEntryInput) => void;
   exportBackup: () => ExportBundle;
@@ -93,6 +95,10 @@ export const AppStateProvider = ({ children }: PropsWithChildren) => {
   const uiLanguageStage = useMemo(
     () => getUiLanguageStage(snapshot.progress.completedLessons.length),
     [snapshot.progress.completedLessons.length]
+  );
+  const learnedWordCount = useMemo(
+    () => countLearnedWords(snapshot.progress.completedLessons, itemMap, snapshot.customEntries),
+    [itemMap, snapshot.customEntries, snapshot.progress.completedLessons]
   );
 
   const submitStudySession = (summary: StudySessionSummary) => {
@@ -222,6 +228,7 @@ export const AppStateProvider = ({ children }: PropsWithChildren) => {
         nextLessonId: nextLesson?.id,
         currentUnitTitle: currentUnit.title,
         uiLanguageStage,
+        learnedWordCount,
         submitStudySession,
         addCustomEntry,
         exportBackup: () => exportSnapshot(snapshot),
