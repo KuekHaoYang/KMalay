@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
 import { course, useAppState } from "../state/AppStateContext";
 import { getLessonStatus, lessonMap } from "../lib/content";
+import { getLessonStatusLabel, uiText } from "../lib/ui-language";
 
 export default function PathPage() {
-  const { snapshot } = useAppState();
+  const { snapshot, uiLanguageStage } = useAppState();
+  const t = (english: string, malay: string) => uiText(uiLanguageStage, english, malay);
 
   return (
     <div className="page-stack">
       <section className="panel">
-        <p className="eyebrow">Learn path</p>
-        <h2>One straight line from survival Malay to usable daily vocabulary.</h2>
+        <p className="eyebrow">{t("Learn path", "Laluan belajar")}</p>
+        <h2>{t("One straight line from survival Malay to usable daily vocabulary.", "Satu laluan lurus daripada Bahasa Melayu asas kepada kosa kata harian yang benar-benar boleh digunakan.")}</h2>
         <p className="muted-copy">
-          Lessons unlock in order. The structure is intentionally linear because this is a personal tool, not a content maze.
+          {t(
+            "Lessons unlock in order. The structure is intentionally linear because this is a personal tool, not a content maze.",
+            "Pelajaran dibuka mengikut turutan. Strukturnya sengaja linear kerana ini alat peribadi, bukannya maze kandungan."
+          )}
         </p>
       </section>
 
@@ -27,7 +32,7 @@ export default function PathPage() {
           <div className="unit-header">
             <div className="unit-icon">{unit.icon}</div>
             <div>
-              <p className="eyebrow">Unit {index + 1}</p>
+              <p className="eyebrow">{t("Unit", "Unit")} {index + 1}</p>
               <h3>{unit.title}</h3>
               <p>{unit.description}</p>
             </div>
@@ -39,18 +44,20 @@ export default function PathPage() {
               return (
                 <article key={lesson.id} className={`lesson-card lesson-card-${status}`}>
                   <span className="lesson-chip">
-                    {lessonIndex + 1}. {status}
+                    {lessonIndex + 1}. {getLessonStatusLabel(uiLanguageStage, status)}
                   </span>
                   <h4>{lesson.title}</h4>
                   <p>{lesson.subtitle}</p>
-                  <p className="lesson-meta">{lesson.targetItemIds.length} targets • {lesson.xpReward} XP</p>
+                  <p className="lesson-meta">
+                    {lesson.targetItemIds.length} {t("targets", "sasaran")} • {lesson.xpReward} XP
+                  </p>
                   {status === "locked" ? (
                     <button type="button" className="secondary-button" disabled>
-                      Locked
+                      {t("Locked", "Terkunci")}
                     </button>
                   ) : (
                     <Link className={status === "completed" ? "secondary-button" : "primary-button"} to={`/lesson/${lesson.id}`}>
-                      {status === "completed" ? "Review lesson" : "Start lesson"}
+                      {status === "completed" ? t("Review lesson", "Ulang kaji pelajaran") : t("Start lesson", "Mula pelajaran")}
                     </Link>
                   )}
                 </article>

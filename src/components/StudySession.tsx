@@ -4,13 +4,16 @@ import type {
   SessionQuestion,
   SessionQuestionResult,
   TypedQuestion,
+  UiLanguageStage,
   WordBankQuestion
 } from "../types";
 import { isQuestionCorrect, normalizeMalayText } from "../lib/session";
+import { uiText } from "../lib/ui-language";
 
 interface StudySessionProps {
   title: string;
   subtitle: string;
+  languageStage: UiLanguageStage;
   questions: SessionQuestion[];
   onFinish: (payload: {
     accuracy: number;
@@ -41,6 +44,7 @@ const getCorrectAnswerText = (question: SessionQuestion) => {
 
 const QuestionSurface = ({
   question,
+  languageStage,
   draftAnswer,
   setDraftAnswer,
   typedAnswer,
@@ -52,6 +56,7 @@ const QuestionSurface = ({
   locked
 }: {
   question: SessionQuestion;
+  languageStage: UiLanguageStage;
   draftAnswer: string;
   setDraftAnswer: (value: string) => void;
   typedAnswer: string;
@@ -72,6 +77,8 @@ const QuestionSurface = ({
   }) => void;
   locked: boolean;
 }) => {
+  const t = (english: string, malay: string) => uiText(languageStage, english, malay);
+
   if (question.type === "recognition" || question.type === "reverse-recognition") {
     return (
       <div className="answer-stack">
@@ -93,7 +100,7 @@ const QuestionSurface = ({
   if (question.type === "typed") {
     return (
       <label className="typed-answer">
-        <span className="field-label">Malay answer</span>
+        <span className="field-label">{t("Malay answer", "Jawapan bahasa Melayu")}</span>
         <input
           className="text-input"
           value={typedAnswer}
@@ -112,7 +119,9 @@ const QuestionSurface = ({
       <div className="word-bank-area">
         <div className="word-bank-answer">
           {builtTokens.length === 0 ? (
-            <span className="word-bank-placeholder">Tap words to build the Malay answer.</span>
+            <span className="word-bank-placeholder">
+              {t("Tap words to build the Malay answer.", "Tekan perkataan untuk bina jawapan bahasa Melayu.")}
+            </span>
           ) : (
             builtTokens.map((token, index) => (
               <button
@@ -163,7 +172,7 @@ const QuestionSurface = ({
     <div className="pair-match">
       <div className="pair-columns">
         <div className="pair-column">
-          <p className="field-label">English</p>
+          <p className="field-label">{t("English", "Petunjuk")}</p>
           {remainingPairs.map((pair) => (
             <button
               key={pair.itemId}
@@ -183,7 +192,7 @@ const QuestionSurface = ({
           ))}
         </div>
         <div className="pair-column">
-          <p className="field-label">Malay</p>
+          <p className="field-label">{t("Malay", "Jawapan")}</p>
           {rightOptions.map((pair) => (
             <button
               key={pair.right}
@@ -193,7 +202,7 @@ const QuestionSurface = ({
                 if (!pairState.activeLeft) {
                   setPairState({
                     ...pairState,
-                    message: "Pick an English card first."
+                    message: t("Pick a card on the left first.", "Pilih kad di sebelah kiri dahulu.")
                   });
                   return;
                 }
@@ -204,14 +213,14 @@ const QuestionSurface = ({
                     activeLeft: undefined,
                     matchedPairs: matched,
                     mistakes: pairState.mistakes,
-                    message: "Matched."
+                    message: t("Matched.", "Padan.")
                   });
                 } else {
                   setPairState({
                     activeLeft: undefined,
                     matchedPairs: pairState.matchedPairs,
                     mistakes: pairState.mistakes + 1,
-                    message: "Wrong pair. Try again."
+                    message: t("Wrong pair. Try again.", "Pasangan salah. Cuba lagi.")
                   });
                 }
               }}
@@ -236,7 +245,8 @@ const QuestionSurface = ({
   );
 };
 
-export default function StudySession({ title, subtitle, questions, onFinish }: StudySessionProps) {
+export default function StudySession({ title, subtitle, languageStage, questions, onFinish }: StudySessionProps) {
+  const t = (english: string, malay: string) => uiText(languageStage, english, malay);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [results, setResults] = useState<SessionQuestionResult[]>([]);
   const [draftAnswer, setDraftAnswer] = useState("");
@@ -286,8 +296,8 @@ export default function StudySession({ title, subtitle, questions, onFinish }: S
   if (questions.length === 0) {
     return (
       <section className="panel session-panel">
-        <p className="eyebrow">Nothing due</p>
-        <h2>No questions are ready yet.</h2>
+        <p className="eyebrow">{t("Nothing due", "Tiada yang perlu dibuat")}</p>
+        <h2>{t("No questions are ready yet.", "Belum ada soalan yang sedia.")}</h2>
       </section>
     );
   }
@@ -374,10 +384,15 @@ export default function StudySession({ title, subtitle, questions, onFinish }: S
         <p className="field-label">{question.helper}</p>
         <h3 className="question-prompt">{question.prompt}</h3>
         {question.type === "typed" && typedAnswer && (
-          <p className="answer-preview">{normalizeMalayText(typedAnswer) !== typedAnswer ? "Spacing will be normalized." : "Type your best answer once."}</p>
+          <p className="answer-preview">
+            {normalizeMalayText(typedAnswer) !== typedAnswer
+              ? t("Spacing will be normalized.", "Jarak akan dinormalkan.")
+              : t("Type your best answer once.", "Taip jawapan terbaik anda sekali.")}
+          </p>
         )}
         <QuestionSurface
           question={question}
+          languageStage={languageStage}
           draftAnswer={draftAnswer}
           setDraftAnswer={setDraftAnswer}
           typedAnswer={typedAnswer}
@@ -392,26 +407,26 @@ export default function StudySession({ title, subtitle, questions, onFinish }: S
 
       {feedback ? (
         <div className={`feedback-card ${feedback.correct ? "feedback-correct" : "feedback-wrong"}`}>
-          <strong>{feedback.correct ? "Correct." : "Not quite."}</strong>
-          <p>Answer: {feedback.answer}</p>
+          <strong>{feedback.correct ? t("Correct.", "Betul.") : t("Not quite.", "Belum tepat.")}</strong>
+          <p>{t("Answer", "Jawapan")}: {feedback.answer}</p>
           <button
             type="button"
             className="primary-button"
             onClick={() => commitResult(feedback.correct, feedback.attempts)}
           >
-            {currentIndex === questions.length - 1 ? "Finish session" : "Next"}
+            {currentIndex === questions.length - 1 ? t("Finish session", "Tamatkan sesi") : t("Next", "Seterusnya")}
           </button>
         </div>
       ) : question.type === "pair-match" ? (
         <div className="session-actions">
           <button type="button" className="secondary-button" disabled>
-            Match all pairs
+            {t("Match all pairs", "Padankan semua pasangan")}
           </button>
         </div>
       ) : (
         <div className="session-actions">
           <button type="button" className="primary-button" onClick={submitCurrentQuestion} disabled={!canSubmit}>
-            Check answer
+            {t("Check answer", "Semak jawapan")}
           </button>
         </div>
       )}

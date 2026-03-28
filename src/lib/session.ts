@@ -4,11 +4,19 @@ import type {
   PairMatchQuestion,
   SessionQuestion,
   TypedQuestion,
+  UiLanguageStage,
   UserProgress,
   WordBankQuestion
 } from "../types";
 import { lessonMap, pathLessonOrder } from "./content";
 import { getDueItemIds } from "./review";
+import {
+  canTeachThroughMalay,
+  getTeachingPrompt,
+  getUiLanguageStage,
+  getUiLanguageStageForLesson,
+  uiText
+} from "./ui-language";
 
 const hashSeed = (value: string) =>
   Array.from(value).reduce((total, char) => total + char.charCodeAt(0), 0);
@@ -42,10 +50,19 @@ const getDistractors = (item: CourseItem, pool: CourseItem[], count: number) =>
 
 const unique = <T,>(values: T[]) => [...new Set(values)];
 
-const makeRecognition = (item: CourseItem, pool: CourseItem[], key: string): ChoiceQuestion => {
+const makeRecognition = (
+  item: CourseItem,
+  pool: CourseItem[],
+  key: string,
+  languageStage: UiLanguageStage
+): ChoiceQuestion => {
   const distractors = getDistractors(item, shuffle(pool, `${key}-d`), 3);
+  const allCandidates = [item, ...distractors];
+  const usesMalayMeaning = canTeachThroughMalay(allCandidates, languageStage);
+  const getMeaningOption = (candidate: CourseItem) =>
+    usesMalayMeaning ? getTeachingPrompt(candidate, languageStage) : candidate.english[0];
   const options = shuffle(
-    [item.english[0], ...distractors.map((candidate) => candidate.english[0])],
+    [getMeaningOption(item), ...distractors.map((candidate) => getMeaningOption(candidate))],
     `${key}-options`
   );
 
@@ -55,12 +72,19 @@ const makeRecognition = (item: CourseItem, pool: CourseItem[], key: string): Cho
     itemId: item.id,
     prompt: item.malay,
     options,
-    correctAnswer: item.english[0],
-    helper: "Pick the English meaning."
+    correctAnswer: getMeaningOption(item),
+    helper: usesMalayMeaning
+      ? uiText(languageStage, "Pick the best meaning.", "Pilih maksud yang paling tepat.")
+      : uiText(languageStage, "Pick the English meaning.", "Pilih maksud bahasa Inggeris.")
   };
 };
 
-const makeReverseRecognition = (item: CourseItem, pool: CourseItem[], key: string): ChoiceQuestion => {
+const makeReverseRecognition = (
+  item: CourseItem,
+  pool: CourseItem[],
+  key: string,
+  languageStage: UiLanguageStage
+): ChoiceQuestion => {
   const distractors = getDistractors(item, shuffle(pool, `${key}-d`), 3);
   const options = shuffle(
     [item.malay, ...distractors.map((candidate) => candidate.malay)],
@@ -71,24 +95,29 @@ const makeReverseRecognition = (item: CourseItem, pool: CourseItem[], key: strin
     id: `${item.id}-reverse-${key}`,
     type: "reverse-recognition",
     itemId: item.id,
-    prompt: item.english[0],
+    prompt: getTeachingPrompt(item, languageStage),
     options,
     correctAnswer: item.malay,
-    helper: "Pick the Malay answer."
+    helper: uiText(languageStage, "Pick the Malay answer.", "Pilih jawapan bahasa Melayu.")
   };
 };
 
-const makeTyped = (item: CourseItem, key: string): TypedQuestion => ({
+const makeTyped = (item: CourseItem, key: string, languageStage: UiLanguageStage): TypedQuestion => ({
   id: `${item.id}-typed-${key}`,
   type: "typed",
   itemId: item.id,
-  prompt: item.english[0],
+  prompt: getTeachingPrompt(item, languageStage),
   acceptedAnswers: item.acceptedAnswers,
-  helper: "Type the Malay answer.",
-  placeholder: "Type in Malay"
+  helper: uiText(languageStage, "Type the Malay answer.", "Taip jawapan bahasa Melayu."),
+  placeholder: uiText(languageStage, "Type in Malay", "Taip dalam bahasa Melayu")
 });
 
-const makeWordBank = (item: CourseItem, pool: CourseItem[], key: string): WordBankQuestion => {
+const makeWordBank = (
+  item: CourseItem,
+  pool: CourseItem[],
+  key: string,
+  languageStage: UiLanguageStage
+): WordBankQuestion => {
   const answerTokens = item.acceptedAnswers[0]
     .replace(/[?!.,]/g, "")
     .split(/\s+/)
@@ -106,42 +135,49 @@ const makeWordBank = (item: CourseItem, pool: CourseItem[], key: string): WordBa
     id: `${item.id}-bank-${key}`,
     type: "word-bank",
     itemId: item.id,
-    prompt: item.english[0],
+    prompt: getTeachingPrompt(item, languageStage),
     answerTokens,
     bank: shuffle([...answerTokens, ...distractorTokens], `${key}-bank`),
-    helper: "Tap the Malay words in order."
+    helper: uiText(languageStage, "Tap the Malay words in order.", "Tekan perkataan bahasa Melayu mengikut urutan.")
   };
 };
 
-const makePairMatch = (items: CourseItem[], key: string): PairMatchQuestion => ({
-  id: `pair-${key}`,
-  type: "pair-match",
-  pairs: shuffle(items, `${key}-pairs`).map((item) => ({
-    itemId: item.id,
-    left: item.english[0],
-    right: item.malay
-  })),
-  prompt: "Match each English prompt to the Malay answer.",
-  helper: "Clear all pairs to continue."
-});
+const makePairMatch = (items: CourseItem[], key: string, languageStage: UiLanguageStage): PairMatchQuestion => {
+  const useMalayClues = canTeachThroughMalay(items, languageStage);
+
+  return {
+    id: `pair-${key}`,
+    type: "pair-match",
+    pairs: shuffle(items, `${key}-pairs`).map((item) => ({
+      itemId: item.id,
+      left: useMalayClues ? getTeachingPrompt(item, languageStage) : item.english[0],
+      right: item.malay
+    })),
+    prompt: useMalayClues
+      ? uiText(languageStage, "Match each clue to the Malay answer.", "Padankan setiap petunjuk dengan jawapan bahasa Melayu.")
+      : uiText(languageStage, "Match each English prompt to the Malay answer.", "Padankan setiap prompt bahasa Inggeris dengan jawapan bahasa Melayu."),
+    helper: uiText(languageStage, "Clear all pairs to continue.", "Padankan semua pasangan untuk teruskan.")
+  };
+};
 
 const buildQuestionForTemplate = (
   template: SessionQuestion["type"],
   item: CourseItem,
   pool: CourseItem[],
-  key: string
+  key: string,
+  languageStage: UiLanguageStage
 ) => {
   switch (template) {
     case "recognition":
-      return makeRecognition(item, pool, key);
+      return makeRecognition(item, pool, key, languageStage);
     case "reverse-recognition":
-      return makeReverseRecognition(item, pool, key);
+      return makeReverseRecognition(item, pool, key, languageStage);
     case "typed":
-      return makeTyped(item, key);
+      return makeTyped(item, key, languageStage);
     case "word-bank":
-      return makeWordBank(item, pool, key);
+      return makeWordBank(item, pool, key, languageStage);
     default:
-      return makeRecognition(item, pool, key);
+      return makeRecognition(item, pool, key, languageStage);
   }
 };
 
@@ -149,7 +185,8 @@ export const buildLessonSession = (
   lessonId: string,
   lessonItemIds: string[],
   itemMap: Record<string, CourseItem>,
-  progress: UserProgress
+  progress: UserProgress,
+  languageStage = getUiLanguageStageForLesson(lessonId)
 ): SessionQuestion[] => {
   const pool = Object.values(itemMap);
   const targets = lessonItemIds.map((itemId) => itemMap[itemId]).filter(Boolean);
@@ -170,7 +207,7 @@ export const buildLessonSession = (
   const supplementalReviewIds = [...dueReviewIds, ...spiralReviewIds];
   const supplementalReviews = supplementalReviewIds
     .map((itemId) => itemMap[itemId])
-    .filter(Boolean)
+    .filter(Boolean);
 
   const questions: SessionQuestion[] = [];
   const usableTemplates: Array<Exclude<SessionQuestion["type"], "pair-match">> = [
@@ -183,17 +220,17 @@ export const buildLessonSession = (
   targets.forEach((item, index) => {
     const primaryTemplate = usableTemplates[index % usableTemplates.length];
     const secondaryTemplate = usableTemplates[(index + 1) % usableTemplates.length];
-    questions.push(buildQuestionForTemplate(primaryTemplate, item, pool, `${lessonId}-${index}-a`));
-    questions.push(buildQuestionForTemplate(secondaryTemplate, item, pool, `${lessonId}-${index}-b`));
+    questions.push(buildQuestionForTemplate(primaryTemplate, item, pool, `${lessonId}-${index}-a`, languageStage));
+    questions.push(buildQuestionForTemplate(secondaryTemplate, item, pool, `${lessonId}-${index}-b`, languageStage));
   });
 
   if (targets.length >= 4) {
-    questions.splice(2, 0, makePairMatch(targets.slice(0, 4), `${lessonId}-match`));
+    questions.splice(2, 0, makePairMatch(targets.slice(0, 4), `${lessonId}-match`, languageStage));
   }
 
   supplementalReviews.forEach((item, index) => {
     const template = index === 0 ? "typed" : index % 2 === 0 ? "recognition" : "reverse-recognition";
-    questions.push(buildQuestionForTemplate(template, item, pool, `${lessonId}-review-${index}`));
+    questions.push(buildQuestionForTemplate(template, item, pool, `${lessonId}-review-${index}`, languageStage));
   });
 
   return questions;
@@ -202,7 +239,8 @@ export const buildLessonSession = (
 export const buildReviewSession = (
   itemMap: Record<string, CourseItem>,
   progress: UserProgress,
-  fallbackItemIds: string[]
+  fallbackItemIds: string[],
+  languageStage = getUiLanguageStage(progress.completedLessons.length)
 ): SessionQuestion[] => {
   const dueItemIds = getDueItemIds(progress.reviewStates);
   const selectedIds = (dueItemIds.length > 0 ? dueItemIds : fallbackItemIds).slice(0, 8);
@@ -215,12 +253,12 @@ export const buildReviewSession = (
 
   const questions: SessionQuestion[] = [];
   items.forEach((item, index) => {
-    questions.push(makeReverseRecognition(item, pool, `review-${index}-a`));
-    questions.push(makeTyped(item, `review-${index}-b`));
+    questions.push(makeReverseRecognition(item, pool, `review-${index}-a`, languageStage));
+    questions.push(makeTyped(item, `review-${index}-b`, languageStage));
   });
 
   if (items.length >= 4) {
-    questions.splice(1, 0, makePairMatch(items.slice(0, 4), "review-match"));
+    questions.splice(1, 0, makePairMatch(items.slice(0, 4), "review-match", languageStage));
   }
 
   return questions;

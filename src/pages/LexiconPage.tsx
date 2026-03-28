@@ -1,14 +1,16 @@
 import { useDeferredValue, useMemo, useState } from "react";
 import { useAppState } from "../state/AppStateContext";
+import { getKindLabel, uiText } from "../lib/ui-language";
 
 export default function LexiconPage() {
-  const { allItems, addCustomEntry } = useAppState();
+  const { allItems, addCustomEntry, uiLanguageStage } = useAppState();
   const [search, setSearch] = useState("");
   const [malay, setMalay] = useState("");
   const [english, setEnglish] = useState("");
   const [note, setNote] = useState("");
   const [example, setExample] = useState("");
   const deferredSearch = useDeferredValue(search);
+  const t = (englishText: string, malayText: string) => uiText(uiLanguageStage, englishText, malayText);
 
   const filteredItems = useMemo(() => {
     const query = deferredSearch.trim().toLocaleLowerCase("en-US");
@@ -29,40 +31,43 @@ export default function LexiconPage() {
   return (
     <div className="page-stack">
       <section className="panel">
-        <p className="eyebrow">Lexicon</p>
-        <h2>Seeded deck plus your own capture list.</h2>
+        <p className="eyebrow">{t("Lexicon", "Leksikon")}</p>
+        <h2>{t("Seeded deck plus your own capture list.", "Dek benih bersama senarai tangkapan anda sendiri.")}</h2>
         <p className="muted-copy">
-          Custom entries do not enter the main path. They go straight into local review, which is the correct behavior for personal vocabulary capture.
+          {t(
+            "Custom entries do not enter the main path. They go straight into local review, which is the correct behavior for personal vocabulary capture.",
+            "Entri tersuai tidak masuk ke laluan utama. Entri itu terus masuk ke ulang kaji tempatan, dan itu memang tingkah laku yang betul untuk tangkapan kosa kata peribadi."
+          )}
         </p>
       </section>
 
       <section className="panel">
         <div className="section-header">
           <div>
-            <p className="eyebrow">Add custom item</p>
-            <h3>Capture something you heard today.</h3>
+            <p className="eyebrow">{t("Add custom item", "Tambah item tersuai")}</p>
+            <h3>{t("Capture something you heard today.", "Tangkap sesuatu yang anda dengar hari ini.")}</h3>
           </div>
         </div>
         <div className="form-grid">
           <label>
-            <span className="field-label">Malay</span>
+            <span className="field-label">{t("Malay", "Bahasa Melayu")}</span>
             <input className="text-input" value={malay} onChange={(event) => setMalay(event.target.value)} />
           </label>
           <label>
-            <span className="field-label">English glosses</span>
+            <span className="field-label">{t("English glosses", "Maksud bahasa Inggeris")}</span>
             <input
               className="text-input"
               value={english}
-              placeholder="comma separated"
+              placeholder={t("comma separated", "pisahkan dengan koma")}
               onChange={(event) => setEnglish(event.target.value)}
             />
           </label>
           <label>
-            <span className="field-label">Register note</span>
+            <span className="field-label">{t("Register note", "Catatan register")}</span>
             <input className="text-input" value={note} onChange={(event) => setNote(event.target.value)} />
           </label>
           <label>
-            <span className="field-label">Example</span>
+            <span className="field-label">{t("Example", "Contoh")}</span>
             <input className="text-input" value={example} onChange={(event) => setExample(event.target.value)} />
           </label>
         </div>
@@ -79,7 +84,7 @@ export default function LexiconPage() {
             }}
             disabled={!malay.trim() || !english.trim()}
           >
-            Save to review
+            {t("Save to review", "Simpan ke ulang kaji")}
           </button>
         </div>
       </section>
@@ -87,14 +92,14 @@ export default function LexiconPage() {
       <section className="panel">
         <div className="section-header">
           <div>
-            <p className="eyebrow">Search deck</p>
-            <h3>{filteredItems.length} visible entries</h3>
+            <p className="eyebrow">{t("Search deck", "Cari dalam dek")}</p>
+            <h3>{filteredItems.length} {t("visible entries", "entri kelihatan")}</h3>
           </div>
         </div>
         <input
           className="text-input"
           value={search}
-          placeholder="Search Malay, English, or tags"
+          placeholder={t("Search Malay, English, or tags", "Cari Bahasa Melayu, bahasa Inggeris, atau tag")}
           onChange={(event) => setSearch(event.target.value)}
         />
         <div className="lexicon-list">
@@ -105,7 +110,7 @@ export default function LexiconPage() {
                   <h4>{item.malay}</h4>
                   <p>{item.english.join(", ")}</p>
                 </div>
-                <span className="lesson-chip">{item.kind}</span>
+                <span className="lesson-chip">{getKindLabel(uiLanguageStage, item.kind)}</span>
               </div>
               <div className="chip-wrap">
                 {item.tags.slice(0, 4).map((tag) => (
@@ -115,7 +120,7 @@ export default function LexiconPage() {
                 ))}
               </div>
               {item.registerNote && <p className="muted-copy">{item.registerNote}</p>}
-              {item.example && <p className="example-copy">Example: {item.example}</p>}
+              {item.example && <p className="example-copy">{t("Example", "Contoh")}: {item.example}</p>}
             </article>
           ))}
         </div>

@@ -18,11 +18,18 @@ export type ExerciseType =
   | "word-bank"
   | "pair-match";
 
+export type UiLanguageStage =
+  | "english"
+  | "bilingual"
+  | "malay-guided"
+  | "malay";
+
 export interface ItemBase {
   id: string;
   kind: "lexeme" | "phrase";
   malay: string;
   english: string[];
+  malayHint?: string;
   acceptedAnswers: string[];
   tags: string[];
   registerNote?: string;

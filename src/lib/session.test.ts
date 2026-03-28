@@ -69,4 +69,20 @@ describe("lesson session builder", () => {
 
     expect(resurfaced).toBe(true);
   });
+
+  it("uses Malay teaching prompts in immersive lessons when Malay hints exist", () => {
+    const session = buildLessonSession(
+      "lesson-201",
+      course.lessons[200].targetItemIds,
+      getItemMap([]),
+      emptySnapshot.progress
+    );
+
+    const promptDrivenQuestion = session.find(
+      (question) => question.type === "reverse-recognition" && "itemId" in question && question.itemId === "lx-petikan"
+    );
+
+    expect(promptDrivenQuestion).toBeDefined();
+    expect(promptDrivenQuestion?.prompt).toBe("bahagian teks untuk dibaca");
+  });
 });

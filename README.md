@@ -2,13 +2,14 @@
 
 KMalay is a personal, local-first Malaysian Malay vocabulary trainer built with React, TypeScript, and Vite.
 
-It is designed around a Duolingo-like path, but the goal is not to imitate Duolingo's game design. The goal is faster vocabulary growth for one real learner using English as the instruction language and Malaysian Malay (`ms-MY`) as the target language.
+It is designed around a Duolingo-like path, but the goal is not to imitate Duolingo's game design. The goal is faster vocabulary growth for one real learner using English first, then gradually shifting the interface and teaching prompts toward Malaysian Malay (`ms-MY`) until later lessons run Malay-first and eventually Malay-only.
 
 The current app includes:
 
-- A structured course path with 100 lessons across 20 units
+- A structured course path with 250 lessons across 50 units
 - Lesson sessions with multiple exercise types
 - Spiral review inside later lessons so old material keeps resurfacing
+- Progressive interface language stages from English to bilingual to Malay-only
 - A separate review queue with spaced repetition
 - A searchable lexicon
 - Manual custom vocabulary capture
@@ -54,6 +55,15 @@ KMalay currently uses these exercise types:
 - Typed answers
 - Word bank ordering
 - Pair matching
+
+### Interface Language Progression
+
+KMalay no longer keeps the UI in English forever.
+
+- Early lessons are English-led
+- Mid-path lessons become bilingual
+- Later lessons switch to Malay-first prompts
+- The final stretch uses Malay to teach Malay where Malay hints exist
 
 ### Review Model
 
@@ -113,12 +123,14 @@ Core content types:
 - `Lexeme`
   - Malay text
   - English glosses
+  - optional Malay teaching hint for later immersive prompts
   - accepted answers
   - tags
   - register notes
   - example text
 - `Phrase`
   - short usable Malay phrase
+  - optional Malay teaching hint for later immersive prompts
   - linked lexeme IDs
   - context
 - `Lesson`
@@ -534,10 +546,11 @@ then hosting and architecture decisions may change.
 
 Implemented now:
 
-- 100 seeded lessons
+- 250 seeded lessons
 - local-first progress
 - review scheduler
 - spiral resurfacing inside later lessons
+- staged UI language progression into Malay immersion
 - custom lexicon capture
 - export/import backups
 - PWA build

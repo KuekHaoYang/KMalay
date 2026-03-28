@@ -430,6 +430,132 @@ const items: CourseItem[] = [
   lexeme("lx-bahaya", "bahaya", ["danger", "dangerous"], "noun", ["services"]),
   lexeme("lx-panggil", "panggil", ["call", "summon"], "verb", ["services", "verb"]),
   lexeme("lx-lapor", "lapor", ["report"], "verb", ["services", "verb"]),
+  lexeme("lx-kuat", "kuat", ["loud", "strong"], "adjective", ["listening"]),
+  lexeme("lx-perlahan", "perlahan", ["slowly", "slow", "softly"], "adverb", ["listening"]),
+  lexeme("lx-jelas", "jelas", ["clear", "clearly"], "adjective", ["listening"]),
+  lexeme("lx-terang", "terang", ["bright"], "adjective", ["listening", "neighborhood"]),
+  lexeme("lx-bising", "bising", ["noisy"], "adjective", ["listening"]),
+  lexeme("lx-senyap", "senyap", ["quiet", "silent"], "adjective", ["listening"]),
+  lexeme("lx-maksud", "maksud", ["meaning"], "noun", ["listening", "school"]),
+  lexeme("lx-sebut", "sebut", ["say", "mention", "pronounce"], "verb", ["listening", "verb"]),
+  lexeme("lx-terangkan", "terangkan", ["explain"], "verb", ["listening", "verb"]),
+  lexeme("lx-suara", "suara", ["voice", "sound"], "noun", ["listening"]),
+  lexeme("lx-dengan", "dengan", ["with"], "preposition", ["connector"]),
+  lexeme("lx-seluar", "seluar", ["pants", "trousers"], "noun", ["clothes"]),
+  lexeme("lx-stokin", "stokin", ["socks"], "noun", ["clothes"]),
+  lexeme("lx-jaket", "jaket", ["jacket"], "noun", ["clothes"]),
+  lexeme("lx-topi", "topi", ["hat", "cap"], "noun", ["clothes"]),
+  lexeme("lx-uniform", "uniform", ["uniform"], "noun", ["clothes", "school"]),
+  lexeme("lx-saiz", "saiz", ["size"], "noun", ["clothes", "shopping"]),
+  lexeme("lx-warna", "warna", ["color"], "noun", ["clothes"]),
+  lexeme("lx-kemas", "kemas", ["neat", "tidy"], "adjective", ["clothes"]),
+  lexeme("lx-longgar", "longgar", ["loose"], "adjective", ["clothes"]),
+  lexeme("lx-ketat", "ketat", ["tight"], "adjective", ["clothes"]),
+  lexeme("lx-sesuai", "sesuai", ["suitable", "fits"], "adjective", ["clothes"]),
+  lexeme("lx-mee", "mee", ["noodles"], "noun", ["restaurant", "food"]),
+  lexeme("lx-sup", "sup", ["soup"], "noun", ["restaurant", "food"]),
+  lexeme("lx-jus", "jus", ["juice"], "noun", ["restaurant", "food"]),
+  lexeme("lx-susu", "susu", ["milk"], "noun", ["restaurant", "food"]),
+  lexeme("lx-sambal", "sambal", ["sambal", "chili paste"], "noun", ["restaurant", "food"]),
+  lexeme("lx-mangkuk", "mangkuk", ["bowl"], "noun", ["restaurant"]),
+  lexeme("lx-pinggan", "pinggan", ["plate"], "noun", ["restaurant"]),
+  lexeme("lx-sudu", "sudu", ["spoon"], "noun", ["restaurant"]),
+  lexeme("lx-garpu", "garpu", ["fork"], "noun", ["restaurant"]),
+  lexeme("lx-pesan", "pesan", ["order"], "verb", ["restaurant", "verb"]),
+  lexeme("lx-hidang", "hidang", ["serve"], "verb", ["restaurant", "verb"]),
+  lexeme("lx-tambah", "tambah", ["add", "extra"], "verb", ["restaurant", "verb"]),
+  lexeme("lx-dalam", "dalam", ["in", "inside"], "preposition", ["restaurant", "place"]),
+  lexeme("lx-hobi", "hobi", ["hobby"], "noun", ["hobby"]),
+  lexeme("lx-bola", "bola", ["ball"], "noun", ["hobby", "sports"]),
+  lexeme("lx-badminton", "badminton", ["badminton"], "noun", ["hobby", "sports"]),
+  lexeme("lx-berenang", "berenang", ["swim", "swimming"], "verb", ["hobby", "verb"]),
+  lexeme("lx-berlari", "berlari", ["run", "running"], "verb", ["hobby", "verb"]),
+  lexeme("lx-bermain", "bermain", ["play", "playing"], "verb", ["hobby", "verb"]),
+  lexeme("lx-lukis", "lukis", ["draw"], "verb", ["hobby", "verb"]),
+  lexeme("lx-menyanyi", "menyanyi", ["sing"], "verb", ["hobby", "verb"]),
+  lexeme("lx-menonton", "menonton", ["watch"], "verb", ["hobby", "verb"]),
+  lexeme("lx-gitar", "gitar", ["guitar"], "noun", ["hobby"]),
+  lexeme("lx-filem", "filem", ["movie", "film"], "noun", ["hobby"]),
+  lexeme("lx-lagu", "lagu", ["song"], "noun", ["hobby"]),
+  lexeme("lx-tangan", "tangan", ["hand", "arm"], "noun", ["body"]),
+  lexeme("lx-kaki", "kaki", ["leg", "foot"], "noun", ["body"]),
+  lexeme("lx-mata", "mata", ["eye"], "noun", ["body"]),
+  lexeme("lx-mulut", "mulut", ["mouth"], "noun", ["body"]),
+  lexeme("lx-hidung", "hidung", ["nose"], "noun", ["body"]),
+  lexeme("lx-telinga", "telinga", ["ear"], "noun", ["body"]),
+  lexeme("lx-doktor", "doktor", ["doctor"], "noun", ["body", "health"]),
+  lexeme("lx-janji-temu", "janji temu", ["appointment"], "noun", ["body", "health"]),
+  lexeme("lx-ukur", "ukur", ["measure"], "verb", ["body", "health", "verb"]),
+  lexeme("lx-suhu", "suhu", ["temperature"], "noun", ["body", "health"]),
+  lexeme("lx-pedih", "pedih", ["stinging", "sore"], "adjective", ["body", "health"]),
+  lexeme("lx-gigi", "gigi", ["tooth", "teeth"], "noun", ["body"]),
+  lexeme("lx-muka", "muka", ["face"], "noun", ["body"]),
+  lexeme("lx-januari", "Januari", ["January"], "time", ["dates"]),
+  lexeme("lx-februari", "Februari", ["February"], "time", ["dates"]),
+  lexeme("lx-mac", "Mac", ["March"], "time", ["dates"]),
+  lexeme("lx-april", "April", ["April"], "time", ["dates"]),
+  lexeme("lx-mei", "Mei", ["May"], "time", ["dates"]),
+  lexeme("lx-jun", "Jun", ["June"], "time", ["dates"]),
+  lexeme("lx-julai", "Julai", ["July"], "time", ["dates"]),
+  lexeme("lx-ogos", "Ogos", ["August"], "time", ["dates"]),
+  lexeme("lx-september", "September", ["September"], "time", ["dates"]),
+  lexeme("lx-oktober", "Oktober", ["October"], "time", ["dates"]),
+  lexeme("lx-november", "November", ["November"], "time", ["dates"]),
+  lexeme("lx-disember", "Disember", ["December"], "time", ["dates"]),
+  lexeme("lx-tarikh", "tarikh", ["date"], "time", ["dates"]),
+  lexeme("lx-tahun", "tahun", ["year"], "time", ["dates"]),
+  lexeme("lx-hari-jadi", "hari jadi", ["birthday"], "noun", ["dates"]),
+  lexeme("lx-pada", "pada", ["on", "at"], "preposition", ["dates"]),
+  lexeme("lx-minggu-depan", "minggu depan", ["next week"], "time", ["dates"]),
+  lexeme("lx-minggu-lepas", "minggu lepas", ["last week"], "time", ["dates"]),
+  lexeme("lx-sepupu", "sepupu", ["cousin"], "noun", ["family-events"]),
+  lexeme("lx-nenek", "nenek", ["grandmother"], "noun", ["family-events"]),
+  lexeme("lx-datuk", "datuk", ["grandfather"], "noun", ["family-events"]),
+  lexeme("lx-jiran", "jiran", ["neighbor"], "noun", ["family-events"]),
+  lexeme("lx-tetamu", "tetamu", ["guest"], "noun", ["family-events"]),
+  lexeme("lx-lawat", "lawat", ["visit"], "verb", ["family-events", "verb"]),
+  lexeme("lx-jemput", "jemput", ["invite"], "verb", ["family-events", "verb"]),
+  lexeme("lx-hadiah", "hadiah", ["gift"], "noun", ["family-events"]),
+  lexeme("lx-majlis", "majlis", ["event", "ceremony"], "noun", ["family-events"]),
+  lexeme("lx-kahwin", "kahwin", ["marry", "wedding"], "noun", ["family-events"]),
+  lexeme("lx-rumah-terbuka", "rumah terbuka", ["open house"], "noun", ["family-events"]),
+  lexeme("lx-kenduri", "kenduri", ["feast", "gathering"], "noun", ["family-events"]),
+  lexeme("lx-lapangan-terbang", "lapangan terbang", ["airport"], "noun", ["travel"]),
+  lexeme("lx-kapal-terbang", "kapal terbang", ["airplane"], "noun", ["travel"]),
+  lexeme("lx-pasport", "pasport", ["passport"], "noun", ["travel"]),
+  lexeme("lx-bagasi", "bagasi", ["luggage", "baggage"], "noun", ["travel"]),
+  lexeme("lx-hotel", "hotel", ["hotel"], "noun", ["travel"]),
+  lexeme("lx-tempahan", "tempahan", ["booking", "reservation"], "noun", ["travel"]),
+  lexeme("lx-tiba", "tiba", ["arrive"], "verb", ["travel", "verb"]),
+  lexeme("lx-berlepas", "berlepas", ["depart"], "verb", ["travel", "verb"]),
+  lexeme("lx-pelancong", "pelancong", ["tourist"], "noun", ["travel"]),
+  lexeme("lx-lawatan", "lawatan", ["trip", "visit"], "noun", ["travel"]),
+  lexeme("lx-kaunter", "kaunter", ["counter"], "noun", ["travel"]),
+  lexeme("lx-pemandu", "pemandu", ["driver"], "noun", ["travel"]),
+  lexeme("lx-perkataan", "perkataan", ["word"], "noun", ["language"]),
+  lexeme("lx-ayat", "ayat", ["sentence"], "noun", ["language"]),
+  lexeme("lx-terjemah", "terjemah", ["translate"], "verb", ["language", "verb"]),
+  lexeme("lx-hafal", "hafal", ["memorize"], "verb", ["language", "verb"]),
+  lexeme("lx-tatabahasa", "tatabahasa", ["grammar"], "noun", ["language"]),
+  lexeme("lx-kamus", "kamus", ["dictionary"], "noun", ["language"]),
+  lexeme("lx-sebutan", "sebutan", ["pronunciation"], "noun", ["language"]),
+  lexeme("lx-betulkan", "betulkan", ["correct", "fix"], "verb", ["language", "verb"]),
+  lexeme("lx-ringkas", "ringkas", ["short", "brief"], "adjective", ["language"]),
+  lexeme("lx-penuh", "penuh", ["full", "complete"], "adjective", ["language"]),
+  lexeme("lx-ejaan", "ejaan", ["spelling"], "noun", ["language"]),
+  lexeme("lx-ulangkaji", "ulangkaji", ["revise", "revision"], "verb", ["language", "verb"]),
+  lexeme("lx-restoran", "restoran", ["restaurant"], "noun", ["neighborhood"]),
+  lexeme("lx-kedai-buku", "kedai buku", ["bookstore"], "noun", ["neighborhood"]),
+  lexeme("lx-farmasi", "farmasi", ["pharmacy"], "noun", ["neighborhood"]),
+  lexeme("lx-surau", "surau", ["prayer room"], "noun", ["neighborhood"]),
+  lexeme("lx-masjid", "masjid", ["mosque"], "noun", ["neighborhood"]),
+  lexeme("lx-pusat-beli-belah", "pusat beli-belah", ["shopping mall"], "noun", ["neighborhood"]),
+  lexeme("lx-perhentian-bas", "perhentian bas", ["bus stop"], "noun", ["neighborhood"]),
+  lexeme("lx-jambatan", "jambatan", ["bridge"], "noun", ["neighborhood"]),
+  lexeme("lx-lampu-jalan", "lampu jalan", ["street light"], "noun", ["neighborhood"]),
+  lexeme("lx-lori", "lori", ["lorry", "truck"], "noun", ["neighborhood"]),
+  lexeme("lx-balai-polis", "balai polis", ["police station"], "noun", ["neighborhood"]),
+  lexeme("lx-pasar-raya", "pasar raya", ["supermarket"], "noun", ["neighborhood"]),
   phrase(
     "ph-apa-khabar",
     "Apa khabar?",
@@ -1957,6 +2083,2038 @@ const items: CourseItem[] = [
     ["services", "phrase"],
     ["lx-pejabat-post", "lx-itu", "lx-di-mana"],
     "Finding a service"
+  ),
+  phrase(
+    "ph-saya-dengar-muzik-itu",
+    "Saya dengar muzik itu.",
+    ["I hear that music."],
+    ["listening", "phrase"],
+    ["lx-saya", "lx-dengar", "lx-muzik", "lx-itu"],
+    "Listening"
+  ),
+  phrase(
+    "ph-boleh-cakap-perlahan",
+    "Boleh cakap perlahan?",
+    ["Can you speak slowly or more softly?"],
+    ["listening", "phrase"],
+    ["lx-boleh", "lx-cakap", "lx-perlahan"],
+    "Requesting clarity"
+  ),
+  phrase(
+    "ph-suara-itu-kuat",
+    "Suara itu kuat.",
+    ["That voice is loud."],
+    ["listening", "phrase"],
+    ["lx-suara", "lx-itu", "lx-kuat"],
+    "Describing sound"
+  ),
+  phrase(
+    "ph-kelas-ini-bising",
+    "Kelas ini bising.",
+    ["This class is noisy."],
+    ["listening", "phrase"],
+    ["lx-kelas", "lx-ini", "lx-bising"],
+    "Describing sound"
+  ),
+  phrase(
+    "ph-bilik-itu-senyap",
+    "Bilik itu senyap.",
+    ["That room is quiet."],
+    ["listening", "phrase"],
+    ["lx-bilik", "lx-itu", "lx-senyap"],
+    "Describing sound"
+  ),
+  phrase(
+    "ph-apa-maksud-ini",
+    "Apa maksud ini?",
+    ["What does this mean?"],
+    ["listening", "phrase"],
+    ["lx-apa", "lx-maksud", "lx-ini"],
+    "Asking meaning"
+  ),
+  phrase(
+    "ph-cikgu-saya-belum-faham",
+    "Cikgu, saya belum faham.",
+    ["Teacher, I still do not understand."],
+    ["listening", "phrase"],
+    ["lx-cikgu", "lx-saya", "lx-belum", "lx-faham"],
+    "Classroom survival"
+  ),
+  phrase(
+    "ph-cikgu-terangkan-soalan-ini",
+    "Cikgu, terangkan soalan ini.",
+    ["Teacher, explain this question."],
+    ["listening", "phrase"],
+    ["lx-cikgu", "lx-terangkan", "lx-soalan", "lx-ini"],
+    "Asking for explanation"
+  ),
+  phrase(
+    "ph-dia-sebut-nama-saya",
+    "Dia sebut nama saya.",
+    ["He or she says my name."],
+    ["listening", "phrase"],
+    ["lx-dia", "lx-sebut", "lx-nama", "lx-saya"],
+    "Listening"
+  ),
+  phrase(
+    "ph-saya-suka-sejarah",
+    "Saya suka sejarah.",
+    ["I like history."],
+    ["listening", "phrase"],
+    ["lx-saya", "lx-suka", "lx-sejarah"],
+    "School subject"
+  ),
+  phrase(
+    "ph-boleh-cakap-dengan-jelas",
+    "Boleh cakap dengan jelas?",
+    ["Can you speak clearly?"],
+    ["listening", "phrase"],
+    ["lx-boleh", "lx-cakap", "lx-dengan", "lx-jelas"],
+    "Requesting clarity"
+  ),
+  phrase(
+    "ph-saya-pakai-kasut-hitam",
+    "Saya pakai kasut hitam.",
+    ["I wear black shoes."],
+    ["clothes", "phrase"],
+    ["lx-saya", "lx-pakai", "lx-kasut", "lx-hitam"],
+    "Clothing"
+  ),
+  phrase(
+    "ph-dia-pakai-jaket-biru",
+    "Dia pakai jaket biru.",
+    ["He or she is wearing a blue jacket."],
+    ["clothes", "phrase"],
+    ["lx-dia", "lx-pakai", "lx-jaket", "lx-biru"],
+    "Clothing"
+  ),
+  phrase(
+    "ph-topi-itu-baru",
+    "Topi itu baru.",
+    ["That hat is new."],
+    ["clothes", "phrase"],
+    ["lx-topi", "lx-itu", "lx-baru"],
+    "Clothing"
+  ),
+  phrase(
+    "ph-uniform-ini-putih",
+    "Uniform ini putih.",
+    ["This uniform is white."],
+    ["clothes", "phrase"],
+    ["lx-uniform", "lx-ini", "lx-putih"],
+    "Clothing"
+  ),
+  phrase(
+    "ph-stokin-saya-basah",
+    "Stokin saya basah.",
+    ["My socks are wet."],
+    ["clothes", "phrase"],
+    ["lx-stokin", "lx-saya", "lx-basah"],
+    "Clothing problem"
+  ),
+  phrase(
+    "ph-seluar-ini-hitam",
+    "Seluar ini hitam.",
+    ["These pants are black."],
+    ["clothes", "phrase"],
+    ["lx-seluar", "lx-ini", "lx-hitam"],
+    "Clothing"
+  ),
+  phrase(
+    "ph-saiz-ini-sesuai",
+    "Saiz ini sesuai.",
+    ["This size fits."],
+    ["clothes", "phrase"],
+    ["lx-saiz", "lx-ini", "lx-sesuai"],
+    "Shopping"
+  ),
+  phrase(
+    "ph-baju-itu-longgar",
+    "Baju itu longgar.",
+    ["That shirt is loose."],
+    ["clothes", "phrase"],
+    ["lx-baju", "lx-itu", "lx-longgar"],
+    "Clothing fit"
+  ),
+  phrase(
+    "ph-seluar-ini-ketat",
+    "Seluar ini ketat.",
+    ["These pants are tight."],
+    ["clothes", "phrase"],
+    ["lx-seluar", "lx-ini", "lx-ketat"],
+    "Clothing fit"
+  ),
+  phrase(
+    "ph-uniform-saya-kemas",
+    "Uniform saya kemas.",
+    ["My uniform is neat."],
+    ["clothes", "phrase"],
+    ["lx-uniform", "lx-saya", "lx-kemas"],
+    "Appearance"
+  ),
+  phrase(
+    "ph-warna-ini-cantik",
+    "Warna ini cantik.",
+    ["This color is beautiful."],
+    ["clothes", "phrase"],
+    ["lx-warna", "lx-ini", "lx-cantik"],
+    "Color"
+  ),
+  phrase(
+    "ph-kasut-itu-mahal",
+    "Kasut itu mahal.",
+    ["Those shoes are expensive."],
+    ["clothes", "phrase"],
+    ["lx-kasut", "lx-itu", "lx-mahal"],
+    "Shopping"
+  ),
+  phrase(
+    "ph-saya-pesan-mee-sup",
+    "Saya pesan mee sup.",
+    ["I order noodle soup."],
+    ["restaurant", "phrase"],
+    ["lx-saya", "lx-pesan", "lx-mee", "lx-sup"],
+    "Ordering food"
+  ),
+  phrase(
+    "ph-saya-mahu-jus-epal",
+    "Saya mahu jus epal.",
+    ["I want apple juice."],
+    ["restaurant", "phrase"],
+    ["lx-saya", "lx-mahu", "lx-jus", "lx-epal"],
+    "Ordering drink"
+  ),
+  phrase(
+    "ph-mee-ini-pedas",
+    "Mee ini pedas.",
+    ["These noodles are spicy."],
+    ["restaurant", "phrase"],
+    ["lx-mee", "lx-ini", "lx-pedas"],
+    "Describing food"
+  ),
+  phrase(
+    "ph-mee-ini-dalam-mangkuk",
+    "Mee ini dalam mangkuk.",
+    ["These noodles are in a bowl."],
+    ["restaurant", "phrase"],
+    ["lx-mee", "lx-ini", "lx-dalam", "lx-mangkuk"],
+    "Food container"
+  ),
+  phrase(
+    "ph-saya-guna-sudu",
+    "Saya guna sudu.",
+    ["I use a spoon."],
+    ["restaurant", "phrase"],
+    ["lx-saya", "lx-guna", "lx-sudu"],
+    "At the table"
+  ),
+  phrase(
+    "ph-dia-hidang-makanan",
+    "Dia hidang makanan.",
+    ["He or she serves food."],
+    ["restaurant", "phrase"],
+    ["lx-dia", "lx-hidang"],
+    "Restaurant action"
+  ),
+  phrase(
+    "ph-boleh-tambah-sambal",
+    "Boleh tambah sambal?",
+    ["Can you add sambal?"],
+    ["restaurant", "phrase"],
+    ["lx-boleh", "lx-tambah", "lx-sambal"],
+    "Ordering food"
+  ),
+  phrase(
+    "ph-saya-mahu-susu-sejuk",
+    "Saya mahu susu sejuk.",
+    ["I want cold milk."],
+    ["restaurant", "phrase"],
+    ["lx-saya", "lx-mahu", "lx-susu", "lx-sejuk"],
+    "Ordering drink"
+  ),
+  phrase(
+    "ph-saya-guna-garpu",
+    "Saya guna garpu.",
+    ["I use a fork."],
+    ["restaurant", "phrase"],
+    ["lx-saya", "lx-guna", "lx-garpu"],
+    "At the table"
+  ),
+  phrase(
+    "ph-pinggan-ini-bersih",
+    "Pinggan ini bersih.",
+    ["This plate is clean."],
+    ["restaurant", "phrase"],
+    ["lx-pinggan", "lx-ini", "lx-bersih"],
+    "Tableware"
+  ),
+  phrase(
+    "ph-saya-pesan-air-dan-roti",
+    "Saya pesan air dan roti.",
+    ["I order water and bread."],
+    ["restaurant", "phrase"],
+    ["lx-saya", "lx-pesan", "lx-air", "lx-dan", "lx-roti"],
+    "Ordering food"
+  ),
+  phrase(
+    "ph-hobi-saya-berenang",
+    "Hobi saya berenang.",
+    ["My hobby is swimming."],
+    ["hobby", "phrase"],
+    ["lx-hobi", "lx-saya", "lx-berenang"],
+    "Talking about hobbies"
+  ),
+  phrase(
+    "ph-kami-bermain-bola",
+    "Kami bermain bola.",
+    ["We play ball."],
+    ["hobby", "phrase"],
+    ["lx-kami", "lx-bermain", "lx-bola"],
+    "Sports"
+  ),
+  phrase(
+    "ph-saya-suka-badminton",
+    "Saya suka badminton.",
+    ["I like badminton."],
+    ["hobby", "phrase"],
+    ["lx-saya", "lx-suka", "lx-badminton"],
+    "Sports"
+  ),
+  phrase(
+    "ph-saya-suka-menonton-filem",
+    "Saya suka menonton filem.",
+    ["I like watching movies."],
+    ["hobby", "phrase"],
+    ["lx-saya", "lx-suka", "lx-menonton", "lx-filem"],
+    "Hobby"
+  ),
+  phrase(
+    "ph-dia-menyanyi-dengan-baik",
+    "Dia menyanyi dengan baik.",
+    ["He or she sings well."],
+    ["hobby", "phrase"],
+    ["lx-dia", "lx-menyanyi", "lx-dengan", "lx-baik"],
+    "Hobby"
+  ),
+  phrase(
+    "ph-saya-bermain-gitar",
+    "Saya bermain gitar.",
+    ["I play guitar."],
+    ["hobby", "phrase"],
+    ["lx-saya", "lx-bermain", "lx-gitar"],
+    "Hobby"
+  ),
+  phrase(
+    "ph-saya-dengar-lagu-ini",
+    "Saya dengar lagu ini.",
+    ["I listen to this song."],
+    ["hobby", "phrase"],
+    ["lx-saya", "lx-dengar", "lx-lagu", "lx-ini"],
+    "Media hobby"
+  ),
+  phrase(
+    "ph-dia-berlari-di-taman",
+    "Dia berlari di taman.",
+    ["He or she runs in the park."],
+    ["hobby", "phrase"],
+    ["lx-dia", "lx-berlari", "lx-taman"],
+    "Sports"
+  ),
+  phrase(
+    "ph-saya-lukis-gambar",
+    "Saya lukis gambar.",
+    ["I draw a picture."],
+    ["hobby", "phrase"],
+    ["lx-saya", "lx-lukis", "lx-gambar"],
+    "Hobby"
+  ),
+  phrase(
+    "ph-badminton-itu-seronok",
+    "Badminton itu seronok.",
+    ["Badminton is fun."],
+    ["hobby", "phrase"],
+    ["lx-badminton", "lx-itu", "lx-seronok"],
+    "Hobby"
+  ),
+  phrase(
+    "ph-kami-bermain-di-taman",
+    "Kami bermain di taman.",
+    ["We play in the park."],
+    ["hobby", "phrase"],
+    ["lx-kami", "lx-bermain", "lx-taman"],
+    "Hobby"
+  ),
+  phrase(
+    "ph-tangan-saya-sakit",
+    "Tangan saya sakit.",
+    ["My hand hurts."],
+    ["body", "phrase"],
+    ["lx-tangan", "lx-saya", "lx-sakit"],
+    "Body"
+  ),
+  phrase(
+    "ph-kaki-saya-penat",
+    "Kaki saya penat.",
+    ["My legs are tired."],
+    ["body", "phrase"],
+    ["lx-kaki", "lx-saya", "lx-penat"],
+    "Body"
+  ),
+  phrase(
+    "ph-mata-saya-pedih",
+    "Mata saya pedih.",
+    ["My eyes sting."],
+    ["body", "phrase"],
+    ["lx-mata", "lx-saya"],
+    "Body"
+  ),
+  phrase(
+    "ph-doktor-itu-baik",
+    "Doktor itu baik.",
+    ["That doctor is kind."],
+    ["body", "phrase"],
+    ["lx-doktor", "lx-itu", "lx-baik"],
+    "Health"
+  ),
+  phrase(
+    "ph-saya-ada-janji-temu",
+    "Saya ada janji temu.",
+    ["I have an appointment."],
+    ["body", "phrase"],
+    ["lx-saya", "lx-ada", "lx-janji-temu"],
+    "Health"
+  ),
+  phrase(
+    "ph-dia-ukur-suhu-saya",
+    "Dia ukur suhu saya.",
+    ["He or she measures my temperature."],
+    ["body", "phrase"],
+    ["lx-dia", "lx-ukur", "lx-suhu", "lx-saya"],
+    "Health"
+  ),
+  phrase(
+    "ph-mulut-saya-kering",
+    "Mulut saya kering.",
+    ["My mouth is dry."],
+    ["body", "phrase"],
+    ["lx-mulut", "lx-saya", "lx-kering"],
+    "Body"
+  ),
+  phrase(
+    "ph-gigi-saya-sakit",
+    "Gigi saya sakit.",
+    ["My teeth hurt."],
+    ["body", "phrase"],
+    ["lx-gigi", "lx-saya", "lx-sakit"],
+    "Body"
+  ),
+  phrase(
+    "ph-muka-saya-panas",
+    "Muka saya panas.",
+    ["My face feels hot."],
+    ["body", "phrase"],
+    ["lx-muka", "lx-saya", "lx-panas"],
+    "Body"
+  ),
+  phrase(
+    "ph-hidung-saya-sejuk",
+    "Hidung saya sejuk.",
+    ["My nose feels cold."],
+    ["body", "phrase"],
+    ["lx-hidung", "lx-saya", "lx-sejuk"],
+    "Body"
+  ),
+  phrase(
+    "ph-telinga-saya-sakit",
+    "Telinga saya sakit.",
+    ["My ear hurts."],
+    ["body", "phrase"],
+    ["lx-telinga", "lx-saya", "lx-sakit"],
+    "Body"
+  ),
+  phrase(
+    "ph-hari-jadi-saya-pada-disember",
+    "Hari jadi saya pada Disember.",
+    ["My birthday is in December."],
+    ["dates", "phrase"],
+    ["lx-hari-jadi", "lx-saya", "lx-pada", "lx-disember"],
+    "Date"
+  ),
+  phrase(
+    "ph-ujian-itu-pada-oktober",
+    "Ujian itu pada Oktober.",
+    ["That test is in October."],
+    ["dates", "phrase"],
+    ["lx-ujian", "lx-itu", "lx-pada", "lx-oktober"],
+    "Date"
+  ),
+  phrase(
+    "ph-saya-balik-pada-hari-sabtu",
+    "Saya balik pada hari Sabtu.",
+    ["I go home on Saturday."],
+    ["dates", "phrase"],
+    ["lx-saya", "lx-balik", "lx-pada", "lx-hari", "lx-sabtu"],
+    "Date"
+  ),
+  phrase(
+    "ph-minggu-depan-saya-ada-peperiksaan",
+    "Minggu depan saya ada peperiksaan.",
+    ["Next week I have an exam."],
+    ["dates", "phrase"],
+    ["lx-minggu-depan", "lx-saya", "lx-ada", "lx-peperiksaan"],
+    "Date"
+  ),
+  phrase(
+    "ph-minggu-lepas-saya-cuti",
+    "Minggu lepas saya cuti.",
+    ["Last week I was on holiday."],
+    ["dates", "phrase"],
+    ["lx-minggu-lepas", "lx-saya", "lx-cuti"],
+    "Date"
+  ),
+  phrase(
+    "ph-tarikh-itu-penting",
+    "Tarikh itu penting.",
+    ["That date is important."],
+    ["dates", "phrase"],
+    ["lx-tarikh", "lx-itu", "lx-penting"],
+    "Date"
+  ),
+  phrase(
+    "ph-tahun-ini-sibuk",
+    "Tahun ini sibuk.",
+    ["This year is busy."],
+    ["dates", "phrase"],
+    ["lx-tahun", "lx-ini", "lx-sibuk"],
+    "Date"
+  ),
+  phrase(
+    "ph-januari-itu-awal-tahun",
+    "Januari itu awal tahun.",
+    ["January is early in the year."],
+    ["dates", "phrase"],
+    ["lx-januari", "lx-awal", "lx-tahun"],
+    "Date"
+  ),
+  phrase(
+    "ph-september-itu-bulan-penting",
+    "September itu bulan penting.",
+    ["September is an important month."],
+    ["dates", "phrase"],
+    ["lx-september", "lx-itu", "lx-bulan", "lx-penting"],
+    "Date"
+  ),
+  phrase(
+    "ph-disember-itu-bulan-cuti",
+    "Disember itu bulan cuti.",
+    ["December is a holiday month."],
+    ["dates", "phrase"],
+    ["lx-disember", "lx-itu", "lx-bulan", "lx-cuti"],
+    "Date"
+  ),
+  phrase(
+    "ph-nenek-saya-di-rumah",
+    "Nenek saya di rumah.",
+    ["My grandmother is at home."],
+    ["family-events", "phrase"],
+    ["lx-nenek", "lx-saya", "lx-rumah"],
+    "Family"
+  ),
+  phrase(
+    "ph-jiran-itu-ramah",
+    "Jiran itu ramah.",
+    ["That neighbor is friendly."],
+    ["family-events", "phrase"],
+    ["lx-jiran", "lx-itu", "lx-ramah"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-kami-jemput-kawan",
+    "Kami jemput kawan.",
+    ["We invite a friend."],
+    ["family-events", "phrase"],
+    ["lx-kami", "lx-jemput", "lx-kawan"],
+    "Invitation"
+  ),
+  phrase(
+    "ph-saya-bawa-hadiah",
+    "Saya bawa hadiah.",
+    ["I bring a gift."],
+    ["family-events", "phrase"],
+    ["lx-saya", "lx-bawa", "lx-hadiah"],
+    "Family event"
+  ),
+  phrase(
+    "ph-majlis-itu-besar",
+    "Majlis itu besar.",
+    ["That event is big."],
+    ["family-events", "phrase"],
+    ["lx-majlis", "lx-itu", "lx-besar"],
+    "Family event"
+  ),
+  phrase(
+    "ph-kami-lawat-datuk",
+    "Kami lawat datuk.",
+    ["We visit grandfather."],
+    ["family-events", "phrase"],
+    ["lx-kami", "lx-lawat", "lx-datuk"],
+    "Family"
+  ),
+  phrase(
+    "ph-sepupu-saya-datang-esok",
+    "Sepupu saya datang esok.",
+    ["My cousin is coming tomorrow."],
+    ["family-events", "phrase"],
+    ["lx-sepupu", "lx-saya", "lx-datang", "lx-esok"],
+    "Family"
+  ),
+  phrase(
+    "ph-tetamu-itu-di-sana",
+    "Tetamu itu di sana.",
+    ["That guest is there."],
+    ["family-events", "phrase"],
+    ["lx-tetamu", "lx-itu", "lx-sana"],
+    "Family event"
+  ),
+  phrase(
+    "ph-majlis-kahwin-itu-cantik",
+    "Majlis kahwin itu cantik.",
+    ["That wedding event is beautiful."],
+    ["family-events", "phrase"],
+    ["lx-majlis", "lx-kahwin", "lx-itu", "lx-cantik"],
+    "Family event"
+  ),
+  phrase(
+    "ph-rumah-terbuka-itu-seronok",
+    "Rumah terbuka itu seronok.",
+    ["That open house is fun."],
+    ["family-events", "phrase"],
+    ["lx-rumah-terbuka", "lx-itu", "lx-seronok"],
+    "Family event"
+  ),
+  phrase(
+    "ph-kenduri-itu-di-rumah-nenek",
+    "Kenduri itu di rumah nenek.",
+    ["That feast is at grandmother's house."],
+    ["family-events", "phrase"],
+    ["lx-kenduri", "lx-itu", "lx-rumah", "lx-nenek"],
+    "Family event"
+  ),
+  phrase(
+    "ph-kami-jemput-jiran",
+    "Kami jemput jiran.",
+    ["We invite the neighbor."],
+    ["family-events", "phrase"],
+    ["lx-kami", "lx-jemput", "lx-jiran"],
+    "Invitation"
+  ),
+  phrase(
+    "ph-lapangan-terbang-itu-jauh",
+    "Lapangan terbang itu jauh.",
+    ["That airport is far."],
+    ["travel", "phrase"],
+    ["lx-lapangan-terbang", "lx-itu", "lx-jauh"],
+    "Travel"
+  ),
+  phrase(
+    "ph-saya-ada-pasport",
+    "Saya ada pasport.",
+    ["I have a passport."],
+    ["travel", "phrase"],
+    ["lx-saya", "lx-ada", "lx-pasport"],
+    "Travel"
+  ),
+  phrase(
+    "ph-bagasi-saya-besar",
+    "Bagasi saya besar.",
+    ["My luggage is big."],
+    ["travel", "phrase"],
+    ["lx-bagasi", "lx-saya", "lx-besar"],
+    "Travel"
+  ),
+  phrase(
+    "ph-kami-tiba-malam-ini",
+    "Kami tiba malam ini.",
+    ["We arrive tonight."],
+    ["travel", "phrase"],
+    ["lx-kami", "lx-tiba", "lx-malam", "lx-ini"],
+    "Travel"
+  ),
+  phrase(
+    "ph-kapal-terbang-itu-lewat",
+    "Kapal terbang itu lewat.",
+    ["That airplane is late."],
+    ["travel", "phrase"],
+    ["lx-kapal-terbang", "lx-itu", "lx-lewat"],
+    "Travel"
+  ),
+  phrase(
+    "ph-saya-ada-tempahan-hotel",
+    "Saya ada tempahan hotel.",
+    ["I have a hotel booking."],
+    ["travel", "phrase"],
+    ["lx-saya", "lx-ada", "lx-tempahan", "lx-hotel"],
+    "Travel"
+  ),
+  phrase(
+    "ph-pemandu-itu-ramah",
+    "Pemandu itu ramah.",
+    ["That driver is friendly."],
+    ["travel", "phrase"],
+    ["lx-pemandu", "lx-itu", "lx-ramah"],
+    "Travel"
+  ),
+  phrase(
+    "ph-pelancong-itu-di-sana",
+    "Pelancong itu di sana.",
+    ["That tourist is over there."],
+    ["travel", "phrase"],
+    ["lx-pelancong", "lx-itu", "lx-sana"],
+    "Travel"
+  ),
+  phrase(
+    "ph-kami-berlepas-esok",
+    "Kami berlepas esok.",
+    ["We leave tomorrow."],
+    ["travel", "phrase"],
+    ["lx-kami", "lx-berlepas", "lx-esok"],
+    "Travel"
+  ),
+  phrase(
+    "ph-saya-pergi-ke-hotel",
+    "Saya pergi ke hotel.",
+    ["I go to the hotel."],
+    ["travel", "phrase"],
+    ["lx-saya", "lx-pergi", "lx-ke", "lx-hotel"],
+    "Travel"
+  ),
+  phrase(
+    "ph-kaunter-itu-di-depan",
+    "Kaunter itu di depan.",
+    ["That counter is in front."],
+    ["travel", "phrase"],
+    ["lx-kaunter", "lx-itu", "lx-depan"],
+    "Travel"
+  ),
+  phrase(
+    "ph-lawatan-ini-seronok",
+    "Lawatan ini seronok.",
+    ["This trip is fun."],
+    ["travel", "phrase"],
+    ["lx-lawatan", "lx-ini", "lx-seronok"],
+    "Travel"
+  ),
+  phrase(
+    "ph-perkataan-ini-mudah",
+    "Perkataan ini mudah.",
+    ["This word is easy."],
+    ["language", "phrase"],
+    ["lx-perkataan", "lx-ini", "lx-mudah"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-ayat-itu-panjang",
+    "Ayat itu panjang.",
+    ["That sentence is long."],
+    ["language", "phrase"],
+    ["lx-ayat", "lx-itu", "lx-panjang"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-saya-guna-kamus",
+    "Saya guna kamus.",
+    ["I use a dictionary."],
+    ["language", "phrase"],
+    ["lx-saya", "lx-guna", "lx-kamus"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-boleh-betulkan-ayat-ini",
+    "Boleh betulkan ayat ini?",
+    ["Can you correct this sentence?"],
+    ["language", "phrase"],
+    ["lx-boleh", "lx-betulkan", "lx-ayat", "lx-ini"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-sebutan-saya-salah",
+    "Sebutan saya salah.",
+    ["My pronunciation is wrong."],
+    ["language", "phrase"],
+    ["lx-sebutan", "lx-saya", "lx-salah"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-saya-ulangkaji-malam-ini",
+    "Saya ulangkaji malam ini.",
+    ["I revise tonight."],
+    ["language", "phrase"],
+    ["lx-saya", "lx-ulangkaji", "lx-malam", "lx-ini"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-tatabahasa-ini-susah",
+    "Tatabahasa ini susah.",
+    ["This grammar is difficult."],
+    ["language", "phrase"],
+    ["lx-tatabahasa", "lx-ini", "lx-susah"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-nota-ini-ringkas",
+    "Nota ini ringkas.",
+    ["These notes are brief."],
+    ["language", "phrase"],
+    ["lx-nota", "lx-ini", "lx-ringkas"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-jawapan-itu-penuh",
+    "Jawapan itu penuh.",
+    ["That answer is complete."],
+    ["language", "phrase"],
+    ["lx-jawapan", "lx-itu", "lx-penuh"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-saya-hafal-perkataan-ini",
+    "Saya hafal perkataan ini.",
+    ["I memorize this word."],
+    ["language", "phrase"],
+    ["lx-saya", "lx-hafal", "lx-perkataan", "lx-ini"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-boleh-terjemah-ayat-ini",
+    "Boleh terjemah ayat ini?",
+    ["Can you translate this sentence?"],
+    ["language", "phrase"],
+    ["lx-boleh", "lx-terjemah", "lx-ayat", "lx-ini"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-ejaan-itu-betul",
+    "Ejaan itu betul.",
+    ["That spelling is correct."],
+    ["language", "phrase"],
+    ["lx-ejaan", "lx-itu", "lx-betul"],
+    "Language learning"
+  ),
+  phrase(
+    "ph-restoran-itu-di-depan",
+    "Restoran itu di depan.",
+    ["That restaurant is in front."],
+    ["neighborhood", "phrase"],
+    ["lx-restoran", "lx-itu", "lx-depan"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-farmasi-itu-di-mana",
+    "Farmasi itu di mana?",
+    ["Where is the pharmacy?"],
+    ["neighborhood", "phrase"],
+    ["lx-farmasi", "lx-itu", "lx-di-mana"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-saya-pergi-ke-kedai-buku",
+    "Saya pergi ke kedai buku.",
+    ["I go to the bookstore."],
+    ["neighborhood", "phrase"],
+    ["lx-saya", "lx-pergi", "lx-ke", "lx-kedai-buku"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-surau-itu-dekat",
+    "Surau itu dekat.",
+    ["That prayer room is near."],
+    ["neighborhood", "phrase"],
+    ["lx-surau", "lx-itu", "lx-dekat"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-masjid-itu-besar",
+    "Masjid itu besar.",
+    ["That mosque is big."],
+    ["neighborhood", "phrase"],
+    ["lx-masjid", "lx-itu", "lx-besar"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-perhentian-bas-itu-di-sana",
+    "Perhentian bas itu di sana.",
+    ["That bus stop is over there."],
+    ["neighborhood", "phrase"],
+    ["lx-perhentian-bas", "lx-itu", "lx-sana"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-pusat-beli-belah-itu-jauh",
+    "Pusat beli-belah itu jauh.",
+    ["That shopping mall is far."],
+    ["neighborhood", "phrase"],
+    ["lx-pusat-beli-belah", "lx-itu", "lx-jauh"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-jambatan-itu-panjang",
+    "Jambatan itu panjang.",
+    ["That bridge is long."],
+    ["neighborhood", "phrase"],
+    ["lx-jambatan", "lx-itu", "lx-panjang"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-lori-itu-besar",
+    "Lori itu besar.",
+    ["That lorry is big."],
+    ["neighborhood", "phrase"],
+    ["lx-lori", "lx-itu", "lx-besar"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-balai-polis-itu-di-depan",
+    "Balai polis itu di depan.",
+    ["That police station is in front."],
+    ["neighborhood", "phrase"],
+    ["lx-balai-polis", "lx-itu", "lx-depan"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-pasar-raya-itu-dekat",
+    "Pasar raya itu dekat.",
+    ["That supermarket is near."],
+    ["neighborhood", "phrase"],
+    ["lx-pasar-raya", "lx-itu", "lx-dekat"],
+    "Neighborhood"
+  ),
+  phrase(
+    "ph-lampu-jalan-itu-terang",
+    "Lampu jalan itu terang.",
+    ["That street light is bright."],
+    ["neighborhood", "phrase"],
+    ["lx-lampu-jalan", "lx-itu"],
+    "Neighborhood"
+  ),
+  lexeme("lx-banding", "banding", ["compare"], "verb", ["advanced", "thinking"], {
+    malayHint: "lihat dua perkara untuk cari persamaan dan perbezaan"
+  }),
+  lexeme("lx-serupa", "serupa", ["similar"], "adjective", ["advanced", "thinking"], {
+    malayHint: "hampir sama"
+  }),
+  lexeme("lx-bukti", "bukti", ["evidence", "proof"], "noun", ["advanced", "thinking"], {
+    malayHint: "sesuatu yang menyokong jawapan atau dakwaan"
+  }),
+  lexeme("lx-sebab", "sebab", ["reason", "cause"], "noun", ["advanced", "thinking"], {
+    malayHint: "punca atau alasan"
+  }),
+  lexeme("lx-dibenarkan", "dibenarkan", ["allowed", "permitted"], "adjective", ["advanced", "rules"], {
+    malayHint: "boleh dibuat mengikut peraturan"
+  }),
+  lexeme("lx-dilarang", "dilarang", ["forbidden", "prohibited"], "adjective", ["advanced", "rules"], {
+    malayHint: "tidak boleh dibuat"
+  }),
+  lexeme("lx-izin", "izin", ["permission"], "noun", ["advanced", "rules"], {
+    malayHint: "kebenaran untuk buat sesuatu"
+  }),
+  lexeme("lx-patut", "patut", ["should", "ought to"], "verb", ["advanced", "rules"], {
+    malayHint: "sesuatu yang wajar dibuat"
+  }),
+  lexeme("lx-langkah", "langkah", ["step"], "noun", ["advanced", "process"], {
+    malayHint: "satu peringkat dalam sesuatu proses"
+  }),
+  lexeme("lx-kemudian", "kemudian", ["after that", "then"], "adverb", ["advanced", "process"], {
+    malayHint: "selepas itu"
+  }),
+  lexeme("lx-seterusnya", "seterusnya", ["next", "afterward"], "adverb", ["advanced", "process"], {
+    malayHint: "bahagian yang datang selepas itu"
+  }),
+  lexeme("lx-proses", "proses", ["process"], "noun", ["advanced", "process"], {
+    malayHint: "cara sesuatu berlaku langkah demi langkah"
+  }),
+  lexeme("lx-kesan", "kesan", ["effect", "impact"], "noun", ["advanced", "result"], {
+    malayHint: "hasil atau akibat daripada sesuatu"
+  }),
+  lexeme("lx-menyebabkan", "menyebabkan", ["causes"], "verb", ["advanced", "result"], {
+    malayHint: "menjadikan sesuatu berlaku"
+  }),
+  lexeme("lx-berjaya", "berjaya", ["succeed", "successful"], "verb", ["advanced", "result"], {
+    malayHint: "mencapai hasil yang baik"
+  }),
+  lexeme("lx-gagal", "gagal", ["fail", "failed"], "verb", ["advanced", "result"], {
+    malayHint: "tidak berjaya"
+  }),
+  lexeme("lx-borang", "borang", ["form"], "noun", ["advanced", "office"], {
+    malayHint: "kertas atau fail untuk diisi"
+  }),
+  lexeme("lx-tandatangan", "tandatangan", ["signature"], "noun", ["advanced", "office"], {
+    malayHint: "nama yang ditulis sebagai pengesahan"
+  }),
+  lexeme("lx-dokumen", "dokumen", ["document"], "noun", ["advanced", "office"], {
+    malayHint: "bahan bertulis yang penting"
+  }),
+  lexeme("lx-serah", "serah", ["submit", "hand over"], "verb", ["advanced", "office"], {
+    malayHint: "beri sesuatu kepada pihak lain secara rasmi"
+  }),
+  lexeme("lx-setuju", "setuju", ["agree"], "verb", ["advanced", "discussion"], {
+    malayHint: "terima sesuatu pendapat"
+  }),
+  lexeme("lx-bantah", "bantah", ["object", "oppose"], "verb", ["advanced", "discussion"], {
+    malayHint: "tidak setuju dan melawan sesuatu cadangan"
+  }),
+  lexeme("lx-cadang", "cadang", ["suggest", "propose"], "verb", ["advanced", "discussion"], {
+    malayHint: "beri satu idea untuk dipertimbangkan"
+  }),
+  lexeme("lx-keputusan", "keputusan", ["decision"], "noun", ["advanced", "discussion"], {
+    malayHint: "hasil pilihan atau pertimbangan"
+  }),
+  lexeme("lx-jika", "jika", ["if"], "particle", ["advanced", "condition"], {
+    malayHint: "kata untuk keadaan yang mungkin berlaku"
+  }),
+  lexeme("lx-syarat", "syarat", ["condition", "requirement"], "noun", ["advanced", "condition"], {
+    malayHint: "perkara yang mesti dipenuhi"
+  }),
+  lexeme("lx-kecuali", "kecuali", ["unless", "except"], "particle", ["advanced", "condition"], {
+    malayHint: "tidak termasuk satu keadaan tertentu"
+  }),
+  lexeme("lx-peluang", "peluang", ["chance", "opportunity"], "noun", ["advanced", "condition"], {
+    malayHint: "kemungkinan baik untuk berjaya atau mendapat sesuatu"
+  }),
+  lexeme("lx-huraikan", "huraikan", ["describe", "elaborate"], "verb", ["advanced", "explanation"], {
+    malayHint: "terangkan dengan lebih panjang"
+  }),
+  lexeme("lx-jelaskan", "jelaskan", ["explain", "clarify"], "verb", ["advanced", "explanation"], {
+    malayHint: "terangkan supaya lebih faham"
+  }),
+  lexeme("lx-isi", "isi", ["content", "main point"], "noun", ["advanced", "explanation"], {
+    malayHint: "maklumat utama dalam jawapan atau tulisan"
+  }),
+  lexeme("lx-utama", "utama", ["main", "primary"], "adjective", ["advanced", "explanation"], {
+    malayHint: "yang paling penting"
+  }),
+  lexeme("lx-notis", "notis", ["notice"], "noun", ["advanced", "notice"], {
+    malayHint: "pesanan rasmi yang dipaparkan"
+  }),
+  lexeme("lx-pengumuman", "pengumuman", ["announcement"], "noun", ["advanced", "notice"], {
+    malayHint: "maklumat yang diberitahu kepada ramai orang"
+  }),
+  lexeme("lx-gangguan", "gangguan", ["disruption", "disturbance"], "noun", ["advanced", "notice"], {
+    malayHint: "sesuatu yang mengganggu perjalanan biasa"
+  }),
+  lexeme("lx-kelewatan", "kelewatan", ["delay"], "noun", ["advanced", "notice"], {
+    malayHint: "keadaan menjadi lambat daripada masa biasa"
+  }),
+  lexeme("lx-komitmen", "komitmen", ["commitment"], "noun", ["advanced", "planning"], {
+    malayHint: "tanggungjawab yang sudah dijanji"
+  }),
+  lexeme("lx-tangguh", "tangguh", ["postpone", "delay"], "verb", ["advanced", "planning"], {
+    malayHint: "alih ke masa yang lebih lewat"
+  }),
+  lexeme("lx-teruskan", "teruskan", ["continue"], "verb", ["advanced", "planning"], {
+    malayHint: "buat lagi tanpa berhenti"
+  }),
+  lexeme("lx-sahkan", "sahkan", ["confirm"], "verb", ["advanced", "planning"], {
+    malayHint: "pastikan sesuatu benar atau tetap"
+  }),
+  lexeme("lx-petikan", "petikan", ["passage", "excerpt"], "noun", ["immersive", "classroom"], {
+    malayHint: "bahagian teks untuk dibaca"
+  }),
+  lexeme("lx-perenggan", "perenggan", ["paragraph"], "noun", ["immersive", "classroom"], {
+    malayHint: "bahagian tulisan yang terdiri daripada beberapa ayat"
+  }),
+  lexeme("lx-tajuk", "tajuk", ["title", "heading"], "noun", ["immersive", "classroom"], {
+    malayHint: "nama bagi sesuatu tulisan atau topik"
+  }),
+  lexeme("lx-format", "format", ["format"], "noun", ["immersive", "classroom"], {
+    malayHint: "bentuk susunan yang perlu diikut"
+  }),
+  lexeme("lx-nilai", "nilai", ["evaluate", "assess"], "verb", ["immersive", "reasoning"], {
+    malayHint: "tentukan baik buruk atau kekuatan sesuatu"
+  }),
+  lexeme("lx-alasan", "alasan", ["reason", "justification"], "noun", ["immersive", "reasoning"], {
+    malayHint: "sebab yang diberi untuk menyokong sesuatu"
+  }),
+  lexeme("lx-munasabah", "munasabah", ["reasonable"], "adjective", ["immersive", "reasoning"], {
+    malayHint: "boleh diterima oleh akal"
+  }),
+  lexeme("lx-andaian", "andaian", ["assumption"], "noun", ["immersive", "reasoning"], {
+    malayHint: "sesuatu yang dianggap benar tanpa bukti cukup"
+  }),
+  lexeme("lx-walaupun", "walaupun", ["although", "even though"], "particle", ["immersive", "connector"], {
+    malayHint: "kata untuk dua idea yang bertentangan"
+  }),
+  lexeme("lx-namun", "namun", ["however"], "adverb", ["immersive", "connector"], {
+    malayHint: "kata untuk menunjukkan pertentangan idea"
+  }),
+  lexeme("lx-sebaliknya", "sebaliknya", ["instead", "on the contrary"], "adverb", ["immersive", "connector"], {
+    malayHint: "pilihan atau keadaan yang bertentangan"
+  }),
+  lexeme("lx-selain-itu", "selain itu", ["besides that", "in addition"], "adverb", ["immersive", "connector"], {
+    malayHint: "tambahan kepada idea yang baru disebut"
+  }),
+  lexeme("lx-sejak", "sejak", ["since"], "preposition", ["immersive", "time"], {
+    malayHint: "bermula dari satu masa dahulu"
+  }),
+  lexeme("lx-hingga", "hingga", ["until", "up to"], "preposition", ["immersive", "time"], {
+    malayHint: "sampai ke satu had masa"
+  }),
+  lexeme("lx-sepanjang", "sepanjang", ["throughout"], "preposition", ["immersive", "time"], {
+    malayHint: "meliputi seluruh tempoh"
+  }),
+  lexeme("lx-apabila", "apabila", ["when"], "particle", ["immersive", "time"], {
+    malayHint: "pada masa sesuatu berlaku"
+  }),
+  lexeme("lx-rumusan", "rumusan", ["summary"], "noun", ["immersive", "report"], {
+    malayHint: "ringkasan isi penting"
+  }),
+  lexeme("lx-dapatan", "dapatan", ["finding", "result"], "noun", ["immersive", "report"], {
+    malayHint: "hasil yang ditemui"
+  }),
+  lexeme("lx-kesimpulan", "kesimpulan", ["conclusion"], "noun", ["immersive", "report"], {
+    malayHint: "hasil akhir daripada pemerhatian atau hujah"
+  }),
+  lexeme("lx-kaedah", "kaedah", ["method"], "noun", ["immersive", "report"], {
+    malayHint: "cara yang digunakan untuk buat sesuatu"
+  }),
+  lexeme("lx-aduan", "aduan", ["complaint"], "noun", ["immersive", "service"], {
+    malayHint: "laporan tentang masalah atau rasa tidak puas hati"
+  }),
+  lexeme("lx-giliran", "giliran", ["turn"], "noun", ["immersive", "service"], {
+    malayHint: "masa seseorang mendapat peluang selepas menunggu"
+  }),
+  lexeme("lx-permohonan", "permohonan", ["application", "request"], "noun", ["immersive", "service"], {
+    malayHint: "permintaan rasmi"
+  }),
+  lexeme("lx-pengesahan", "pengesahan", ["verification", "confirmation"], "noun", ["immersive", "service"], {
+    malayHint: "bukti bahawa sesuatu telah disahkan"
+  }),
+  lexeme("lx-gotong-royong", "gotong-royong", ["communal work", "community cleanup"], "noun", ["immersive", "community"], {
+    malayHint: "kerja bersama-sama untuk kepentingan ramai"
+  }),
+  lexeme("lx-kebersihan", "kebersihan", ["cleanliness"], "noun", ["immersive", "community"], {
+    malayHint: "keadaan bersih"
+  }),
+  lexeme("lx-keselamatan", "keselamatan", ["safety"], "noun", ["immersive", "community"], {
+    malayHint: "keadaan selamat dan bebas daripada bahaya"
+  }),
+  lexeme("lx-tanggungjawab", "tanggungjawab", ["responsibility"], "noun", ["immersive", "community"], {
+    malayHint: "tugas yang mesti dijaga dan dilakukan"
+  }),
+  lexeme("lx-fakta", "fakta", ["fact"], "noun", ["immersive", "media"], {
+    malayHint: "maklumat yang benar"
+  }),
+  lexeme("lx-maklumat", "maklumat", ["information"], "noun", ["immersive", "media"], {
+    malayHint: "isi atau keterangan tentang sesuatu"
+  }),
+  lexeme("lx-palsu", "palsu", ["false", "fake"], "adjective", ["immersive", "media"], {
+    malayHint: "tidak benar"
+  }),
+  lexeme("lx-rakaman", "rakaman", ["recording"], "noun", ["immersive", "media"], {
+    malayHint: "suara atau gambar yang disimpan"
+  }),
+  lexeme("lx-sokong", "sokong", ["support"], "verb", ["immersive", "argument"], {
+    malayHint: "berdiri di pihak sesuatu idea"
+  }),
+  lexeme("lx-tegaskan", "tegaskan", ["emphasize", "stress"], "verb", ["immersive", "argument"], {
+    malayHint: "sebut dengan kuat dan jelas bahawa sesuatu penting"
+  }),
+  lexeme("lx-akui", "akui", ["admit", "acknowledge"], "verb", ["immersive", "argument"], {
+    malayHint: "terima bahawa sesuatu itu benar"
+  }),
+  lexeme("lx-sangkal", "sangkal", ["deny", "refute"], "verb", ["immersive", "argument"], {
+    malayHint: "menolak sesuatu dakwaan atau pendapat"
+  }),
+  lexeme("lx-kefahaman", "kefahaman", ["understanding", "comprehension"], "noun", ["immersive", "mastery"], {
+    malayHint: "keadaan benar-benar faham"
+  }),
+  lexeme("lx-kefasihan", "kefasihan", ["fluency"], "noun", ["immersive", "mastery"], {
+    malayHint: "keupayaan bercakap dengan lancar"
+  }),
+  lexeme("lx-kesilapan", "kesilapan", ["mistake", "error"], "noun", ["immersive", "mastery"], {
+    malayHint: "perbuatan atau jawapan yang salah"
+  }),
+  lexeme("lx-pembetulan", "pembetulan", ["correction"], "noun", ["immersive", "mastery"], {
+    malayHint: "perkara yang membaiki kesalahan"
+  }),
+  phrase(
+    "ph-dua-jawapan-itu-serupa",
+    "Dua jawapan itu serupa.",
+    ["Those two answers are similar."],
+    ["advanced", "comparison", "phrase"],
+    ["lx-dua", "lx-jawapan", "lx-serupa"],
+    "Discussion",
+    {
+      malayHint: "ayat untuk kata dua jawapan hampir sama"
+    }
+  ),
+  phrase(
+    "ph-boleh-beri-bukti-untuk-jawapan-ini",
+    "Boleh beri bukti untuk jawapan ini?",
+    ["Can you give evidence for this answer?"],
+    ["advanced", "comparison", "phrase"],
+    ["lx-boleh", "lx-bukti", "lx-jawapan"],
+    "Discussion",
+    {
+      malayHint: "ayat untuk minta bukti bagi satu jawapan"
+    }
+  ),
+  phrase(
+    "ph-kita-perlu-banding-dua-jawapan-ini",
+    "Kita perlu banding dua jawapan ini.",
+    ["We need to compare these two answers."],
+    ["advanced", "comparison", "phrase"],
+    ["lx-kita", "lx-perlu", "lx-banding", "lx-dua", "lx-jawapan"],
+    "Discussion",
+    {
+      malayHint: "ayat untuk membandingkan dua jawapan"
+    }
+  ),
+  phrase(
+    "ph-apa-sebab-awak-pilih-ini",
+    "Apa sebab awak pilih ini?",
+    ["What is your reason for choosing this?"],
+    ["advanced", "comparison", "phrase"],
+    ["lx-apa", "lx-sebab", "lx-awak", "lx-pilih"],
+    "Discussion",
+    {
+      malayHint: "ayat untuk tanya alasan bagi sesuatu pilihan"
+    }
+  ),
+  phrase(
+    "ph-telefon-tidak-dibenarkan-di-sini",
+    "Telefon tidak dibenarkan di sini.",
+    ["Phones are not allowed here."],
+    ["advanced", "rules", "phrase"],
+    ["lx-telefon", "lx-tidak", "lx-dibenarkan", "lx-sini"],
+    "Rules",
+    {
+      malayHint: "ayat untuk menyatakan sesuatu tidak dibenarkan"
+    }
+  ),
+  phrase(
+    "ph-saya-perlu-izin-sebelum-masuk",
+    "Saya perlu izin sebelum masuk.",
+    ["I need permission before entering."],
+    ["advanced", "rules", "phrase"],
+    ["lx-saya", "lx-perlu", "lx-izin", "lx-sebelum", "lx-masuk"],
+    "Rules",
+    {
+      malayHint: "ayat untuk minta atau nyatakan keperluan izin"
+    }
+  ),
+  phrase(
+    "ph-awak-patut-semak-jawapan-lagi",
+    "Awak patut semak jawapan lagi.",
+    ["You should check the answer again."],
+    ["advanced", "rules", "phrase"],
+    ["lx-awak", "lx-patut", "lx-semak", "lx-jawapan"],
+    "Rules",
+    {
+      malayHint: "ayat untuk beri nasihat"
+    }
+  ),
+  phrase(
+    "ph-telefon-itu-dilarang-di-kelas",
+    "Telefon itu dilarang di kelas.",
+    ["That phone is forbidden in class."],
+    ["advanced", "rules", "phrase"],
+    ["lx-telefon", "lx-itu", "lx-dilarang", "lx-kelas"],
+    "Rules",
+    {
+      malayHint: "ayat untuk menyatakan sesuatu dilarang"
+    }
+  ),
+  phrase(
+    "ph-langkah-ini-penting",
+    "Langkah ini penting.",
+    ["This step is important."],
+    ["advanced", "process", "phrase"],
+    ["lx-langkah", "lx-ini", "lx-penting"],
+    "Process",
+    {
+      malayHint: "ayat untuk menunjukkan satu langkah yang penting"
+    }
+  ),
+  phrase(
+    "ph-kemudian-kami-tulis-jawapan",
+    "Kemudian kami tulis jawapan.",
+    ["Then we write the answer."],
+    ["advanced", "process", "phrase"],
+    ["lx-kemudian", "lx-kami", "lx-tulis", "lx-jawapan"],
+    "Process",
+    {
+      malayHint: "ayat untuk menunjukkan langkah selepas itu"
+    }
+  ),
+  phrase(
+    "ph-seterusnya-baca-soalan-itu",
+    "Seterusnya baca soalan itu.",
+    ["Next, read that question."],
+    ["advanced", "process", "phrase"],
+    ["lx-seterusnya", "lx-baca", "lx-soalan", "lx-itu"],
+    "Process",
+    {
+      malayHint: "ayat arahan untuk langkah seterusnya"
+    }
+  ),
+  phrase(
+    "ph-proses-ini-tidak-mudah",
+    "Proses ini tidak mudah.",
+    ["This process is not easy."],
+    ["advanced", "process", "phrase"],
+    ["lx-proses", "lx-ini", "lx-tidak", "lx-mudah"],
+    "Process",
+    {
+      malayHint: "ayat untuk menilai sesuatu proses"
+    }
+  ),
+  phrase(
+    "ph-hujan-menyebabkan-kami-lewat",
+    "Hujan menyebabkan kami lewat.",
+    ["Rain caused us to be late."],
+    ["advanced", "result", "phrase"],
+    ["lx-hujan", "lx-menyebabkan", "lx-kami", "lx-lewat"],
+    "Cause and effect",
+    {
+      malayHint: "ayat untuk menunjukkan punca sesuatu masalah"
+    }
+  ),
+  phrase(
+    "ph-kumpulan-kami-berjaya-hari-ini",
+    "Kumpulan kami berjaya hari ini.",
+    ["Our group succeeded today."],
+    ["advanced", "result", "phrase"],
+    ["lx-kumpulan", "lx-kami", "lx-berjaya", "lx-hari-ini"],
+    "Cause and effect",
+    {
+      malayHint: "ayat untuk menyatakan kejayaan"
+    }
+  ),
+  phrase(
+    "ph-dia-gagal-ujian-itu",
+    "Dia gagal ujian itu.",
+    ["He failed that test."],
+    ["advanced", "result", "phrase"],
+    ["lx-dia", "lx-gagal", "lx-ujian", "lx-itu"],
+    "Cause and effect",
+    {
+      malayHint: "ayat untuk menyatakan kegagalan"
+    }
+  ),
+  phrase(
+    "ph-kesan-keputusan-itu-besar",
+    "Kesan keputusan itu besar.",
+    ["The effect of that decision is big."],
+    ["advanced", "result", "phrase"],
+    ["lx-kesan", "lx-keputusan", "lx-itu", "lx-besar"],
+    "Cause and effect",
+    {
+      malayHint: "ayat untuk menyebut kesan sesuatu keputusan"
+    }
+  ),
+  phrase(
+    "ph-tolong-serah-borang-itu-hari-ini",
+    "Tolong serah borang itu hari ini.",
+    ["Please submit that form today."],
+    ["advanced", "office", "phrase"],
+    ["lx-tolong", "lx-serah", "lx-borang", "lx-itu", "lx-hari-ini"],
+    "School office",
+    {
+      malayHint: "ayat untuk arahkan seseorang menyerahkan borang"
+    }
+  ),
+  phrase(
+    "ph-dokumen-ini-perlu-tandatangan-guru",
+    "Dokumen ini perlu tandatangan guru.",
+    ["This document needs a teacher's signature."],
+    ["advanced", "office", "phrase"],
+    ["lx-dokumen", "lx-perlu", "lx-tandatangan", "lx-guru"],
+    "School office",
+    {
+      malayHint: "ayat untuk menyatakan dokumen perlu ditandatangani"
+    }
+  ),
+  phrase(
+    "ph-borang-itu-di-pejabat",
+    "Borang itu di pejabat.",
+    ["That form is at the office."],
+    ["advanced", "office", "phrase"],
+    ["lx-borang", "lx-itu", "lx-pejabat"],
+    "School office",
+    {
+      malayHint: "ayat untuk nyatakan lokasi borang"
+    }
+  ),
+  phrase(
+    "ph-saya-serah-dokumen-semalam",
+    "Saya serah dokumen semalam.",
+    ["I submitted the document yesterday."],
+    ["advanced", "office", "phrase"],
+    ["lx-saya", "lx-serah", "lx-dokumen", "lx-semalam"],
+    "School office",
+    {
+      malayHint: "ayat untuk menyatakan dokumen telah diserahkan"
+    }
+  ),
+  phrase(
+    "ph-saya-setuju-dengan-jawapan-itu",
+    "Saya setuju dengan jawapan itu.",
+    ["I agree with that answer."],
+    ["advanced", "discussion", "phrase"],
+    ["lx-saya", "lx-setuju", "lx-dengan", "lx-jawapan", "lx-itu"],
+    "Discussion",
+    {
+      malayHint: "ayat untuk menyatakan persetujuan"
+    }
+  ),
+  phrase(
+    "ph-dia-bantah-keputusan-itu",
+    "Dia bantah keputusan itu.",
+    ["He objects to that decision."],
+    ["advanced", "discussion", "phrase"],
+    ["lx-dia", "lx-bantah", "lx-keputusan", "lx-itu"],
+    "Discussion",
+    {
+      malayHint: "ayat untuk menyatakan bantahan"
+    }
+  ),
+  phrase(
+    "ph-saya-cadang-kita-mula-sekarang",
+    "Saya cadang kita mula sekarang.",
+    ["I suggest we start now."],
+    ["advanced", "discussion", "phrase"],
+    ["lx-saya", "lx-cadang", "lx-kita", "lx-sekarang"],
+    "Discussion",
+    {
+      malayHint: "ayat untuk memberi cadangan"
+    }
+  ),
+  phrase(
+    "ph-keputusan-itu-belum-jelas",
+    "Keputusan itu belum jelas.",
+    ["That decision is not clear yet."],
+    ["advanced", "discussion", "phrase"],
+    ["lx-keputusan", "lx-itu", "lx-belum", "lx-jelas"],
+    "Discussion",
+    {
+      malayHint: "ayat untuk menyatakan keputusan masih tidak jelas"
+    }
+  ),
+  phrase(
+    "ph-jika-hujan-kami-tunggu-di-sini",
+    "Jika hujan kami tunggu di sini.",
+    ["If it rains, we wait here."],
+    ["advanced", "condition", "phrase"],
+    ["lx-jika", "lx-hujan", "lx-kami", "lx-tunggu", "lx-sini"],
+    "Condition",
+    {
+      malayHint: "ayat untuk keadaan yang bergantung pada cuaca"
+    }
+  ),
+  phrase(
+    "ph-apa-syarat-untuk-masuk",
+    "Apa syarat untuk masuk?",
+    ["What is the requirement to enter?"],
+    ["advanced", "condition", "phrase"],
+    ["lx-apa", "lx-syarat", "lx-masuk"],
+    "Condition",
+    {
+      malayHint: "ayat untuk tanya syarat"
+    }
+  ),
+  phrase(
+    "ph-saya-datang-kecuali-hujan",
+    "Saya datang kecuali hujan.",
+    ["I will come unless it rains."],
+    ["advanced", "condition", "phrase"],
+    ["lx-saya", "lx-datang", "lx-kecuali", "lx-hujan"],
+    "Condition",
+    {
+      malayHint: "ayat untuk nyatakan pengecualian"
+    }
+  ),
+  phrase(
+    "ph-dia-ada-peluang-besar",
+    "Dia ada peluang besar.",
+    ["He has a big chance."],
+    ["advanced", "condition", "phrase"],
+    ["lx-dia", "lx-ada", "lx-peluang", "lx-besar"],
+    "Condition",
+    {
+      malayHint: "ayat untuk menyatakan kemungkinan yang baik"
+    }
+  ),
+  phrase(
+    "ph-boleh-jelaskan-jawapan-ini-lagi",
+    "Boleh jelaskan jawapan ini lagi?",
+    ["Can you explain this answer again?"],
+    ["advanced", "explanation", "phrase"],
+    ["lx-boleh", "lx-jelaskan", "lx-jawapan", "lx-ini"],
+    "Explanation",
+    {
+      malayHint: "ayat untuk minta penjelasan tambahan"
+    }
+  ),
+  phrase(
+    "ph-cikgu-minta-huraikan-isi-utama",
+    "Cikgu minta huraikan isi utama.",
+    ["The teacher asked for the main point to be elaborated."],
+    ["advanced", "explanation", "phrase"],
+    ["lx-cikgu", "lx-huraikan", "lx-isi", "lx-utama"],
+    "Explanation",
+    {
+      malayHint: "ayat untuk huraikan isi paling penting"
+    }
+  ),
+  phrase(
+    "ph-isi-utama-itu-penting",
+    "Isi utama itu penting.",
+    ["That main point is important."],
+    ["advanced", "explanation", "phrase"],
+    ["lx-isi", "lx-utama", "lx-itu", "lx-penting"],
+    "Explanation",
+    {
+      malayHint: "ayat untuk kenal pasti isi yang penting"
+    }
+  ),
+  phrase(
+    "ph-huraikan-jawapan-ini-dengan-ringkas",
+    "Huraikan jawapan ini dengan ringkas.",
+    ["Explain this answer briefly."],
+    ["advanced", "explanation", "phrase"],
+    ["lx-huraikan", "lx-jawapan", "lx-ini", "lx-dengan", "lx-ringkas"],
+    "Explanation",
+    {
+      malayHint: "ayat arahan untuk menghuraikan secara pendek"
+    }
+  ),
+  phrase(
+    "ph-tolong-baca-notis-itu",
+    "Tolong baca notis itu.",
+    ["Please read that notice."],
+    ["advanced", "notice", "phrase"],
+    ["lx-tolong", "lx-baca", "lx-notis", "lx-itu"],
+    "Public notice",
+    {
+      malayHint: "ayat untuk menyuruh seseorang membaca notis"
+    }
+  ),
+  phrase(
+    "ph-ada-pengumuman-baru-hari-ini",
+    "Ada pengumuman baru hari ini.",
+    ["There is a new announcement today."],
+    ["advanced", "notice", "phrase"],
+    ["lx-ada", "lx-pengumuman", "lx-baru", "lx-hari-ini"],
+    "Public notice",
+    {
+      malayHint: "ayat untuk memberitahu ada pengumuman baharu"
+    }
+  ),
+  phrase(
+    "ph-ada-gangguan-di-jalan-ini",
+    "Ada gangguan di jalan ini.",
+    ["There is a disruption on this road."],
+    ["advanced", "notice", "phrase"],
+    ["lx-ada", "lx-gangguan", "lx-jalan", "lx-ini"],
+    "Public notice",
+    {
+      malayHint: "ayat untuk melaporkan gangguan"
+    }
+  ),
+  phrase(
+    "ph-bas-itu-ada-kelewatan",
+    "Bas itu ada kelewatan.",
+    ["That bus is delayed."],
+    ["advanced", "notice", "phrase"],
+    ["lx-bas", "lx-itu", "lx-ada", "lx-kelewatan"],
+    "Public notice",
+    {
+      malayHint: "ayat untuk menyatakan kelewatan"
+    }
+  ),
+  phrase(
+    "ph-kita-perlu-sahkan-tempahan-itu",
+    "Kita perlu sahkan tempahan itu.",
+    ["We need to confirm that booking."],
+    ["advanced", "planning", "phrase"],
+    ["lx-kita", "lx-perlu", "lx-sahkan", "lx-tempahan", "lx-itu"],
+    "Planning",
+    {
+      malayHint: "ayat untuk mengesahkan satu tempahan"
+    }
+  ),
+  phrase(
+    "ph-saya-tidak-boleh-tangguh-lagi",
+    "Saya tidak boleh tangguh lagi.",
+    ["I cannot postpone it anymore."],
+    ["advanced", "planning", "phrase"],
+    ["lx-saya", "lx-tidak", "lx-boleh", "lx-tangguh"],
+    "Planning",
+    {
+      malayHint: "ayat untuk nyatakan sesuatu tidak boleh ditunda lagi"
+    }
+  ),
+  phrase(
+    "ph-kami-teruskan-esok-pagi",
+    "Kami teruskan esok pagi.",
+    ["We continue tomorrow morning."],
+    ["advanced", "planning", "phrase"],
+    ["lx-kami", "lx-teruskan", "lx-esok", "lx-pagi"],
+    "Planning",
+    {
+      malayHint: "ayat untuk sambung rancangan pada masa lain"
+    }
+  ),
+  phrase(
+    "ph-komitmen-ini-penting",
+    "Komitmen ini penting.",
+    ["This commitment is important."],
+    ["advanced", "planning", "phrase"],
+    ["lx-komitmen", "lx-ini", "lx-penting"],
+    "Planning",
+    {
+      malayHint: "ayat untuk menilai sesuatu komitmen"
+    }
+  ),
+  phrase(
+    "ph-baca-petikan-itu-sekarang",
+    "Baca petikan itu sekarang.",
+    ["Read that passage now."],
+    ["immersive", "classroom", "phrase"],
+    ["lx-baca", "lx-petikan", "lx-itu", "lx-sekarang"],
+    "Classroom Malay",
+    {
+      malayHint: "ayat arahan untuk membaca petikan"
+    }
+  ),
+  phrase(
+    "ph-perenggan-ini-panjang",
+    "Perenggan ini panjang.",
+    ["This paragraph is long."],
+    ["immersive", "classroom", "phrase"],
+    ["lx-perenggan", "lx-ini", "lx-panjang"],
+    "Classroom Malay",
+    {
+      malayHint: "ayat untuk menilai panjang satu perenggan"
+    }
+  ),
+  phrase(
+    "ph-tajuk-itu-jelas",
+    "Tajuk itu jelas.",
+    ["That title is clear."],
+    ["immersive", "classroom", "phrase"],
+    ["lx-tajuk", "lx-itu", "lx-jelas"],
+    "Classroom Malay",
+    {
+      malayHint: "ayat untuk menilai tajuk"
+    }
+  ),
+  phrase(
+    "ph-ikut-format-yang-betul",
+    "Ikut format yang betul.",
+    ["Follow the correct format."],
+    ["immersive", "classroom", "phrase"],
+    ["lx-ikut", "lx-format", "lx-betul"],
+    "Classroom Malay",
+    {
+      malayHint: "ayat arahan untuk ikut susunan yang betul"
+    }
+  ),
+  phrase(
+    "ph-kita-perlu-nilai-jawapan-ini",
+    "Kita perlu nilai jawapan ini.",
+    ["We need to evaluate this answer."],
+    ["immersive", "reasoning", "phrase"],
+    ["lx-kita", "lx-perlu", "lx-nilai", "lx-jawapan", "lx-ini"],
+    "Reasoning",
+    {
+      malayHint: "ayat untuk menilai satu jawapan"
+    }
+  ),
+  phrase(
+    "ph-alasan-itu-kurang-munasabah",
+    "Alasan itu kurang munasabah.",
+    ["That reason is less reasonable."],
+    ["immersive", "reasoning", "phrase"],
+    ["lx-alasan", "lx-itu", "lx-kurang", "lx-munasabah"],
+    "Reasoning",
+    {
+      malayHint: "ayat untuk menolak alasan yang lemah"
+    }
+  ),
+  phrase(
+    "ph-andaian-itu-belum-kuat",
+    "Andaian itu belum kuat.",
+    ["That assumption is not strong yet."],
+    ["immersive", "reasoning", "phrase"],
+    ["lx-andaian", "lx-itu", "lx-belum", "lx-kuat"],
+    "Reasoning",
+    {
+      malayHint: "ayat untuk menyatakan andaian masih lemah"
+    }
+  ),
+  phrase(
+    "ph-apa-alasan-awak",
+    "Apa alasan awak?",
+    ["What is your reason?"],
+    ["immersive", "reasoning", "phrase"],
+    ["lx-apa", "lx-alasan", "lx-awak"],
+    "Reasoning",
+    {
+      malayHint: "ayat pendek untuk minta alasan"
+    }
+  ),
+  phrase(
+    "ph-walaupun-susah-saya-cuba",
+    "Walaupun susah saya cuba.",
+    ["Although it is hard, I try."],
+    ["immersive", "connector", "phrase"],
+    ["lx-walaupun", "lx-susah", "lx-saya", "lx-cuba"],
+    "Connector Malay",
+    {
+      malayHint: "ayat untuk tunjuk pertentangan tetapi masih mahu teruskan"
+    }
+  ),
+  phrase(
+    "ph-namun-jawapan-itu-tidak-jelas",
+    "Namun jawapan itu tidak jelas.",
+    ["However, that answer is not clear."],
+    ["immersive", "connector", "phrase"],
+    ["lx-namun", "lx-jawapan", "lx-itu", "lx-tidak", "lx-jelas"],
+    "Connector Malay",
+    {
+      malayHint: "ayat untuk menambah pertentangan kepada idea sebelumnya"
+    }
+  ),
+  phrase(
+    "ph-sebaliknya-kami-pilih-ini",
+    "Sebaliknya kami pilih ini.",
+    ["Instead, we choose this."],
+    ["immersive", "connector", "phrase"],
+    ["lx-sebaliknya", "lx-kami", "lx-pilih", "lx-ini"],
+    "Connector Malay",
+    {
+      malayHint: "ayat untuk beri pilihan yang bertentangan"
+    }
+  ),
+  phrase(
+    "ph-selain-itu-ada-satu-soalan",
+    "Selain itu ada satu soalan.",
+    ["Besides that, there is one more question."],
+    ["immersive", "connector", "phrase"],
+    ["lx-selain-itu", "lx-ada", "lx-satu", "lx-soalan"],
+    "Connector Malay",
+    {
+      malayHint: "ayat untuk menambah satu lagi perkara"
+    }
+  ),
+  phrase(
+    "ph-sejak-pagi-dia-belajar",
+    "Sejak pagi dia belajar.",
+    ["He has been studying since morning."],
+    ["immersive", "time", "phrase"],
+    ["lx-sejak", "lx-pagi", "lx-dia", "lx-belajar"],
+    "Time relations",
+    {
+      malayHint: "ayat untuk menunjukkan sesuatu bermula pada waktu lalu"
+    }
+  ),
+  phrase(
+    "ph-perpustakaan-itu-buka-hingga-malam",
+    "Perpustakaan itu buka hingga malam.",
+    ["That library stays open until night."],
+    ["immersive", "time", "phrase"],
+    ["lx-perpustakaan", "lx-itu", "lx-buka", "lx-hingga", "lx-malam"],
+    "Time relations",
+    {
+      malayHint: "ayat untuk tempoh yang berakhir pada masa tertentu"
+    }
+  ),
+  phrase(
+    "ph-sepanjang-minggu-ini-sibuk",
+    "Sepanjang minggu ini sibuk.",
+    ["It is busy throughout this week."],
+    ["immersive", "time", "phrase"],
+    ["lx-sepanjang", "lx-minggu", "lx-ini", "lx-sibuk"],
+    "Time relations",
+    {
+      malayHint: "ayat untuk keadaan yang berlaku sepanjang satu tempoh"
+    }
+  ),
+  phrase(
+    "ph-apabila-hujan-kami-masuk-kelas",
+    "Apabila hujan kami masuk kelas.",
+    ["When it rains, we go into class."],
+    ["immersive", "time", "phrase"],
+    ["lx-apabila", "lx-hujan", "lx-kami", "lx-masuk", "lx-kelas"],
+    "Time relations",
+    {
+      malayHint: "ayat untuk kaitkan satu tindakan dengan satu masa"
+    }
+  ),
+  phrase(
+    "ph-rumusan-itu-ringkas-dan-jelas",
+    "Rumusan itu ringkas dan jelas.",
+    ["That summary is brief and clear."],
+    ["immersive", "report", "phrase"],
+    ["lx-rumusan", "lx-itu", "lx-ringkas", "lx-dan", "lx-jelas"],
+    "Reporting",
+    {
+      malayHint: "ayat untuk menilai kualiti rumusan"
+    }
+  ),
+  phrase(
+    "ph-dapatan-itu-penting",
+    "Dapatan itu penting.",
+    ["That finding is important."],
+    ["immersive", "report", "phrase"],
+    ["lx-dapatan", "lx-itu", "lx-penting"],
+    "Reporting",
+    {
+      malayHint: "ayat untuk tekankan hasil penemuan"
+    }
+  ),
+  phrase(
+    "ph-apa-kesimpulan-awak",
+    "Apa kesimpulan awak?",
+    ["What is your conclusion?"],
+    ["immersive", "report", "phrase"],
+    ["lx-apa", "lx-kesimpulan", "lx-awak"],
+    "Reporting",
+    {
+      malayHint: "ayat untuk minta kesimpulan"
+    }
+  ),
+  phrase(
+    "ph-kaedah-ini-lebih-sesuai",
+    "Kaedah ini lebih sesuai.",
+    ["This method is more suitable."],
+    ["immersive", "report", "phrase"],
+    ["lx-kaedah", "lx-ini", "lx-lebih", "lx-sesuai"],
+    "Reporting",
+    {
+      malayHint: "ayat untuk bandingkan kaedah"
+    }
+  ),
+  phrase(
+    "ph-saya-hantar-aduan-semalam",
+    "Saya hantar aduan semalam.",
+    ["I sent a complaint yesterday."],
+    ["immersive", "service", "phrase"],
+    ["lx-saya", "lx-hantar", "lx-aduan", "lx-semalam"],
+    "Service counter",
+    {
+      malayHint: "ayat untuk menyatakan aduan sudah dihantar"
+    }
+  ),
+  phrase(
+    "ph-tunggu-giliran-di-sini",
+    "Tunggu giliran di sini.",
+    ["Wait for your turn here."],
+    ["immersive", "service", "phrase"],
+    ["lx-tunggu", "lx-giliran", "lx-sini"],
+    "Service counter",
+    {
+      malayHint: "ayat arahan ketika beratur"
+    }
+  ),
+  phrase(
+    "ph-permohonan-itu-perlu-pengesahan",
+    "Permohonan itu perlu pengesahan.",
+    ["That application needs verification."],
+    ["immersive", "service", "phrase"],
+    ["lx-permohonan", "lx-itu", "lx-perlu", "lx-pengesahan"],
+    "Service counter",
+    {
+      malayHint: "ayat untuk nyatakan satu permohonan belum lengkap"
+    }
+  ),
+  phrase(
+    "ph-giliran-saya-belum-tiba",
+    "Giliran saya belum tiba.",
+    ["My turn has not arrived yet."],
+    ["immersive", "service", "phrase"],
+    ["lx-giliran", "lx-saya", "lx-belum", "lx-tiba"],
+    "Service counter",
+    {
+      malayHint: "ayat untuk kata masih menunggu giliran"
+    }
+  ),
+  phrase(
+    "ph-gotong-royong-itu-pada-hari-ahad",
+    "Gotong-royong itu pada hari Ahad.",
+    ["That communal work is on Sunday."],
+    ["immersive", "community", "phrase"],
+    ["lx-gotong-royong", "lx-itu", "lx-pada", "lx-hari", "lx-ahad"],
+    "Community",
+    {
+      malayHint: "ayat untuk menyebut masa program komuniti"
+    }
+  ),
+  phrase(
+    "ph-kebersihan-kelas-itu-tanggungjawab-kami",
+    "Kebersihan kelas itu tanggungjawab kami.",
+    ["The cleanliness of that class is our responsibility."],
+    ["immersive", "community", "phrase"],
+    ["lx-kebersihan", "lx-kelas", "lx-itu", "lx-tanggungjawab", "lx-kami"],
+    "Community",
+    {
+      malayHint: "ayat untuk kaitkan tanggungjawab dengan kebersihan"
+    }
+  ),
+  phrase(
+    "ph-keselamatan-di-jalan-itu-penting",
+    "Keselamatan di jalan itu penting.",
+    ["Safety on that road is important."],
+    ["immersive", "community", "phrase"],
+    ["lx-keselamatan", "lx-jalan", "lx-itu", "lx-penting"],
+    "Community",
+    {
+      malayHint: "ayat untuk tekankan pentingnya keselamatan"
+    }
+  ),
+  phrase(
+    "ph-tanggungjawab-anda-penting",
+    "Tanggungjawab anda penting.",
+    ["Your responsibility is important."],
+    ["immersive", "community", "phrase"],
+    ["lx-tanggungjawab", "lx-anda", "lx-penting"],
+    "Community",
+    {
+      malayHint: "ayat untuk ingatkan seseorang tentang tanggungjawab"
+    }
+  ),
+  phrase(
+    "ph-semak-fakta-sebelum-kongsi",
+    "Semak fakta sebelum kongsi.",
+    ["Check the facts before sharing."],
+    ["immersive", "media", "phrase"],
+    ["lx-semak", "lx-fakta", "lx-sebelum", "lx-kongsi"],
+    "Media",
+    {
+      malayHint: "ayat arahan supaya periksa kebenaran maklumat dahulu"
+    }
+  ),
+  phrase(
+    "ph-maklumat-itu-mungkin-palsu",
+    "Maklumat itu mungkin palsu.",
+    ["That information may be false."],
+    ["immersive", "media", "phrase"],
+    ["lx-maklumat", "lx-itu", "lx-mungkin", "lx-palsu"],
+    "Media",
+    {
+      malayHint: "ayat untuk beri amaran bahawa maklumat belum pasti benar"
+    }
+  ),
+  phrase(
+    "ph-rakaman-itu-jelas",
+    "Rakaman itu jelas.",
+    ["That recording is clear."],
+    ["immersive", "media", "phrase"],
+    ["lx-rakaman", "lx-itu", "lx-jelas"],
+    "Media",
+    {
+      malayHint: "ayat untuk menilai kualiti rakaman"
+    }
+  ),
+  phrase(
+    "ph-kami-tidak-kongsi-maklumat-palsu",
+    "Kami tidak kongsi maklumat palsu.",
+    ["We do not share false information."],
+    ["immersive", "media", "phrase"],
+    ["lx-kami", "lx-tidak", "lx-kongsi", "lx-maklumat", "lx-palsu"],
+    "Media",
+    {
+      malayHint: "ayat untuk nyatakan pendirian terhadap maklumat palsu"
+    }
+  ),
+  phrase(
+    "ph-saya-sokong-keputusan-itu",
+    "Saya sokong keputusan itu.",
+    ["I support that decision."],
+    ["immersive", "argument", "phrase"],
+    ["lx-saya", "lx-sokong", "lx-keputusan", "lx-itu"],
+    "Argument",
+    {
+      malayHint: "ayat untuk menyokong satu keputusan"
+    }
+  ),
+  phrase(
+    "ph-dia-tegaskan-jawapan-itu",
+    "Dia tegaskan jawapan itu.",
+    ["He emphasized that answer."],
+    ["immersive", "argument", "phrase"],
+    ["lx-dia", "lx-tegaskan", "lx-jawapan", "lx-itu"],
+    "Argument",
+    {
+      malayHint: "ayat untuk menegaskan satu jawapan"
+    }
+  ),
+  phrase(
+    "ph-saya-akui-saya-lewat",
+    "Saya akui saya lewat.",
+    ["I admit that I was late."],
+    ["immersive", "argument", "phrase"],
+    ["lx-saya", "lx-akui", "lx-lewat"],
+    "Argument",
+    {
+      malayHint: "ayat untuk mengaku satu kesalahan atau keadaan"
+    }
+  ),
+  phrase(
+    "ph-mereka-sangkal-jawapan-itu",
+    "Mereka sangkal jawapan itu.",
+    ["They refuted that answer."],
+    ["immersive", "argument", "phrase"],
+    ["lx-mereka", "lx-sangkal", "lx-jawapan", "lx-itu"],
+    "Argument",
+    {
+      malayHint: "ayat untuk menolak satu jawapan"
+    }
+  ),
+  phrase(
+    "ph-kefahaman-saya-lebih-baik",
+    "Kefahaman saya lebih baik.",
+    ["My understanding is better."],
+    ["immersive", "mastery", "phrase"],
+    ["lx-kefahaman", "lx-saya", "lx-lebih", "lx-baik"],
+    "Mastery",
+    {
+      malayHint: "ayat untuk menilai perkembangan kefahaman"
+    }
+  ),
+  phrase(
+    "ph-kefasihan-datang-dengan-latihan",
+    "Kefasihan datang dengan latihan.",
+    ["Fluency comes with practice."],
+    ["immersive", "mastery", "phrase"],
+    ["lx-kefasihan", "lx-datang", "lx-dengan", "lx-latihan"],
+    "Mastery",
+    {
+      malayHint: "ayat untuk jelaskan bagaimana kefasihan terbina"
+    }
+  ),
+  phrase(
+    "ph-kesilapan-itu-jelas",
+    "Kesilapan itu jelas.",
+    ["That mistake is clear."],
+    ["immersive", "mastery", "phrase"],
+    ["lx-kesilapan", "lx-itu", "lx-jelas"],
+    "Mastery",
+    {
+      malayHint: "ayat untuk mengenal pasti satu kesilapan"
+    }
+  ),
+  phrase(
+    "ph-pembetulan-itu-baik-untuk-saya",
+    "Pembetulan itu baik untuk saya.",
+    ["That correction is good for me."],
+    ["immersive", "mastery", "phrase"],
+    ["lx-pembetulan", "lx-itu", "lx-baik", "lx-saya"],
+    "Mastery",
+    {
+      malayHint: "ayat untuk menerima pembetulan sebagai sesuatu yang berguna"
+    }
   )
 ];
 
@@ -2783,6 +4941,1206 @@ const lessons: Lesson[] = [
     "lx-hilang",
     "lx-rosak",
     "lx-bahaya"
+  ]),
+  lesson("lesson-101", "unit-listen", "Listening Basics", "Hear, volume, and clarity words.", [
+    "lx-dengar",
+    "lx-kuat",
+    "lx-perlahan",
+    "lx-jelas",
+    "lx-bising",
+    "lx-senyap"
+  ]),
+  lesson("lesson-102", "unit-listen", "Classroom Clarity", "Ask what something means and request explanation.", [
+    "lx-cikgu",
+    "lx-belum",
+    "lx-sejarah",
+    "lx-maksud",
+    "lx-sebut",
+    "lx-terangkan"
+  ]),
+  lesson("lesson-103", "unit-listen", "Sound Phrases", "Short phrases for hearing and classroom sound.", [
+    "ph-saya-dengar-muzik-itu",
+    "ph-boleh-cakap-perlahan",
+    "ph-suara-itu-kuat",
+    "ph-kelas-ini-bising",
+    "ph-bilik-itu-senyap",
+    "ph-apa-maksud-ini"
+  ]),
+  lesson("lesson-104", "unit-listen", "Explanation Phrases", "Ask for clearer spoken Malay.", [
+    "ph-cikgu-saya-belum-faham",
+    "ph-cikgu-terangkan-soalan-ini",
+    "ph-dia-sebut-nama-saya",
+    "ph-saya-suka-sejarah",
+    "ph-boleh-cakap-dengan-jelas",
+    "ph-kenapa-awak-di-sini"
+  ]),
+  lesson("lesson-105", "unit-listen", "Listening Review", "Reinforce hearing and explanation vocabulary.", [
+    "lx-suara",
+    "lx-dengan",
+    "lx-dengar",
+    "lx-maksud",
+    "lx-sebut",
+    "lx-terangkan"
+  ]),
+  lesson("lesson-106", "unit-clothes", "Clothing Basics", "Name common clothing items you actually wear.", [
+    "lx-kasut",
+    "lx-seluar",
+    "lx-stokin",
+    "lx-jaket",
+    "lx-topi",
+    "lx-uniform"
+  ]),
+  lesson("lesson-107", "unit-clothes", "Fit & Appearance", "Talk about size, fit, and tidiness.", [
+    "lx-saiz",
+    "lx-warna",
+    "lx-kemas",
+    "lx-longgar",
+    "lx-ketat",
+    "lx-sesuai"
+  ]),
+  lesson("lesson-108", "unit-clothes", "Clothing Phrases 1", "Describe what people are wearing.", [
+    "ph-saya-pakai-kasut-hitam",
+    "ph-dia-pakai-jaket-biru",
+    "ph-topi-itu-baru",
+    "ph-uniform-ini-putih",
+    "ph-stokin-saya-basah",
+    "ph-seluar-ini-hitam"
+  ]),
+  lesson("lesson-109", "unit-clothes", "Clothing Phrases 2", "Describe clothing fit and style.", [
+    "ph-saiz-ini-sesuai",
+    "ph-baju-itu-longgar",
+    "ph-seluar-ini-ketat",
+    "ph-uniform-saya-kemas",
+    "ph-warna-ini-cantik",
+    "ph-kasut-itu-mahal"
+  ]),
+  lesson("lesson-110", "unit-clothes", "Clothing Review", "Reinforce clothes, fit, and appearance words.", [
+    "lx-kasut",
+    "lx-uniform",
+    "lx-saiz",
+    "lx-warna",
+    "lx-kemas",
+    "lx-sesuai"
+  ]),
+  lesson("lesson-111", "unit-restaurant", "Restaurant Basics", "Core food nouns you meet at stalls or cafes.", [
+    "lx-mee",
+    "lx-sup",
+    "lx-jus",
+    "lx-susu",
+    "lx-sambal",
+    "lx-mangkuk"
+  ]),
+  lesson("lesson-112", "unit-restaurant", "Table & Ordering", "Tableware and ordering verbs.", [
+    "lx-pinggan",
+    "lx-sudu",
+    "lx-garpu",
+    "lx-pesan",
+    "lx-hidang",
+    "lx-tambah"
+  ]),
+  lesson("lesson-113", "unit-restaurant", "Ordering Phrases 1", "Say what you want clearly at the table.", [
+    "ph-saya-pesan-mee-sup",
+    "ph-saya-mahu-jus-epal",
+    "ph-mee-ini-pedas",
+    "ph-mee-ini-dalam-mangkuk",
+    "ph-saya-guna-sudu",
+    "ph-dia-hidang-makanan"
+  ]),
+  lesson("lesson-114", "unit-restaurant", "Ordering Phrases 2", "Ask for adjustments and describe table items.", [
+    "ph-boleh-tambah-sambal",
+    "ph-saya-mahu-susu-sejuk",
+    "ph-saya-guna-garpu",
+    "ph-pinggan-ini-bersih",
+    "ph-saya-pesan-air-dan-roti",
+    "ph-boleh-saya-beli-air"
+  ]),
+  lesson("lesson-115", "unit-restaurant", "Restaurant Review", "Reinforce ordering and table vocabulary.", [
+    "lx-mee",
+    "lx-jus",
+    "lx-sambal",
+    "lx-pinggan",
+    "lx-pesan",
+    "lx-tambah"
+  ]),
+  lesson("lesson-116", "unit-hobbies", "Sports & Hobbies", "Name your basic hobbies and sports.", [
+    "lx-hobi",
+    "lx-bola",
+    "lx-badminton",
+    "lx-berenang",
+    "lx-berlari",
+    "lx-bermain"
+  ]),
+  lesson("lesson-117", "unit-hobbies", "Arts & Media", "Talk about drawing, songs, movies, and instruments.", [
+    "lx-lukis",
+    "lx-menyanyi",
+    "lx-menonton",
+    "lx-gitar",
+    "lx-filem",
+    "lx-lagu"
+  ]),
+  lesson("lesson-118", "unit-hobbies", "Hobby Phrases 1", "Describe what you enjoy doing.", [
+    "ph-hobi-saya-berenang",
+    "ph-kami-bermain-bola",
+    "ph-saya-suka-badminton",
+    "ph-saya-suka-menonton-filem",
+    "ph-dia-menyanyi-dengan-baik",
+    "ph-saya-bermain-gitar"
+  ]),
+  lesson("lesson-119", "unit-hobbies", "Hobby Phrases 2", "Mix hobbies with places and media.", [
+    "ph-saya-dengar-lagu-ini",
+    "ph-dia-berlari-di-taman",
+    "ph-saya-lukis-gambar",
+    "ph-badminton-itu-seronok",
+    "ph-kami-bermain-di-taman",
+    "ph-saya-suka-menonton-filem"
+  ]),
+  lesson("lesson-120", "unit-hobbies", "Hobby Review", "Reinforce hobby and sports vocabulary.", [
+    "lx-hobi",
+    "lx-badminton",
+    "lx-berenang",
+    "lx-lukis",
+    "lx-gitar",
+    "lx-lagu"
+  ]),
+  lesson("lesson-121", "unit-body", "Body Parts", "Learn the most basic body words first.", [
+    "lx-tangan",
+    "lx-kaki",
+    "lx-mata",
+    "lx-mulut",
+    "lx-hidung",
+    "lx-telinga"
+  ]),
+  lesson("lesson-122", "unit-body", "Doctor Talk", "Common doctor and checkup words.", [
+    "lx-doktor",
+    "lx-janji-temu",
+    "lx-ukur",
+    "lx-suhu",
+    "lx-gigi",
+    "lx-muka"
+  ]),
+  lesson("lesson-123", "unit-body", "Body Phrases 1", "Say what hurts or feels wrong.", [
+    "ph-tangan-saya-sakit",
+    "ph-kaki-saya-penat",
+    "ph-mata-saya-pedih",
+    "ph-doktor-itu-baik",
+    "ph-saya-ada-janji-temu",
+    "ph-dia-ukur-suhu-saya"
+  ]),
+  lesson("lesson-124", "unit-body", "Body Phrases 2", "Use body words in daily health sentences.", [
+    "ph-mulut-saya-kering",
+    "ph-gigi-saya-sakit",
+    "ph-muka-saya-panas",
+    "ph-hidung-saya-sejuk",
+    "ph-telinga-saya-sakit",
+    "ph-saya-perlu-ubat"
+  ]),
+  lesson("lesson-125", "unit-body", "Body Review", "Reinforce body and doctor vocabulary.", [
+    "lx-tangan",
+    "lx-mata",
+    "lx-doktor",
+    "lx-suhu",
+    "lx-gigi",
+    "lx-muka"
+  ]),
+  lesson("lesson-126", "unit-dates", "Months 1", "The first half of the calendar year.", [
+    "lx-januari",
+    "lx-februari",
+    "lx-mac",
+    "lx-april",
+    "lx-mei",
+    "lx-jun"
+  ]),
+  lesson("lesson-127", "unit-dates", "Months 2", "The second half of the calendar year.", [
+    "lx-julai",
+    "lx-ogos",
+    "lx-september",
+    "lx-oktober",
+    "lx-november",
+    "lx-disember"
+  ]),
+  lesson("lesson-128", "unit-dates", "Dates & Weeks", "Date words that matter in school and life.", [
+    "lx-tarikh",
+    "lx-tahun",
+    "lx-hari-jadi",
+    "lx-pada",
+    "lx-minggu-depan",
+    "lx-minggu-lepas"
+  ]),
+  lesson("lesson-129", "unit-dates", "Date Phrases", "Use months and dates in simple real sentences.", [
+    "ph-hari-jadi-saya-pada-disember",
+    "ph-ujian-itu-pada-oktober",
+    "ph-saya-balik-pada-hari-sabtu",
+    "ph-minggu-depan-saya-ada-peperiksaan",
+    "ph-minggu-lepas-saya-cuti",
+    "ph-tarikh-itu-penting"
+  ]),
+  lesson("lesson-130", "unit-dates", "Calendar Review", "Reinforce dates, months, and year words.", [
+    "lx-januari",
+    "lx-oktober",
+    "lx-disember",
+    "lx-tarikh",
+    "lx-tahun",
+    "lx-hari-jadi"
+  ]),
+  lesson("lesson-131", "unit-family-events", "Family Relations", "Beyond parents and siblings.", [
+    "lx-sepupu",
+    "lx-nenek",
+    "lx-datuk",
+    "lx-jiran",
+    "lx-tetamu",
+    "lx-lawat"
+  ]),
+  lesson("lesson-132", "unit-family-events", "Events & Invitations", "Words for inviting and attending events.", [
+    "lx-jemput",
+    "lx-hadiah",
+    "lx-majlis",
+    "lx-kahwin",
+    "lx-rumah-terbuka",
+    "lx-kenduri"
+  ]),
+  lesson("lesson-133", "unit-family-events", "Family Phrases 1", "Talk about family and neighbors naturally.", [
+    "ph-nenek-saya-di-rumah",
+    "ph-jiran-itu-ramah",
+    "ph-kami-jemput-kawan",
+    "ph-saya-bawa-hadiah",
+    "ph-majlis-itu-besar",
+    "ph-kami-lawat-datuk"
+  ]),
+  lesson("lesson-134", "unit-family-events", "Family Phrases 2", "Use event and family vocabulary in real contexts.", [
+    "ph-sepupu-saya-datang-esok",
+    "ph-tetamu-itu-di-sana",
+    "ph-majlis-kahwin-itu-cantik",
+    "ph-rumah-terbuka-itu-seronok",
+    "ph-kenduri-itu-di-rumah-nenek",
+    "ph-kami-jemput-jiran"
+  ]),
+  lesson("lesson-135", "unit-family-events", "Family Review", "Reinforce family-event vocabulary.", [
+    "lx-sepupu",
+    "lx-nenek",
+    "lx-jiran",
+    "lx-jemput",
+    "lx-majlis",
+    "lx-hadiah"
+  ]),
+  lesson("lesson-136", "unit-travel-extended", "Travel Words", "Airport and luggage vocabulary.", [
+    "lx-lapangan-terbang",
+    "lx-kapal-terbang",
+    "lx-pasport",
+    "lx-bagasi",
+    "lx-hotel",
+    "lx-tempahan"
+  ]),
+  lesson("lesson-137", "unit-travel-extended", "Travel Movement", "Arrivals, departures, and travel roles.", [
+    "lx-tiba",
+    "lx-berlepas",
+    "lx-pelancong",
+    "lx-lawatan",
+    "lx-kaunter",
+    "lx-pemandu"
+  ]),
+  lesson("lesson-138", "unit-travel-extended", "Travel Phrases 1", "Simple travel sentences you can reuse.", [
+    "ph-lapangan-terbang-itu-jauh",
+    "ph-saya-ada-pasport",
+    "ph-bagasi-saya-besar",
+    "ph-kami-tiba-malam-ini",
+    "ph-kapal-terbang-itu-lewat",
+    "ph-saya-ada-tempahan-hotel"
+  ]),
+  lesson("lesson-139", "unit-travel-extended", "Travel Phrases 2", "Use transport and booking words together.", [
+    "ph-pemandu-itu-ramah",
+    "ph-pelancong-itu-di-sana",
+    "ph-kami-berlepas-esok",
+    "ph-saya-pergi-ke-hotel",
+    "ph-kaunter-itu-di-depan",
+    "ph-lawatan-ini-seronok"
+  ]),
+  lesson("lesson-140", "unit-travel-extended", "Travel Review", "Reinforce airport and trip vocabulary.", [
+    "lx-lapangan-terbang",
+    "lx-pasport",
+    "lx-bagasi",
+    "lx-hotel",
+    "lx-tiba",
+    "lx-berlepas"
+  ]),
+  lesson("lesson-141", "unit-language-extended", "Language Basics", "Words for talking about language itself.", [
+    "lx-perkataan",
+    "lx-ayat",
+    "lx-terjemah",
+    "lx-hafal",
+    "lx-tatabahasa",
+    "lx-kamus"
+  ]),
+  lesson("lesson-142", "unit-language-extended", "Language Accuracy", "Pronunciation, spelling, and revision language.", [
+    "lx-sebutan",
+    "lx-betulkan",
+    "lx-ringkas",
+    "lx-penuh",
+    "lx-ejaan",
+    "lx-ulangkaji"
+  ]),
+  lesson("lesson-143", "unit-language-extended", "Language Phrases 1", "Use language-learning words as real classroom talk.", [
+    "ph-perkataan-ini-mudah",
+    "ph-ayat-itu-panjang",
+    "ph-saya-guna-kamus",
+    "ph-boleh-betulkan-ayat-ini",
+    "ph-sebutan-saya-salah",
+    "ph-saya-ulangkaji-malam-ini"
+  ]),
+  lesson("lesson-144", "unit-language-extended", "Language Phrases 2", "Talk about revision and correctness clearly.", [
+    "ph-tatabahasa-ini-susah",
+    "ph-nota-ini-ringkas",
+    "ph-jawapan-itu-penuh",
+    "ph-saya-hafal-perkataan-ini",
+    "ph-boleh-terjemah-ayat-ini",
+    "ph-ejaan-itu-betul"
+  ]),
+  lesson("lesson-145", "unit-language-extended", "Language Review", "Reinforce translation and revision vocabulary.", [
+    "lx-perkataan",
+    "lx-ayat",
+    "lx-hafal",
+    "lx-kamus",
+    "lx-ejaan",
+    "lx-ulangkaji"
+  ]),
+  lesson("lesson-146", "unit-neighborhood-extended", "Neighborhood Places", "Practical local place names.", [
+    "lx-restoran",
+    "lx-kedai-buku",
+    "lx-farmasi",
+    "lx-surau",
+    "lx-masjid",
+    "lx-pusat-beli-belah"
+  ]),
+  lesson("lesson-147", "unit-neighborhood-extended", "Road & Area Words", "Neighborhood navigation beyond the basics.", [
+    "lx-perhentian-bas",
+    "lx-jambatan",
+    "lx-lampu-jalan",
+    "lx-lori",
+    "lx-balai-polis",
+    "lx-pasar-raya"
+  ]),
+  lesson("lesson-148", "unit-neighborhood-extended", "Neighborhood Phrases 1", "Ask where places are and how near they are.", [
+    "ph-restoran-itu-di-depan",
+    "ph-farmasi-itu-di-mana",
+    "ph-saya-pergi-ke-kedai-buku",
+    "ph-surau-itu-dekat",
+    "ph-masjid-itu-besar",
+    "ph-perhentian-bas-itu-di-sana"
+  ]),
+  lesson("lesson-149", "unit-neighborhood-extended", "Neighborhood Phrases 2", "Describe common urban places around you.", [
+    "ph-pusat-beli-belah-itu-jauh",
+    "ph-jambatan-itu-panjang",
+    "ph-lori-itu-besar",
+    "ph-balai-polis-itu-di-depan",
+    "ph-pasar-raya-itu-dekat",
+    "ph-lampu-jalan-itu-terang"
+  ]),
+  lesson("lesson-150", "unit-neighborhood-extended", "Neighborhood Review", "Reinforce everyday place vocabulary.", [
+    "lx-restoran",
+    "lx-farmasi",
+    "lx-masjid",
+    "lx-perhentian-bas",
+    "lx-balai-polis",
+    "lx-pasar-raya"
+  ]),
+  lesson("lesson-151", "unit-compare", "Compare More Precisely", "Push beyond basic comparison words.", [
+    "lx-banding",
+    "lx-serupa",
+    "lx-bukti",
+    "lx-sebab",
+    "lx-lebih",
+    "lx-kurang"
+  ]),
+  lesson("lesson-152", "unit-compare", "Evidence in Sentences", "Use evidence and comparison inside short responses.", [
+    "ph-dua-jawapan-itu-serupa",
+    "ph-boleh-beri-bukti-untuk-jawapan-ini",
+    "lx-banding",
+    "lx-serupa",
+    "lx-lebih",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-153", "unit-compare", "Reasons & Choices", "Ask for reasons and justify choices.", [
+    "ph-kita-perlu-banding-dua-jawapan-ini",
+    "ph-apa-sebab-awak-pilih-ini",
+    "lx-bukti",
+    "lx-sebab",
+    "lx-kurang",
+    "lx-contoh"
+  ]),
+  lesson("lesson-154", "unit-compare", "Comparison Transfer", "Move comparison language into mixed review.", [
+    "ph-dua-jawapan-itu-serupa",
+    "ph-kita-perlu-banding-dua-jawapan-ini",
+    "lx-serupa",
+    "lx-sebab",
+    "lx-jawapan",
+    "lx-contoh"
+  ]),
+  lesson("lesson-155", "unit-compare", "Compare Review", "Reinforce comparison and proof vocabulary.", [
+    "ph-boleh-beri-bukti-untuk-jawapan-ini",
+    "ph-apa-sebab-awak-pilih-ini",
+    "lx-banding",
+    "lx-bukti",
+    "lx-lebih",
+    "lx-kurang"
+  ]),
+  lesson("lesson-156", "unit-rules-advanced", "Allowed or Not", "Learn permission language that shows up in school rules.", [
+    "lx-dibenarkan",
+    "lx-dilarang",
+    "lx-izin",
+    "lx-patut",
+    "lx-peraturan",
+    "lx-semak"
+  ]),
+  lesson("lesson-157", "unit-rules-advanced", "Permission Sentences", "State what is allowed and what needs permission.", [
+    "ph-telefon-tidak-dibenarkan-di-sini",
+    "ph-saya-perlu-izin-sebelum-masuk",
+    "lx-dibenarkan",
+    "lx-izin",
+    "lx-peraturan",
+    "lx-telefon"
+  ]),
+  lesson("lesson-158", "unit-rules-advanced", "Should and Forbidden", "Mix advice, prohibition, and classroom control.", [
+    "ph-awak-patut-semak-jawapan-lagi",
+    "ph-telefon-itu-dilarang-di-kelas",
+    "lx-dilarang",
+    "lx-patut",
+    "lx-semak",
+    "lx-kelas"
+  ]),
+  lesson("lesson-159", "unit-rules-advanced", "Rule Scenarios", "Reuse rules language in mixed situations.", [
+    "ph-telefon-tidak-dibenarkan-di-sini",
+    "ph-awak-patut-semak-jawapan-lagi",
+    "lx-izin",
+    "lx-patut",
+    "lx-telefon",
+    "lx-kelas"
+  ]),
+  lesson("lesson-160", "unit-rules-advanced", "Rules Review", "Reinforce permission and prohibition vocabulary.", [
+    "ph-saya-perlu-izin-sebelum-masuk",
+    "ph-telefon-itu-dilarang-di-kelas",
+    "lx-dibenarkan",
+    "lx-dilarang",
+    "lx-peraturan",
+    "lx-semak"
+  ]),
+  lesson("lesson-161", "unit-sequence-advanced", "Steps & Order", "Add step words and process language.", [
+    "lx-langkah",
+    "lx-kemudian",
+    "lx-seterusnya",
+    "lx-proses",
+    "lx-soalan",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-162", "unit-sequence-advanced", "Sequence Sentences", "Talk through what comes next.", [
+    "ph-langkah-ini-penting",
+    "ph-kemudian-kami-tulis-jawapan",
+    "lx-langkah",
+    "lx-kemudian",
+    "lx-soalan",
+    "lx-baca"
+  ]),
+  lesson("lesson-163", "unit-sequence-advanced", "Process Talk", "Explain order and process more clearly.", [
+    "ph-seterusnya-baca-soalan-itu",
+    "ph-proses-ini-tidak-mudah",
+    "lx-seterusnya",
+    "lx-proses",
+    "lx-jawapan",
+    "lx-tulis"
+  ]),
+  lesson("lesson-164", "unit-sequence-advanced", "Explain the Order", "Blend process words into short instructions.", [
+    "ph-langkah-ini-penting",
+    "ph-seterusnya-baca-soalan-itu",
+    "lx-kemudian",
+    "lx-proses",
+    "lx-baca",
+    "lx-tulis"
+  ]),
+  lesson("lesson-165", "unit-sequence-advanced", "Process Review", "Reinforce sequence language and classroom order.", [
+    "ph-kemudian-kami-tulis-jawapan",
+    "ph-proses-ini-tidak-mudah",
+    "lx-langkah",
+    "lx-seterusnya",
+    "lx-soalan",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-166", "unit-cause-advanced", "Results & Consequences", "Move from events into causes and results.", [
+    "lx-kesan",
+    "lx-menyebabkan",
+    "lx-berjaya",
+    "lx-gagal",
+    "lx-hujan",
+    "lx-lewat"
+  ]),
+  lesson("lesson-167", "unit-cause-advanced", "Success or Failure", "Describe success, failure, and what caused them.", [
+    "ph-hujan-menyebabkan-kami-lewat",
+    "ph-kumpulan-kami-berjaya-hari-ini",
+    "lx-kesan",
+    "lx-menyebabkan",
+    "lx-hujan",
+    "lx-ujian"
+  ]),
+  lesson("lesson-168", "unit-cause-advanced", "Cause Sentences", "Handle failure and impact in short sentences.", [
+    "ph-dia-gagal-ujian-itu",
+    "ph-kesan-keputusan-itu-besar",
+    "lx-berjaya",
+    "lx-gagal",
+    "lx-lewat",
+    "lx-kumpulan"
+  ]),
+  lesson("lesson-169", "unit-cause-advanced", "Outcome Transfer", "Reuse cause words in mixed study contexts.", [
+    "ph-hujan-menyebabkan-kami-lewat",
+    "ph-dia-gagal-ujian-itu",
+    "lx-menyebabkan",
+    "lx-gagal",
+    "lx-ujian",
+    "lx-kumpulan"
+  ]),
+  lesson("lesson-170", "unit-cause-advanced", "Cause Review", "Reinforce cause, impact, success, and failure.", [
+    "ph-kumpulan-kami-berjaya-hari-ini",
+    "ph-kesan-keputusan-itu-besar",
+    "lx-kesan",
+    "lx-berjaya",
+    "lx-hujan",
+    "lx-lewat"
+  ]),
+  lesson("lesson-171", "unit-office-advanced", "Forms & Signatures", "Handle school office language without switching back to English.", [
+    "lx-borang",
+    "lx-tandatangan",
+    "lx-dokumen",
+    "lx-serah",
+    "lx-pejabat",
+    "lx-hantar"
+  ]),
+  lesson("lesson-172", "unit-office-advanced", "Office Sentences", "State where forms are and what must be signed.", [
+    "ph-tolong-serah-borang-itu-hari-ini",
+    "ph-dokumen-ini-perlu-tandatangan-guru",
+    "lx-borang",
+    "lx-tandatangan",
+    "lx-pejabat",
+    "lx-makmal"
+  ]),
+  lesson("lesson-173", "unit-office-advanced", "Submit the Document", "Use office vocabulary in short task instructions.", [
+    "ph-borang-itu-di-pejabat",
+    "ph-saya-serah-dokumen-semalam",
+    "lx-dokumen",
+    "lx-serah",
+    "lx-hantar",
+    "lx-hari-ini"
+  ]),
+  lesson("lesson-174", "unit-office-advanced", "Admin Transfer", "Blend forms, submission, and place language.", [
+    "ph-tolong-serah-borang-itu-hari-ini",
+    "ph-borang-itu-di-pejabat",
+    "lx-tandatangan",
+    "lx-serah",
+    "lx-makmal",
+    "lx-hari-ini"
+  ]),
+  lesson("lesson-175", "unit-office-advanced", "Office Review", "Reinforce practical office and document vocabulary.", [
+    "ph-dokumen-ini-perlu-tandatangan-guru",
+    "ph-saya-serah-dokumen-semalam",
+    "lx-borang",
+    "lx-dokumen",
+    "lx-pejabat",
+    "lx-hantar"
+  ]),
+  lesson("lesson-176", "unit-discuss-advanced", "Setuju atau Bantah", "Gunakan bahasa setuju, bantah, dan cadang dengan lebih tepat.", [
+    "lx-setuju",
+    "lx-bantah",
+    "lx-cadang",
+    "lx-keputusan",
+    "lx-pilih",
+    "lx-jelas"
+  ]),
+  lesson("lesson-177", "unit-discuss-advanced", "Cadangan dalam Ayat", "Masukkan persetujuan dan bantahan ke dalam ayat pendek.", [
+    "ph-saya-setuju-dengan-jawapan-itu",
+    "ph-dia-bantah-keputusan-itu",
+    "lx-setuju",
+    "lx-bantah",
+    "lx-pilih",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-178", "unit-discuss-advanced", "Keputusan Kumpulan", "Cadang tindakan dan nilai keputusan kumpulan.", [
+    "ph-saya-cadang-kita-mula-sekarang",
+    "ph-keputusan-itu-belum-jelas",
+    "lx-cadang",
+    "lx-keputusan",
+    "lx-jelas",
+    "lx-kumpulan"
+  ]),
+  lesson("lesson-179", "unit-discuss-advanced", "Bincang dengan Tepat", "Campurkan pilihan, keputusan, dan perbincangan.", [
+    "ph-saya-setuju-dengan-jawapan-itu",
+    "ph-saya-cadang-kita-mula-sekarang",
+    "lx-bantah",
+    "lx-keputusan",
+    "lx-jawapan",
+    "lx-kumpulan"
+  ]),
+  lesson("lesson-180", "unit-discuss-advanced", "Ulang Kaji Bincang", "Kuatkan bahasa perbincangan dan pendirian.", [
+    "ph-dia-bantah-keputusan-itu",
+    "ph-keputusan-itu-belum-jelas",
+    "lx-setuju",
+    "lx-cadang",
+    "lx-pilih",
+    "lx-jelas"
+  ]),
+  lesson("lesson-181", "unit-condition-advanced", "Jika Sesuatu Berlaku", "Mulakan bahasa syarat dan kemungkinan.", [
+    "lx-jika",
+    "lx-syarat",
+    "lx-kecuali",
+    "lx-peluang",
+    "lx-boleh",
+    "lx-masuk"
+  ]),
+  lesson("lesson-182", "unit-condition-advanced", "Syarat dalam Ayat", "Tanya syarat dan nyatakan keadaan yang berubah.", [
+    "ph-jika-hujan-kami-tunggu-di-sini",
+    "ph-apa-syarat-untuk-masuk",
+    "lx-jika",
+    "lx-syarat",
+    "lx-boleh",
+    "lx-hujan"
+  ]),
+  lesson("lesson-183", "unit-condition-advanced", "Peluang dan Pilihan", "Gunakan pengecualian dan peluang dengan lebih yakin.", [
+    "ph-saya-datang-kecuali-hujan",
+    "ph-dia-ada-peluang-besar",
+    "lx-kecuali",
+    "lx-peluang",
+    "lx-masuk",
+    "lx-pilih"
+  ]),
+  lesson("lesson-184", "unit-condition-advanced", "Syarat Lebih Sukar", "Gabungkan syarat dengan tindakan sebenar.", [
+    "ph-jika-hujan-kami-tunggu-di-sini",
+    "ph-saya-datang-kecuali-hujan",
+    "lx-syarat",
+    "lx-peluang",
+    "lx-hujan",
+    "lx-pilih"
+  ]),
+  lesson("lesson-185", "unit-condition-advanced", "Ulang Kaji Syarat", "Ulang semula syarat, peluang, dan pengecualian.", [
+    "ph-apa-syarat-untuk-masuk",
+    "ph-dia-ada-peluang-besar",
+    "lx-jika",
+    "lx-kecuali",
+    "lx-boleh",
+    "lx-masuk"
+  ]),
+  lesson("lesson-186", "unit-explain-advanced", "Isi Utama", "Kenal pasti isi penting dan mula menghuraikannya.", [
+    "lx-huraikan",
+    "lx-jelaskan",
+    "lx-isi",
+    "lx-utama",
+    "lx-ringkas",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-187", "unit-explain-advanced", "Jelaskan Lagi", "Minta dan beri penjelasan tambahan.", [
+    "ph-boleh-jelaskan-jawapan-ini-lagi",
+    "ph-cikgu-minta-huraikan-isi-utama",
+    "lx-huraikan",
+    "lx-jelaskan",
+    "lx-ringkas",
+    "lx-jelas"
+  ]),
+  lesson("lesson-188", "unit-explain-advanced", "Huraian Ringkas", "Huraikan isi penting dengan lebih padat.", [
+    "ph-isi-utama-itu-penting",
+    "ph-huraikan-jawapan-ini-dengan-ringkas",
+    "lx-isi",
+    "lx-utama",
+    "lx-jawapan",
+    "lx-soalan"
+  ]),
+  lesson("lesson-189", "unit-explain-advanced", "Jawapan dengan Isi", "Campurkan isi utama dengan jawapan yang jelas.", [
+    "ph-boleh-jelaskan-jawapan-ini-lagi",
+    "ph-isi-utama-itu-penting",
+    "lx-jelaskan",
+    "lx-utama",
+    "lx-jelas",
+    "lx-soalan"
+  ]),
+  lesson("lesson-190", "unit-explain-advanced", "Ulang Kaji Huraian", "Kukuhkan bahasa huraian dan isi.", [
+    "ph-cikgu-minta-huraikan-isi-utama",
+    "ph-huraikan-jawapan-ini-dengan-ringkas",
+    "lx-huraikan",
+    "lx-isi",
+    "lx-ringkas",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-191", "unit-notices-advanced", "Baca Notis", "Mulakan bahasa notis, pengumuman, dan gangguan.", [
+    "lx-notis",
+    "lx-pengumuman",
+    "lx-gangguan",
+    "lx-kelewatan",
+    "lx-jalan",
+    "lx-bas"
+  ]),
+  lesson("lesson-192", "unit-notices-advanced", "Pengumuman Ringkas", "Baca dan fahami pesanan awam yang pendek.", [
+    "ph-tolong-baca-notis-itu",
+    "ph-ada-pengumuman-baru-hari-ini",
+    "lx-notis",
+    "lx-pengumuman",
+    "lx-jalan",
+    "lx-hari-ini"
+  ]),
+  lesson("lesson-193", "unit-notices-advanced", "Gangguan dan Kelewatan", "Gunakan bahasa gangguan dan kelewatan harian.", [
+    "ph-ada-gangguan-di-jalan-ini",
+    "ph-bas-itu-ada-kelewatan",
+    "lx-gangguan",
+    "lx-kelewatan",
+    "lx-bas",
+    "lx-penting"
+  ]),
+  lesson("lesson-194", "unit-notices-advanced", "Makluman Harian", "Campurkan maklumat awam dengan situasi biasa.", [
+    "ph-tolong-baca-notis-itu",
+    "ph-ada-gangguan-di-jalan-ini",
+    "lx-pengumuman",
+    "lx-kelewatan",
+    "lx-hari-ini",
+    "lx-penting"
+  ]),
+  lesson("lesson-195", "unit-notices-advanced", "Ulang Kaji Notis", "Ulang semula notis, gangguan, dan kelewatan.", [
+    "ph-ada-pengumuman-baru-hari-ini",
+    "ph-bas-itu-ada-kelewatan",
+    "lx-notis",
+    "lx-gangguan",
+    "lx-jalan",
+    "lx-bas"
+  ]),
+  lesson("lesson-196", "unit-commit-advanced", "Sahkan atau Tangguh", "Masuk ke bahasa komitmen, pengesahan, dan penangguhan.", [
+    "lx-komitmen",
+    "lx-tangguh",
+    "lx-teruskan",
+    "lx-sahkan",
+    "lx-tempahan",
+    "lx-jadual"
+  ]),
+  lesson("lesson-197", "unit-commit-advanced", "Komitmen dalam Ayat", "Nyatakan apa yang perlu disahkan dan ditangguh.", [
+    "ph-kita-perlu-sahkan-tempahan-itu",
+    "ph-saya-tidak-boleh-tangguh-lagi",
+    "lx-komitmen",
+    "lx-sahkan",
+    "lx-tempahan",
+    "lx-esok"
+  ]),
+  lesson("lesson-198", "unit-commit-advanced", "Teruskan Rancangan", "Gunakan bahasa komitmen dalam perancangan sebenar.", [
+    "ph-kami-teruskan-esok-pagi",
+    "ph-komitmen-ini-penting",
+    "lx-tangguh",
+    "lx-teruskan",
+    "lx-jadual",
+    "lx-penting"
+  ]),
+  lesson("lesson-199", "unit-commit-advanced", "Jadual yang Berubah", "Gabungkan perubahan jadual dengan komitmen.", [
+    "ph-kita-perlu-sahkan-tempahan-itu",
+    "ph-kami-teruskan-esok-pagi",
+    "lx-sahkan",
+    "lx-teruskan",
+    "lx-esok",
+    "lx-penting"
+  ]),
+  lesson("lesson-200", "unit-commit-advanced", "Ulang Kaji Komitmen", "Ulang semula bahasa sahkan, tangguh, dan teruskan.", [
+    "ph-saya-tidak-boleh-tangguh-lagi",
+    "ph-komitmen-ini-penting",
+    "lx-komitmen",
+    "lx-tangguh",
+    "lx-tempahan",
+    "lx-jadual"
+  ]),
+  lesson("lesson-201", "unit-bahasa-kelas-advanced", "Petikan dan Tajuk", "Mulakan fasa imersi dengan bahasa kelas yang lebih khusus.", [
+    "lx-petikan",
+    "lx-perenggan",
+    "lx-tajuk",
+    "lx-format",
+    "lx-baca",
+    "lx-betul"
+  ]),
+  lesson("lesson-202", "unit-bahasa-kelas-advanced", "Perenggan dan Format", "Gunakan istilah kelas tanpa bantuan bahasa Inggeris.", [
+    "ph-baca-petikan-itu-sekarang",
+    "ph-perenggan-ini-panjang",
+    "lx-petikan",
+    "lx-perenggan",
+    "lx-baca",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-203", "unit-bahasa-kelas-advanced", "Arahan Petikan", "Baca, kenal pasti, dan nilai tajuk serta format.", [
+    "ph-tajuk-itu-jelas",
+    "ph-ikut-format-yang-betul",
+    "lx-tajuk",
+    "lx-format",
+    "lx-betul",
+    "lx-markah"
+  ]),
+  lesson("lesson-204", "unit-bahasa-kelas-advanced", "Jawapan Ikut Format", "Campurkan arahan kelas dengan penilaian jawapan.", [
+    "ph-baca-petikan-itu-sekarang",
+    "ph-tajuk-itu-jelas",
+    "lx-perenggan",
+    "lx-format",
+    "lx-jawapan",
+    "lx-markah"
+  ]),
+  lesson("lesson-205", "unit-bahasa-kelas-advanced", "Ulang Kaji Bahasa Kelas", "Ulang semula istilah petikan, perenggan, tajuk, dan format.", [
+    "ph-perenggan-ini-panjang",
+    "ph-ikut-format-yang-betul",
+    "lx-petikan",
+    "lx-tajuk",
+    "lx-baca",
+    "lx-betul"
+  ]),
+  lesson("lesson-206", "unit-menilai-advanced", "Nilai dan Alasan", "Masuk lebih dalam ke bahasa penilaian dan sebab.", [
+    "lx-nilai",
+    "lx-alasan",
+    "lx-munasabah",
+    "lx-andaian",
+    "lx-jawapan",
+    "lx-kuat"
+  ]),
+  lesson("lesson-207", "unit-menilai-advanced", "Munasabah atau Tidak", "Nilai sama ada alasan benar-benar kuat.", [
+    "ph-kita-perlu-nilai-jawapan-ini",
+    "ph-alasan-itu-kurang-munasabah",
+    "lx-nilai",
+    "lx-alasan",
+    "lx-jawapan",
+    "lx-semak"
+  ]),
+  lesson("lesson-208", "unit-menilai-advanced", "Andaian Lemah", "Bezakan andaian daripada alasan yang betul-betul kukuh.", [
+    "ph-andaian-itu-belum-kuat",
+    "ph-apa-alasan-awak",
+    "lx-munasabah",
+    "lx-andaian",
+    "lx-kuat",
+    "lx-soalan"
+  ]),
+  lesson("lesson-209", "unit-menilai-advanced", "Semak Alasan", "Gunakan bahasa nilai untuk menyemak jawapan lain.", [
+    "ph-kita-perlu-nilai-jawapan-ini",
+    "ph-andaian-itu-belum-kuat",
+    "lx-alasan",
+    "lx-andaian",
+    "lx-semak",
+    "lx-soalan"
+  ]),
+  lesson("lesson-210", "unit-menilai-advanced", "Ulang Kaji Penilaian", "Kukuhkan bahasa alasan, andaian, dan penilaian.", [
+    "ph-alasan-itu-kurang-munasabah",
+    "ph-apa-alasan-awak",
+    "lx-nilai",
+    "lx-munasabah",
+    "lx-jawapan",
+    "lx-kuat"
+  ]),
+  lesson("lesson-211", "unit-connector-advanced", "Walaupun dan Namun", "Gunakan penyambung untuk mengawal aliran idea.", [
+    "lx-walaupun",
+    "lx-namun",
+    "lx-sebaliknya",
+    "lx-selain-itu",
+    "lx-susah",
+    "lx-soalan"
+  ]),
+  lesson("lesson-212", "unit-connector-advanced", "Sebaliknya", "Pilih dan lawankan idea dengan lebih tepat.", [
+    "ph-walaupun-susah-saya-cuba",
+    "ph-namun-jawapan-itu-tidak-jelas",
+    "lx-walaupun",
+    "lx-namun",
+    "lx-soalan",
+    "lx-pilih"
+  ]),
+  lesson("lesson-213", "unit-connector-advanced", "Selain Itu", "Tambah idea tanpa kehilangan arah ayat.", [
+    "ph-sebaliknya-kami-pilih-ini",
+    "ph-selain-itu-ada-satu-soalan",
+    "lx-sebaliknya",
+    "lx-selain-itu",
+    "lx-pilih",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-214", "unit-connector-advanced", "Gabung Idea", "Campurkan pertentangan dan tambahan dalam satu aliran.", [
+    "ph-walaupun-susah-saya-cuba",
+    "ph-sebaliknya-kami-pilih-ini",
+    "lx-namun",
+    "lx-selain-itu",
+    "lx-soalan",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-215", "unit-connector-advanced", "Ulang Kaji Penyambung", "Ulang semula penyambung utama untuk hujah dan penjelasan.", [
+    "ph-namun-jawapan-itu-tidak-jelas",
+    "ph-selain-itu-ada-satu-soalan",
+    "lx-walaupun",
+    "lx-sebaliknya",
+    "lx-susah",
+    "lx-soalan"
+  ]),
+  lesson("lesson-216", "unit-masa-advanced", "Sejak hingga Apabila", "Gerakkan masa dengan kata hubung yang lebih tepat.", [
+    "lx-sejak",
+    "lx-hingga",
+    "lx-sepanjang",
+    "lx-apabila",
+    "lx-pagi",
+    "lx-minggu"
+  ]),
+  lesson("lesson-217", "unit-masa-advanced", "Masa dalam Ayat", "Gunakan hubungan masa dalam ayat penuh.", [
+    "ph-sejak-pagi-dia-belajar",
+    "ph-perpustakaan-itu-buka-hingga-malam",
+    "lx-sejak",
+    "lx-hingga",
+    "lx-pagi",
+    "lx-malam"
+  ]),
+  lesson("lesson-218", "unit-masa-advanced", "Sepanjang Minggu", "Nyatakan tempoh dan perubahan masa dengan lebih lancar.", [
+    "ph-sepanjang-minggu-ini-sibuk",
+    "ph-apabila-hujan-kami-masuk-kelas",
+    "lx-sepanjang",
+    "lx-apabila",
+    "lx-minggu",
+    "lx-hujan"
+  ]),
+  lesson("lesson-219", "unit-masa-advanced", "Urutan Masa", "Campurkan tempoh, pencetus, dan masa penutup.", [
+    "ph-sejak-pagi-dia-belajar",
+    "ph-sepanjang-minggu-ini-sibuk",
+    "lx-hingga",
+    "lx-apabila",
+    "lx-malam",
+    "lx-hujan"
+  ]),
+  lesson("lesson-220", "unit-masa-advanced", "Ulang Kaji Masa", "Kukuhkan hubungan masa yang lebih halus.", [
+    "ph-perpustakaan-itu-buka-hingga-malam",
+    "ph-apabila-hujan-kami-masuk-kelas",
+    "lx-sejak",
+    "lx-sepanjang",
+    "lx-pagi",
+    "lx-minggu"
+  ]),
+  lesson("lesson-221", "unit-rumusan-advanced", "Rumusan Ringkas", "Mula menilai rumusan, dapatan, dan kesimpulan.", [
+    "lx-rumusan",
+    "lx-dapatan",
+    "lx-kesimpulan",
+    "lx-kaedah",
+    "lx-laporan",
+    "lx-jelas"
+  ]),
+  lesson("lesson-222", "unit-rumusan-advanced", "Dapatan dan Kaedah", "Gunakan istilah laporan secara lebih tepat.", [
+    "ph-rumusan-itu-ringkas-dan-jelas",
+    "ph-dapatan-itu-penting",
+    "lx-rumusan",
+    "lx-dapatan",
+    "lx-laporan",
+    "lx-ringkas"
+  ]),
+  lesson("lesson-223", "unit-rumusan-advanced", "Kesimpulan", "Tanya dan jawab bahagian akhir laporan dengan yakin.", [
+    "ph-apa-kesimpulan-awak",
+    "ph-kaedah-ini-lebih-sesuai",
+    "lx-kesimpulan",
+    "lx-kaedah",
+    "lx-jelas",
+    "lx-contoh"
+  ]),
+  lesson("lesson-224", "unit-rumusan-advanced", "Lapor dengan Jelas", "Campurkan dapatan, kaedah, dan rumusan dalam satu blok.", [
+    "ph-rumusan-itu-ringkas-dan-jelas",
+    "ph-apa-kesimpulan-awak",
+    "lx-dapatan",
+    "lx-kaedah",
+    "lx-ringkas",
+    "lx-contoh"
+  ]),
+  lesson("lesson-225", "unit-rumusan-advanced", "Ulang Kaji Rumusan", "Ulang semula bahasa laporan dan penutup hujah.", [
+    "ph-dapatan-itu-penting",
+    "ph-kaedah-ini-lebih-sesuai",
+    "lx-rumusan",
+    "lx-kesimpulan",
+    "lx-laporan",
+    "lx-jelas"
+  ]),
+  lesson("lesson-226", "unit-urusan-advanced", "Aduan dan Giliran", "Masuk ke bahasa kaunter, aduan, dan urusan rasmi.", [
+    "lx-aduan",
+    "lx-giliran",
+    "lx-permohonan",
+    "lx-pengesahan",
+    "lx-hantar",
+    "lx-tunggu"
+  ]),
+  lesson("lesson-227", "unit-urusan-advanced", "Permohonan", "Gunakan bahasa rasmi untuk urusan dan permintaan.", [
+    "ph-saya-hantar-aduan-semalam",
+    "ph-tunggu-giliran-di-sini",
+    "lx-aduan",
+    "lx-giliran",
+    "lx-hantar",
+    "lx-kaunter"
+  ]),
+  lesson("lesson-228", "unit-urusan-advanced", "Pengesahan", "Nyatakan apa yang masih perlu disahkan.", [
+    "ph-permohonan-itu-perlu-pengesahan",
+    "ph-giliran-saya-belum-tiba",
+    "lx-permohonan",
+    "lx-pengesahan",
+    "lx-tunggu",
+    "lx-pejabat"
+  ]),
+  lesson("lesson-229", "unit-urusan-advanced", "Urusan Kaunter", "Campurkan aduan, giliran, dan pengesahan.", [
+    "ph-saya-hantar-aduan-semalam",
+    "ph-permohonan-itu-perlu-pengesahan",
+    "lx-giliran",
+    "lx-pengesahan",
+    "lx-kaunter",
+    "lx-pejabat"
+  ]),
+  lesson("lesson-230", "unit-urusan-advanced", "Ulang Kaji Urusan", "Ulang semula bahasa urusan rasmi yang penting.", [
+    "ph-tunggu-giliran-di-sini",
+    "ph-giliran-saya-belum-tiba",
+    "lx-aduan",
+    "lx-permohonan",
+    "lx-hantar",
+    "lx-tunggu"
+  ]),
+  lesson("lesson-231", "unit-komuniti-advanced", "Gotong-Royong", "Gunakan bahasa komuniti dan tanggungjawab bersama.", [
+    "lx-gotong-royong",
+    "lx-kebersihan",
+    "lx-keselamatan",
+    "lx-tanggungjawab",
+    "lx-kelas",
+    "lx-jalan"
+  ]),
+  lesson("lesson-232", "unit-komuniti-advanced", "Kebersihan dan Keselamatan", "Sebut perkara penting untuk ruang bersama.", [
+    "ph-gotong-royong-itu-pada-hari-ahad",
+    "ph-kebersihan-kelas-itu-tanggungjawab-kami",
+    "lx-gotong-royong",
+    "lx-kebersihan",
+    "lx-kelas",
+    "lx-penting"
+  ]),
+  lesson("lesson-233", "unit-komuniti-advanced", "Tanggungjawab Kita", "Sambungkan keselamatan dengan tanggungjawab harian.", [
+    "ph-keselamatan-di-jalan-itu-penting",
+    "ph-tanggungjawab-anda-penting",
+    "lx-keselamatan",
+    "lx-tanggungjawab",
+    "lx-jalan",
+    "lx-kami"
+  ]),
+  lesson("lesson-234", "unit-komuniti-advanced", "Komuniti Harian", "Campurkan ruang bersama, tugas, dan keselamatan.", [
+    "ph-gotong-royong-itu-pada-hari-ahad",
+    "ph-keselamatan-di-jalan-itu-penting",
+    "lx-kebersihan",
+    "lx-tanggungjawab",
+    "lx-penting",
+    "lx-kami"
+  ]),
+  lesson("lesson-235", "unit-komuniti-advanced", "Ulang Kaji Komuniti", "Kukuhkan bahasa komuniti yang praktikal.", [
+    "ph-kebersihan-kelas-itu-tanggungjawab-kami",
+    "ph-tanggungjawab-anda-penting",
+    "lx-gotong-royong",
+    "lx-keselamatan",
+    "lx-kelas",
+    "lx-jalan"
+  ]),
+  lesson("lesson-236", "unit-media-advanced", "Fakta dan Rakaman", "Mulakan bahasa media, fakta, dan kebenaran maklumat.", [
+    "lx-fakta",
+    "lx-maklumat",
+    "lx-palsu",
+    "lx-rakaman",
+    "lx-semak",
+    "lx-kongsi"
+  ]),
+  lesson("lesson-237", "unit-media-advanced", "Maklumat Palsu", "Kenal pasti maklumat yang patut diragui.", [
+    "ph-semak-fakta-sebelum-kongsi",
+    "ph-maklumat-itu-mungkin-palsu",
+    "lx-fakta",
+    "lx-maklumat",
+    "lx-semak",
+    "lx-mungkin"
+  ]),
+  lesson("lesson-238", "unit-media-advanced", "Semak Sebelum Kongsi", "Gunakan media Melayu untuk menilai kebolehpercayaan.", [
+    "ph-rakaman-itu-jelas",
+    "ph-kami-tidak-kongsi-maklumat-palsu",
+    "lx-palsu",
+    "lx-rakaman",
+    "lx-kongsi",
+    "lx-jelas"
+  ]),
+  lesson("lesson-239", "unit-media-advanced", "Maklumat yang Jelas", "Campurkan fakta, rakaman, dan amaran media.", [
+    "ph-semak-fakta-sebelum-kongsi",
+    "ph-rakaman-itu-jelas",
+    "lx-maklumat",
+    "lx-rakaman",
+    "lx-mungkin",
+    "lx-jelas"
+  ]),
+  lesson("lesson-240", "unit-media-advanced", "Ulang Kaji Media", "Ulang semula cara bercakap tentang maklumat dan fakta.", [
+    "ph-maklumat-itu-mungkin-palsu",
+    "ph-kami-tidak-kongsi-maklumat-palsu",
+    "lx-fakta",
+    "lx-palsu",
+    "lx-semak",
+    "lx-kongsi"
+  ]),
+  lesson("lesson-241", "unit-hujah-advanced", "Sokong atau Sangkal", "Masuk ke bahasa sokongan, penegasan, dan penolakan.", [
+    "lx-sokong",
+    "lx-tegaskan",
+    "lx-akui",
+    "lx-sangkal",
+    "lx-keputusan",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-242", "unit-hujah-advanced", "Tegaskan", "Gunakan kata kerja hujah dengan lebih tajam.", [
+    "ph-saya-sokong-keputusan-itu",
+    "ph-dia-tegaskan-jawapan-itu",
+    "lx-sokong",
+    "lx-tegaskan",
+    "lx-keputusan",
+    "lx-setuju"
+  ]),
+  lesson("lesson-243", "unit-hujah-advanced", "Akui Kesalahan", "Belajar mengaku dan menolak dengan tepat.", [
+    "ph-saya-akui-saya-lewat",
+    "ph-mereka-sangkal-jawapan-itu",
+    "lx-akui",
+    "lx-sangkal",
+    "lx-jawapan",
+    "lx-bantah"
+  ]),
+  lesson("lesson-244", "unit-hujah-advanced", "Balas Hujah", "Gabungkan sokongan, penegasan, dan sanggahan.", [
+    "ph-saya-sokong-keputusan-itu",
+    "ph-saya-akui-saya-lewat",
+    "lx-tegaskan",
+    "lx-sangkal",
+    "lx-setuju",
+    "lx-bantah"
+  ]),
+  lesson("lesson-245", "unit-hujah-advanced", "Ulang Kaji Hujah", "Kukuhkan bahasa berhujah dalam bentuk ringkas.", [
+    "ph-dia-tegaskan-jawapan-itu",
+    "ph-mereka-sangkal-jawapan-itu",
+    "lx-sokong",
+    "lx-akui",
+    "lx-keputusan",
+    "lx-jawapan"
+  ]),
+  lesson("lesson-246", "unit-imersi-final", "Kefahaman", "Nilai kemajuan anda sepenuhnya dalam bahasa Melayu.", [
+    "lx-kefahaman",
+    "lx-kefasihan",
+    "lx-kesilapan",
+    "lx-pembetulan",
+    "lx-belajar",
+    "lx-latihan"
+  ]),
+  lesson("lesson-247", "unit-imersi-final", "Kefasihan", "Gunakan kata abstrak tentang penguasaan bahasa.", [
+    "ph-kefahaman-saya-lebih-baik",
+    "ph-kefasihan-datang-dengan-latihan",
+    "lx-kefahaman",
+    "lx-kefasihan",
+    "lx-belajar",
+    "lx-jelas"
+  ]),
+  lesson("lesson-248", "unit-imersi-final", "Kesilapan dan Pembetulan", "Kenal pasti kesalahan dan terima pembetulan.", [
+    "ph-kesilapan-itu-jelas",
+    "ph-pembetulan-itu-baik-untuk-saya",
+    "lx-kesilapan",
+    "lx-pembetulan",
+    "lx-latihan",
+    "lx-betul"
+  ]),
+  lesson("lesson-249", "unit-imersi-final", "Latihan Harian", "Campurkan kefahaman, kefasihan, dan pembetulan.", [
+    "ph-kefahaman-saya-lebih-baik",
+    "ph-kesilapan-itu-jelas",
+    "lx-kefasihan",
+    "lx-pembetulan",
+    "lx-jelas",
+    "lx-betul"
+  ]),
+  lesson("lesson-250", "unit-imersi-final", "Penutup Imersi", "Tamatkan laluan dengan bahasa refleksi yang penuh dalam bahasa Melayu.", [
+    "ph-kefasihan-datang-dengan-latihan",
+    "ph-pembetulan-itu-baik-untuk-saya",
+    "lx-kefahaman",
+    "lx-kesilapan",
+    "lx-belajar",
+    "lx-latihan"
   ])
 ];
 
@@ -2966,6 +6324,276 @@ const units: Unit[] = [
     accent: "#faa307",
     icon: "🚨",
     lessonIds: ["lesson-96", "lesson-97", "lesson-98", "lesson-99", "lesson-100"]
+  },
+  {
+    id: "unit-listen",
+    title: "Listening & Clarity",
+    description: "Hear more accurately, ask for clarity, and manage noisy classroom Malay.",
+    color: "#577590",
+    accent: "#f9c74f",
+    icon: "👂",
+    lessonIds: ["lesson-101", "lesson-102", "lesson-103", "lesson-104", "lesson-105"]
+  },
+  {
+    id: "unit-clothes",
+    title: "Clothes & Fit",
+    description: "Clothing words, fit, tidiness, and appearance.",
+    color: "#ad2831",
+    accent: "#ffd6a5",
+    icon: "👕",
+    lessonIds: ["lesson-106", "lesson-107", "lesson-108", "lesson-109", "lesson-110"]
+  },
+  {
+    id: "unit-restaurant",
+    title: "Restaurant Malay",
+    description: "Order food, ask for changes, and talk about bowls, plates, and utensils.",
+    color: "#bc6c25",
+    accent: "#fefae0",
+    icon: "🍽️",
+    lessonIds: ["lesson-111", "lesson-112", "lesson-113", "lesson-114", "lesson-115"]
+  },
+  {
+    id: "unit-hobbies",
+    title: "Hobbies & Sports",
+    description: "Talk about play, music, movies, drawing, and sport in daily Malay.",
+    color: "#4361ee",
+    accent: "#bde0fe",
+    icon: "⚽",
+    lessonIds: ["lesson-116", "lesson-117", "lesson-118", "lesson-119", "lesson-120"]
+  },
+  {
+    id: "unit-body",
+    title: "Body & Checkups",
+    description: "Body parts, appointments, and simple doctor-talk sentences.",
+    color: "#e63946",
+    accent: "#a8dadc",
+    icon: "🩺",
+    lessonIds: ["lesson-121", "lesson-122", "lesson-123", "lesson-124", "lesson-125"]
+  },
+  {
+    id: "unit-dates",
+    title: "Months & Dates",
+    description: "Months, birthdays, date language, and next-week versus last-week talk.",
+    color: "#355070",
+    accent: "#eaac8b",
+    icon: "📅",
+    lessonIds: ["lesson-126", "lesson-127", "lesson-128", "lesson-129", "lesson-130"]
+  },
+  {
+    id: "unit-family-events",
+    title: "Family Events",
+    description: "Cousins, grandparents, guests, gifts, weddings, and open houses.",
+    color: "#8338ec",
+    accent: "#ffafcc",
+    icon: "🎁",
+    lessonIds: ["lesson-131", "lesson-132", "lesson-133", "lesson-134", "lesson-135"]
+  },
+  {
+    id: "unit-travel-extended",
+    title: "Travel & Booking",
+    description: "Airport, hotel, bookings, luggage, and leaving or arriving on time.",
+    color: "#264653",
+    accent: "#e9c46a",
+    icon: "✈️",
+    lessonIds: ["lesson-136", "lesson-137", "lesson-138", "lesson-139", "lesson-140"]
+  },
+  {
+    id: "unit-language-extended",
+    title: "Language Study",
+    description: "Words for translation, grammar, pronunciation, spelling, and revision.",
+    color: "#4a4e69",
+    accent: "#c9ada7",
+    icon: "📝",
+    lessonIds: ["lesson-141", "lesson-142", "lesson-143", "lesson-144", "lesson-145"]
+  },
+  {
+    id: "unit-neighborhood-extended",
+    title: "Neighborhood Places",
+    description: "Bookstores, pharmacies, mosques, bus stops, police stations, and more.",
+    color: "#2d6a4f",
+    accent: "#d9ed92",
+    icon: "🏘️",
+    lessonIds: ["lesson-146", "lesson-147", "lesson-148", "lesson-149", "lesson-150"]
+  },
+  {
+    id: "unit-compare",
+    title: "Comparison & Evidence",
+    description: "Compare answers, ask for proof, and justify choices with more precision.",
+    color: "#3c096c",
+    accent: "#ffba08",
+    icon: "⚖️",
+    lessonIds: ["lesson-151", "lesson-152", "lesson-153", "lesson-154", "lesson-155"]
+  },
+  {
+    id: "unit-rules-advanced",
+    title: "Rules & Permission",
+    description: "Permission, prohibition, and classroom rule language that actually gets used.",
+    color: "#5c2a2a",
+    accent: "#fcbf49",
+    icon: "🚫",
+    lessonIds: ["lesson-156", "lesson-157", "lesson-158", "lesson-159", "lesson-160"]
+  },
+  {
+    id: "unit-sequence-advanced",
+    title: "Sequence & Process",
+    description: "Explain steps, order, and process instead of naming isolated actions.",
+    color: "#2b2d42",
+    accent: "#8ecae6",
+    icon: "🪜",
+    lessonIds: ["lesson-161", "lesson-162", "lesson-163", "lesson-164", "lesson-165"]
+  },
+  {
+    id: "unit-cause-advanced",
+    title: "Cause & Result",
+    description: "Move into impact, success, failure, and what caused them.",
+    color: "#7b2cbf",
+    accent: "#ffd166",
+    icon: "🎯",
+    lessonIds: ["lesson-166", "lesson-167", "lesson-168", "lesson-169", "lesson-170"]
+  },
+  {
+    id: "unit-office-advanced",
+    title: "School Administration",
+    description: "Forms, signatures, documents, and office interactions without English fallback.",
+    color: "#1d3557",
+    accent: "#a8dadc",
+    icon: "🗂️",
+    lessonIds: ["lesson-171", "lesson-172", "lesson-173", "lesson-174", "lesson-175"]
+  },
+  {
+    id: "unit-discuss-advanced",
+    title: "Bincang & Setuju",
+    description: "Setuju, bantah, cadang, dan nilai keputusan dengan lebih matang.",
+    color: "#582f0e",
+    accent: "#dda15e",
+    icon: "🗨️",
+    lessonIds: ["lesson-176", "lesson-177", "lesson-178", "lesson-179", "lesson-180"]
+  },
+  {
+    id: "unit-condition-advanced",
+    title: "Jika & Syarat",
+    description: "Bina ayat bersyarat, pengecualian, dan kemungkinan dengan lebih yakin.",
+    color: "#006d77",
+    accent: "#ffddd2",
+    icon: "🔀",
+    lessonIds: ["lesson-181", "lesson-182", "lesson-183", "lesson-184", "lesson-185"]
+  },
+  {
+    id: "unit-explain-advanced",
+    title: "Huraian & Isi",
+    description: "Jelaskan jawapan, huraikan isi, dan kenal pasti perkara utama.",
+    color: "#3a5a40",
+    accent: "#dad7cd",
+    icon: "🧾",
+    lessonIds: ["lesson-186", "lesson-187", "lesson-188", "lesson-189", "lesson-190"]
+  },
+  {
+    id: "unit-notices-advanced",
+    title: "Notis & Makluman",
+    description: "Baca notis, fahami pengumuman, dan urus gangguan atau kelewatan.",
+    color: "#6f1d1b",
+    accent: "#ffe6a7",
+    icon: "📢",
+    lessonIds: ["lesson-191", "lesson-192", "lesson-193", "lesson-194", "lesson-195"]
+  },
+  {
+    id: "unit-commit-advanced",
+    title: "Jadual & Komitmen",
+    description: "Sahkan, tangguh, teruskan, dan kawal komitmen dalam bahasa Melayu.",
+    color: "#14213d",
+    accent: "#fca311",
+    icon: "🗓️",
+    lessonIds: ["lesson-196", "lesson-197", "lesson-198", "lesson-199", "lesson-200"]
+  },
+  {
+    id: "unit-bahasa-kelas-advanced",
+    title: "Bahasa Kelas Lanjutan",
+    description: "Fahami petikan, perenggan, tajuk, dan format tanpa arahan bahasa Inggeris.",
+    color: "#264653",
+    accent: "#e9c46a",
+    icon: "📘",
+    lessonIds: ["lesson-201", "lesson-202", "lesson-203", "lesson-204", "lesson-205"]
+  },
+  {
+    id: "unit-menilai-advanced",
+    title: "Menilai Jawapan",
+    description: "Nilai alasan, kesan andaian, dan kekuatan sesuatu jawapan.",
+    color: "#4a1942",
+    accent: "#f28482",
+    icon: "🧠",
+    lessonIds: ["lesson-206", "lesson-207", "lesson-208", "lesson-209", "lesson-210"]
+  },
+  {
+    id: "unit-connector-advanced",
+    title: "Penyambung Idea",
+    description: "Sambungkan pertentangan, tambahan, dan pilihan dengan lebih lancar.",
+    color: "#3d405b",
+    accent: "#f2cc8f",
+    icon: "🔗",
+    lessonIds: ["lesson-211", "lesson-212", "lesson-213", "lesson-214", "lesson-215"]
+  },
+  {
+    id: "unit-masa-advanced",
+    title: "Hubungan Masa",
+    description: "Gunakan sejak, hingga, sepanjang, dan apabila untuk ayat yang lebih tepat.",
+    color: "#355070",
+    accent: "#b56576",
+    icon: "⏱️",
+    lessonIds: ["lesson-216", "lesson-217", "lesson-218", "lesson-219", "lesson-220"]
+  },
+  {
+    id: "unit-rumusan-advanced",
+    title: "Rumusan dan Laporan",
+    description: "Bina bahasa ringkas untuk rumusan, dapatan, kesimpulan, dan kaedah.",
+    color: "#283618",
+    accent: "#dda15e",
+    icon: "📄",
+    lessonIds: ["lesson-221", "lesson-222", "lesson-223", "lesson-224", "lesson-225"]
+  },
+  {
+    id: "unit-urusan-advanced",
+    title: "Urusan dan Aduan",
+    description: "Hadapi kaunter, giliran, aduan, dan pengesahan dalam bahasa Melayu penuh.",
+    color: "#6c584c",
+    accent: "#adc178",
+    icon: "🏢",
+    lessonIds: ["lesson-226", "lesson-227", "lesson-228", "lesson-229", "lesson-230"]
+  },
+  {
+    id: "unit-komuniti-advanced",
+    title: "Komuniti dan Tanggungjawab",
+    description: "Bercakap tentang kebersihan, keselamatan, dan tanggungjawab bersama.",
+    color: "#2d6a4f",
+    accent: "#95d5b2",
+    icon: "🤝",
+    lessonIds: ["lesson-231", "lesson-232", "lesson-233", "lesson-234", "lesson-235"]
+  },
+  {
+    id: "unit-media-advanced",
+    title: "Media dan Maklumat",
+    description: "Semak fakta, nilai rakaman, dan elak maklumat palsu.",
+    color: "#0f4c5c",
+    accent: "#ffd166",
+    icon: "📰",
+    lessonIds: ["lesson-236", "lesson-237", "lesson-238", "lesson-239", "lesson-240"]
+  },
+  {
+    id: "unit-hujah-advanced",
+    title: "Hujah dan Balas",
+    description: "Sokong, tegaskan, akui, dan sangkal dengan bahasa yang padat.",
+    color: "#5a189a",
+    accent: "#ffccd5",
+    icon: "🧩",
+    lessonIds: ["lesson-241", "lesson-242", "lesson-243", "lesson-244", "lesson-245"]
+  },
+  {
+    id: "unit-imersi-final",
+    title: "Imersi Akhir",
+    description: "Nilai kefahaman, kefasihan, kesilapan, dan pembetulan sepenuhnya dalam bahasa Melayu.",
+    color: "#081c15",
+    accent: "#52b788",
+    icon: "🏁",
+    lessonIds: ["lesson-246", "lesson-247", "lesson-248", "lesson-249", "lesson-250"]
   }
 ];
 

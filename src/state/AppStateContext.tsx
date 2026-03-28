@@ -9,6 +9,7 @@ import {
 import { course, getAllItems, getCurrentUnit, getItemMap, getNextLesson, lessonMap } from "../lib/content";
 import { getDueItemIds } from "../lib/review";
 import { getLocalDateKey, scoreReview, applyStudyDay, ensureReviewState } from "../lib/review";
+import { getUiLanguageStage } from "../lib/ui-language";
 import {
   defaultSnapshot,
   exportSnapshot,
@@ -18,6 +19,7 @@ import {
   saveSnapshot
 } from "../lib/storage";
 import type { AppSnapshot, CourseItem, CustomEntry, ExportBundle, StudySessionSummary } from "../types";
+import type { UiLanguageStage } from "../types";
 
 interface CreateCustomEntryInput {
   malay: string;
@@ -34,6 +36,7 @@ interface AppStateContextValue {
   dueReviewItems: CourseItem[];
   nextLessonId?: string;
   currentUnitTitle: string;
+  uiLanguageStage: UiLanguageStage;
   submitStudySession: (summary: StudySessionSummary) => void;
   addCustomEntry: (input: CreateCustomEntryInput) => void;
   exportBackup: () => ExportBundle;
@@ -77,6 +80,7 @@ export const AppStateProvider = ({ children }: PropsWithChildren) => {
   const dueReviewItems = getDueItemIds(snapshot.progress.reviewStates).map((itemId) => itemMap[itemId]).filter(Boolean);
   const nextLesson = getNextLesson(snapshot.progress.completedLessons);
   const currentUnit = getCurrentUnit(snapshot.progress.completedLessons);
+  const uiLanguageStage = getUiLanguageStage(snapshot.progress.completedLessons.length);
 
   const submitStudySession = (summary: StudySessionSummary) => {
     const studiedOn = getLocalDateKey(new Date(summary.studiedAt));
@@ -204,6 +208,7 @@ export const AppStateProvider = ({ children }: PropsWithChildren) => {
         dueReviewItems,
         nextLessonId: nextLesson?.id,
         currentUnitTitle: currentUnit.title,
+        uiLanguageStage,
         submitStudySession,
         addCustomEntry,
         exportBackup: () => exportSnapshot(snapshot),

@@ -7,16 +7,18 @@ import PathPage from "./pages/PathPage";
 import ReviewPage from "./pages/ReviewPage";
 import SettingsPage from "./pages/SettingsPage";
 import { useAppState } from "./state/AppStateContext";
+import { uiText } from "./lib/ui-language";
 
 export default function App() {
-  const { isReady } = useAppState();
+  const { isReady, uiLanguageStage } = useAppState();
+  const t = (english: string, malay: string) => uiText(uiLanguageStage, english, malay);
 
   if (!isReady) {
     return (
       <div className="loading-screen">
         <div className="loading-mark">K</div>
         <h1>KMalay</h1>
-        <p>Loading your local course and review history.</p>
+        <p>{t("Loading your local course and review history.", "Memuatkan kursus tempatan dan sejarah ulang kaji anda.")}</p>
       </div>
     );
   }

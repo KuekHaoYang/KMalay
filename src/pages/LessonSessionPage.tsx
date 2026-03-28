@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import StudySession from "../components/StudySession";
 import { getLessonStatus, lessonMap } from "../lib/content";
 import { buildLessonSession } from "../lib/session";
+import { getUiLanguageStageForLesson, uiText } from "../lib/ui-language";
 import { course, useAppState } from "../state/AppStateContext";
 import type { StudySessionSummary } from "../types";
 
@@ -13,23 +14,25 @@ export default function LessonSessionPage() {
   const [completion, setCompletion] = useState<StudySessionSummary | null>(null);
   const lesson = lessonId ? lessonMap[lessonId] : undefined;
   const status = lesson ? getLessonStatus(lesson.id, snapshot.progress.completedLessons) : "locked";
+  const lessonLanguageStage = getUiLanguageStageForLesson(lesson?.id);
+  const t = (english: string, malay: string) => uiText(lessonLanguageStage, english, malay);
   const [questions, setQuestions] = useState(() =>
-    lesson ? buildLessonSession(lesson.id, lesson.targetItemIds, itemMap, snapshot.progress) : []
+    lesson ? buildLessonSession(lesson.id, lesson.targetItemIds, itemMap, snapshot.progress, lessonLanguageStage) : []
   );
 
   useEffect(() => {
     if (lesson) {
-      setQuestions(buildLessonSession(lesson.id, lesson.targetItemIds, itemMap, snapshot.progress));
+      setQuestions(buildLessonSession(lesson.id, lesson.targetItemIds, itemMap, snapshot.progress, lessonLanguageStage));
       setCompletion(null);
     }
-  }, [lessonId]);
+  }, [itemMap, lessonId, lessonLanguageStage]);
 
   if (!lesson) {
     return (
       <section className="panel">
-        <h2>Lesson not found.</h2>
+        <h2>{t("Lesson not found.", "Pelajaran tidak ditemui.")}</h2>
         <Link className="secondary-button" to="/path">
-          Back to path
+          {t("Back to path", "Kembali ke laluan")}
         </Link>
       </section>
     );
@@ -38,11 +41,11 @@ export default function LessonSessionPage() {
   if (status === "locked") {
     return (
       <section className="panel">
-        <p className="eyebrow">Locked lesson</p>
+        <p className="eyebrow">{t("Locked lesson", "Pelajaran terkunci")}</p>
         <h2>{lesson.title}</h2>
-        <p>Clear the previous lesson first. The path is linear on purpose.</p>
+        <p>{t("Clear the previous lesson first. The path is linear on purpose.", "Selesaikan pelajaran sebelumnya dahulu. Laluan ini sengaja dibina secara linear.")}</p>
         <Link className="secondary-button" to="/path">
-          Back to path
+          {t("Back to path", "Kembali ke laluan")}
         </Link>
       </section>
     );
@@ -54,14 +57,14 @@ export default function LessonSessionPage() {
 
     return (
       <section className="panel result-panel">
-        <p className="eyebrow">Lesson complete</p>
-        <h2>{completion.passed ? "Unlocked." : "Not enough mastery yet."}</h2>
+        <p className="eyebrow">{t("Lesson complete", "Pelajaran selesai")}</p>
+        <h2>{completion.passed ? t("Unlocked.", "Terbuka.") : t("Not enough mastery yet.", "Penguasaan masih belum cukup.")}</h2>
         <p>
-          Accuracy: {Math.round(completion.accuracy * 100)}% • XP gained: {completion.earnedXp}
+          {t("Accuracy", "Ketepatan")}: {Math.round(completion.accuracy * 100)}% • {t("XP gained", "XP diperoleh")}: {completion.earnedXp}
         </p>
         <div className="chip-wrap">
-          <span className="topic-chip">Results saved locally</span>
-          <span className="topic-chip">Review queue updated</span>
+          <span className="topic-chip">{t("Results saved locally", "Keputusan disimpan secara tempatan")}</span>
+          <span className="topic-chip">{t("Review queue updated", "Barisan ulang kaji dikemas kini")}</span>
         </div>
         <div className="hero-actions">
           {completion.passed && nextLesson ? (
@@ -72,7 +75,7 @@ export default function LessonSessionPage() {
                 startTransition(() => navigate(`/lesson/${nextLesson.id}`));
               }}
             >
-              Continue to {nextLesson.title}
+              {t("Continue to", "Teruskan ke")} {nextLesson.title}
             </button>
           ) : (
             <button
@@ -82,11 +85,11 @@ export default function LessonSessionPage() {
                 startTransition(() => navigate("/review"));
               }}
             >
-              Open review
+              {t("Open review", "Buka ulang kaji")}
             </button>
           )}
           <Link className="secondary-button" to="/path">
-            Back to path
+            {t("Back to path", "Kembali ke laluan")}
           </Link>
         </div>
       </section>
@@ -97,6 +100,7 @@ export default function LessonSessionPage() {
     <StudySession
       title={lesson.title}
       subtitle={lesson.subtitle}
+      languageStage={lessonLanguageStage}
       questions={questions}
       onFinish={(payload) => {
         const summary: StudySessionSummary = {
