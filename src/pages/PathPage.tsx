@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { course, useAppState } from "../state/AppStateContext";
+import { course, useProgressState } from "../state/AppStateContext";
 import { getCurrentUnit, getLessonStatus, getNextLesson, lessonMap } from "../lib/content";
 import { getLessonStatusLabel, uiText } from "../lib/ui-language";
 
 export default function PathPage() {
-  const { snapshot, uiLanguageStage } = useAppState();
+  const { snapshot, uiLanguageStage } = useProgressState();
   const t = (english: string, malay: string) => uiText(uiLanguageStage, english, malay);
   const currentUnit = useMemo(
     () => getCurrentUnit(snapshot.progress.completedLessons),

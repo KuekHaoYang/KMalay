@@ -3,23 +3,28 @@ import { Link } from "react-router-dom";
 import StudySession from "../components/StudySession";
 import { buildReviewSession } from "../lib/session";
 import { uiText } from "../lib/ui-language";
-import { course, useAppState } from "../state/AppStateContext";
+import { lessonMap } from "../lib/content";
+import { useAppActions, useCourseCatalogState, useProgressState } from "../state/AppStateContext";
 import type { StudySessionSummary } from "../types";
 
 export default function ReviewPage() {
-  const { itemMap, snapshot, dueReviewItems, submitStudySession, uiLanguageStage } = useAppState();
+  const { itemMap, allItems } = useCourseCatalogState();
+  const { snapshot, dueReviewItems, uiLanguageStage } = useProgressState();
+  const { submitStudySession } = useAppActions();
   const [pendingAdvance, setPendingAdvance] = useState(false);
   const [sessionKey, setSessionKey] = useState(0);
   const [lastBatch, setLastBatch] = useState<StudySessionSummary | null>(null);
   const fallbackItemIds = useMemo(
     () =>
       snapshot.progress.completedLessons.flatMap(
-        (lessonId) => course.lessons.find((lesson) => lesson.id === lessonId)?.targetItemIds ?? []
+        (lessonId) => lessonMap[lessonId]?.targetItemIds ?? []
       ),
     [snapshot.progress.completedLessons]
   );
   const [questions, setQuestions] = useState(() =>
-    buildReviewSession(itemMap, snapshot.progress, fallbackItemIds, uiLanguageStage)
+    buildReviewSession(itemMap, snapshot.progress, fallbackItemIds, uiLanguageStage, {
+      allItems
+    })
   );
   const t = (english: string, malay: string) => uiText(uiLanguageStage, english, malay);
   const reviewHeader =
@@ -32,10 +37,14 @@ export default function ReviewPage() {
       return;
     }
 
-    setQuestions(buildReviewSession(itemMap, snapshot.progress, fallbackItemIds, uiLanguageStage));
+    setQuestions(
+      buildReviewSession(itemMap, snapshot.progress, fallbackItemIds, uiLanguageStage, {
+        allItems
+      })
+    );
     setSessionKey((current) => current + 1);
     setPendingAdvance(false);
-  }, [fallbackItemIds, itemMap, pendingAdvance, snapshot.progress, uiLanguageStage]);
+  }, [allItems, fallbackItemIds, itemMap, pendingAdvance, snapshot.progress, uiLanguageStage]);
 
   if (questions.length === 0) {
     return (

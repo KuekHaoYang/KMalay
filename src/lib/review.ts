@@ -1,4 +1,4 @@
-import type { ReviewState, UserProgress } from "../types";
+import type { AnswerJudgment, ReviewState, UserProgress } from "../types";
 
 export const getLocalDateKey = (date = new Date()) => {
   const year = date.getFullYear();
@@ -26,11 +26,12 @@ export const ensureReviewState = (itemId: string, today = getLocalDateKey()): Re
 export const scoreReview = (
   itemId: string,
   existing: ReviewState | undefined,
-  correct: boolean,
+  judgment: AnswerJudgment,
   studiedOn: string
 ): ReviewState => {
   const current = existing ?? ensureReviewState(itemId, studiedOn);
-  if (!correct) {
+
+  if (judgment === "wrong") {
     return {
       ...current,
       interval: 1,
@@ -39,6 +40,22 @@ export const scoreReview = (
       repetitions: 0,
       lapses: current.lapses + 1,
       lastResult: "incorrect",
+      lastReviewedAt: studiedOn
+    };
+  }
+
+  if (judgment === "close") {
+    const repetitions = current.repetitions + 1;
+    const interval =
+      repetitions === 1 ? 1 : repetitions === 2 ? 2 : Math.max(3, Math.round(Math.max(1, current.interval) * 1.35));
+
+    return {
+      ...current,
+      interval,
+      dueDate: addDays(studiedOn, interval),
+      ease: Math.max(1.6, Math.min(3.1, current.ease - 0.05)),
+      repetitions,
+      lastResult: "close",
       lastReviewedAt: studiedOn
     };
   }

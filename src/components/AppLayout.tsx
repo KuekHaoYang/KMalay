@@ -1,10 +1,10 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { useAppState } from "../state/AppStateContext";
+import { useProgressState } from "../state/AppStateContext";
 import { uiText } from "../lib/ui-language";
 
 export default function AppLayout() {
   const location = useLocation();
-  const { currentUnitTitle, uiLanguageStage } = useAppState();
+  const { currentUnitTitle, uiLanguageStage } = useProgressState();
   const hideNav = location.pathname.startsWith("/lesson/");
   const t = (english: string, malay: string) => uiText(uiLanguageStage, english, malay);
   const navItems = [

@@ -6,11 +6,11 @@ import LessonSessionPage from "./pages/LessonSessionPage";
 import PathPage from "./pages/PathPage";
 import ReviewPage from "./pages/ReviewPage";
 import SettingsPage from "./pages/SettingsPage";
-import { useAppState } from "./state/AppStateContext";
+import { useProgressState } from "./state/AppStateContext";
 import { uiText } from "./lib/ui-language";
 
 export default function App() {
-  const { isReady, uiLanguageStage } = useAppState();
+  const { isReady, uiLanguageStage } = useProgressState();
   const t = (english: string, malay: string) => uiText(uiLanguageStage, english, malay);
 
   if (!isReady) {

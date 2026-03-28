@@ -7,21 +7,28 @@ import {
   useState,
   type PropsWithChildren
 } from "react";
-import { course, getAllItems, getCurrentUnit, getItemMap, getNextLesson, lessonMap } from "../lib/content";
-import { getDueItemIds } from "../lib/review";
-import { getLocalDateKey, scoreReview, applyStudyDay, ensureReviewState } from "../lib/review";
+import {
+  buildCourseCatalog,
+  course,
+  getCurrentUnit,
+  getNextLesson,
+  lessonMap,
+  type CourseCatalog
+} from "../lib/content";
+import { applyStudyDay, ensureReviewState, getDueItemIds, getLocalDateKey, scoreReview } from "../lib/review";
+import { defaultSnapshot, exportSnapshot, importSnapshot, loadSnapshot, resetSnapshot, saveCustomEntries, saveProgress } from "../lib/storage";
 import { getUiLanguageStage } from "../lib/ui-language";
 import { countLearnedWords } from "../lib/word-stats";
-import {
-  defaultSnapshot,
-  exportSnapshot,
-  importSnapshot,
-  loadSnapshot,
-  resetSnapshot,
-  saveSnapshot
-} from "../lib/storage";
-import type { AppSnapshot, CourseItem, CustomEntry, ExportBundle, StudySessionSummary } from "../types";
-import type { UiLanguageStage } from "../types";
+import type {
+  AnswerJudgment,
+  AppSnapshot,
+  CourseItem,
+  CustomEntry,
+  ExportBundle,
+  StudySessionSummary,
+  UiLanguageStage,
+  UserProgress
+} from "../types";
 
 interface CreateCustomEntryInput {
   malay: string;
@@ -30,16 +37,17 @@ interface CreateCustomEntryInput {
   example?: string;
 }
 
-interface AppStateContextValue {
+interface ProgressStateValue {
   isReady: boolean;
   snapshot: AppSnapshot;
-  allItems: CourseItem[];
-  itemMap: Record<string, CourseItem>;
   dueReviewItems: CourseItem[];
   nextLessonId?: string;
   currentUnitTitle: string;
   uiLanguageStage: UiLanguageStage;
   learnedWordCount: number;
+}
+
+interface AppActionsContextValue {
   submitStudySession: (summary: StudySessionSummary) => void;
   addCustomEntry: (input: CreateCustomEntryInput) => void;
   exportBackup: () => ExportBundle;
@@ -47,10 +55,42 @@ interface AppStateContextValue {
   resetAllProgress: () => void;
 }
 
-const AppStateContext = createContext<AppStateContextValue | null>(null);
+interface AppStateContextValue extends ProgressStateValue, CourseCatalog, AppActionsContextValue {}
+
+const CourseCatalogContext = createContext<CourseCatalog | null>(null);
+const ProgressContext = createContext<ProgressStateValue | null>(null);
+const ActionsContext = createContext<AppActionsContextValue | null>(null);
+
+const SAVE_DEBOUNCE_MS = 250;
+
+const judgmentScores: Record<AnswerJudgment, number> = {
+  correct: 1,
+  close: 0.75,
+  wrong: 0
+};
+
+const collapseJudgments = (judgments: AnswerJudgment[]): AnswerJudgment => {
+  if (judgments.length === 0) {
+    return "wrong";
+  }
+
+  const averageScore =
+    judgments.reduce((total, judgment) => total + judgmentScores[judgment], 0) / judgments.length;
+
+  if (averageScore >= 0.95) {
+    return "correct";
+  }
+
+  if (averageScore >= 0.5) {
+    return "close";
+  }
+
+  return "wrong";
+};
 
 export const AppStateProvider = ({ children }: PropsWithChildren) => {
-  const [snapshot, setSnapshot] = useState<AppSnapshot>(defaultSnapshot);
+  const [progress, setProgress] = useState<UserProgress>(defaultSnapshot.progress);
+  const [customEntries, setCustomEntries] = useState<CustomEntry[]>(defaultSnapshot.customEntries);
   const [isReady, setIsReady] = useState(false);
   const hasLoaded = useRef(false);
 
@@ -58,11 +98,14 @@ export const AppStateProvider = ({ children }: PropsWithChildren) => {
     let cancelled = false;
 
     loadSnapshot().then((loadedSnapshot) => {
-      if (!cancelled) {
-        setSnapshot(loadedSnapshot);
-        setIsReady(true);
-        hasLoaded.current = true;
+      if (cancelled) {
+        return;
       }
+
+      setProgress(loadedSnapshot.progress);
+      setCustomEntries(loadedSnapshot.customEntries);
+      setIsReady(true);
+      hasLoaded.current = true;
     });
 
     return () => {
@@ -75,74 +118,85 @@ export const AppStateProvider = ({ children }: PropsWithChildren) => {
       return;
     }
 
-    void saveSnapshot(snapshot);
-  }, [snapshot]);
+    const timeoutId = window.setTimeout(() => {
+      void saveProgress(progress);
+    }, SAVE_DEBOUNCE_MS);
 
-  const allItems = useMemo(() => getAllItems(snapshot.customEntries), [snapshot.customEntries]);
-  const itemMap = useMemo(() => getItemMap(snapshot.customEntries), [snapshot.customEntries]);
+    return () => window.clearTimeout(timeoutId);
+  }, [progress]);
+
+  useEffect(() => {
+    if (!hasLoaded.current) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      void saveCustomEntries(customEntries);
+    }, SAVE_DEBOUNCE_MS);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [customEntries]);
+
+  const catalog = useMemo(() => buildCourseCatalog(customEntries), [customEntries]);
+  const snapshot = useMemo<AppSnapshot>(() => ({ progress, customEntries }), [customEntries, progress]);
   const dueReviewItems = useMemo(
-    () => getDueItemIds(snapshot.progress.reviewStates).map((itemId) => itemMap[itemId]).filter(Boolean),
-    [itemMap, snapshot.progress.reviewStates]
+    () => getDueItemIds(progress.reviewStates).map((itemId) => catalog.itemMap[itemId]).filter(Boolean),
+    [catalog.itemMap, progress.reviewStates]
   );
-  const nextLesson = useMemo(
-    () => getNextLesson(snapshot.progress.completedLessons),
-    [snapshot.progress.completedLessons]
-  );
-  const currentUnit = useMemo(
-    () => getCurrentUnit(snapshot.progress.completedLessons),
-    [snapshot.progress.completedLessons]
-  );
+  const nextLesson = useMemo(() => getNextLesson(progress.completedLessons), [progress.completedLessons]);
+  const currentUnit = useMemo(() => getCurrentUnit(progress.completedLessons), [progress.completedLessons]);
   const uiLanguageStage = useMemo(
-    () => getUiLanguageStage(snapshot.progress.completedLessons.length),
-    [snapshot.progress.completedLessons.length]
+    () => getUiLanguageStage(progress.completedLessons.length),
+    [progress.completedLessons.length]
   );
   const learnedWordCount = useMemo(
-    () => countLearnedWords(snapshot.progress.completedLessons, itemMap, snapshot.customEntries),
-    [itemMap, snapshot.customEntries, snapshot.progress.completedLessons]
+    () => countLearnedWords(progress.completedLessons, catalog.itemMap, customEntries),
+    [catalog.itemMap, customEntries, progress.completedLessons]
   );
 
   const submitStudySession = (summary: StudySessionSummary) => {
     const studiedOn = getLocalDateKey(new Date(summary.studiedAt));
 
-    setSnapshot((currentSnapshot) => {
-      const groupedResults = new Map<string, { correct: number; total: number }>();
+    setProgress((currentProgress) => {
+      const groupedJudgments = new Map<string, AnswerJudgment[]>();
       summary.results.forEach((result) => {
         result.itemIds.forEach((itemId) => {
-          const existing = groupedResults.get(itemId) ?? { correct: 0, total: 0 };
-          groupedResults.set(itemId, {
-            correct: existing.correct + (result.correct ? 1 : 0),
-            total: existing.total + 1
-          });
+          const existing = groupedJudgments.get(itemId) ?? [];
+          groupedJudgments.set(itemId, [...existing, result.judgment]);
         });
       });
 
-      let progress = applyStudyDay(currentSnapshot.progress, studiedOn);
-      const reviewStates = { ...progress.reviewStates };
+      let nextProgress = applyStudyDay(currentProgress, studiedOn);
+      const reviewStates = { ...nextProgress.reviewStates };
 
-      groupedResults.forEach((aggregate, itemId) => {
-        const correct = aggregate.correct / aggregate.total >= 0.6;
-        reviewStates[itemId] = scoreReview(itemId, reviewStates[itemId], correct, studiedOn);
+      groupedJudgments.forEach((judgments, itemId) => {
+        reviewStates[itemId] = scoreReview(
+          itemId,
+          reviewStates[itemId],
+          collapseJudgments(judgments),
+          studiedOn
+        );
       });
 
-      progress = {
-        ...progress,
+      nextProgress = {
+        ...nextProgress,
         reviewStates,
-        xp: progress.xp + summary.earnedXp,
+        xp: nextProgress.xp + summary.earnedXp,
         lessonScores: summary.lessonId
           ? {
-              ...progress.lessonScores,
-              [summary.lessonId]: Math.max(progress.lessonScores[summary.lessonId] ?? 0, summary.accuracy)
+              ...nextProgress.lessonScores,
+              [summary.lessonId]: Math.max(nextProgress.lessonScores[summary.lessonId] ?? 0, summary.accuracy)
             }
-          : progress.lessonScores
+          : nextProgress.lessonScores
       };
 
       if (summary.type === "lesson" && summary.lessonId && summary.passed) {
-        const completedLessons = progress.completedLessons.includes(summary.lessonId)
-          ? progress.completedLessons
-          : [...progress.completedLessons, summary.lessonId];
+        const completedLessons = nextProgress.completedLessons.includes(summary.lessonId)
+          ? nextProgress.completedLessons
+          : [...nextProgress.completedLessons, summary.lessonId];
 
-        progress = {
-          ...progress,
+        nextProgress = {
+          ...nextProgress,
           completedLessons
         };
 
@@ -154,10 +208,7 @@ export const AppStateProvider = ({ children }: PropsWithChildren) => {
         });
       }
 
-      return {
-        ...currentSnapshot,
-        progress
-      };
+      return nextProgress;
     });
   };
 
@@ -195,59 +246,93 @@ export const AppStateProvider = ({ children }: PropsWithChildren) => {
 
     const studiedOn = getLocalDateKey();
 
-    setSnapshot((currentSnapshot) => ({
-      customEntries: [customEntry, ...currentSnapshot.customEntries],
-      progress: {
-        ...currentSnapshot.progress,
-        reviewStates: {
-          ...currentSnapshot.progress.reviewStates,
-          [customEntry.id]: ensureReviewState(customEntry.id, studiedOn)
-        }
+    setCustomEntries((currentEntries) => [customEntry, ...currentEntries]);
+    setProgress((currentProgress) => ({
+      ...currentProgress,
+      reviewStates: {
+        ...currentProgress.reviewStates,
+        [customEntry.id]: ensureReviewState(customEntry.id, studiedOn)
       }
     }));
   };
 
   const importBackupBundle = (bundle: ExportBundle) => {
-    setSnapshot(importSnapshot(bundle));
+    const importedSnapshot = importSnapshot(bundle);
+    setProgress(importedSnapshot.progress);
+    setCustomEntries(importedSnapshot.customEntries);
   };
 
   const resetAllProgress = () => {
     void resetSnapshot().then((freshSnapshot) => {
-      setSnapshot(freshSnapshot);
+      setProgress(freshSnapshot.progress);
+      setCustomEntries(freshSnapshot.customEntries);
     });
   };
 
+  const progressValue = useMemo<ProgressStateValue>(
+    () => ({
+      isReady,
+      snapshot,
+      dueReviewItems,
+      nextLessonId: nextLesson?.id,
+      currentUnitTitle: currentUnit.title,
+      uiLanguageStage,
+      learnedWordCount
+    }),
+    [currentUnit.title, dueReviewItems, isReady, learnedWordCount, nextLesson?.id, snapshot, uiLanguageStage]
+  );
+
+  const actionsValue = useMemo<AppActionsContextValue>(
+    () => ({
+      submitStudySession,
+      addCustomEntry,
+      exportBackup: () => exportSnapshot(snapshot),
+      importBackupBundle,
+      resetAllProgress
+    }),
+    [snapshot]
+  );
+
   return (
-    <AppStateContext.Provider
-      value={{
-        isReady,
-        snapshot,
-        allItems,
-        itemMap,
-        dueReviewItems,
-        nextLessonId: nextLesson?.id,
-        currentUnitTitle: currentUnit.title,
-        uiLanguageStage,
-        learnedWordCount,
-        submitStudySession,
-        addCustomEntry,
-        exportBackup: () => exportSnapshot(snapshot),
-        importBackupBundle,
-        resetAllProgress
-      }}
-    >
-      {children}
-    </AppStateContext.Provider>
+    <CourseCatalogContext.Provider value={catalog}>
+      <ProgressContext.Provider value={progressValue}>
+        <ActionsContext.Provider value={actionsValue}>{children}</ActionsContext.Provider>
+      </ProgressContext.Provider>
+    </CourseCatalogContext.Provider>
   );
 };
 
-export const useAppState = () => {
-  const context = useContext(AppStateContext);
+export const useCourseCatalogState = () => {
+  const context = useContext(CourseCatalogContext);
   if (!context) {
-    throw new Error("useAppState must be used inside AppStateProvider.");
+    throw new Error("useCourseCatalogState must be used inside AppStateProvider.");
   }
 
   return context;
 };
+
+export const useProgressState = () => {
+  const context = useContext(ProgressContext);
+  if (!context) {
+    throw new Error("useProgressState must be used inside AppStateProvider.");
+  }
+
+  return context;
+};
+
+export const useAppActions = () => {
+  const context = useContext(ActionsContext);
+  if (!context) {
+    throw new Error("useAppActions must be used inside AppStateProvider.");
+  }
+
+  return context;
+};
+
+export const useAppState = (): AppStateContextValue => ({
+  ...useCourseCatalogState(),
+  ...useProgressState(),
+  ...useAppActions()
+});
 
 export { course };

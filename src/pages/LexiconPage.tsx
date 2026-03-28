@@ -1,72 +1,89 @@
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
-import { useAppState } from "../state/AppStateContext";
+import { searchItems } from "../lib/search";
 import { getKindLabel, uiText } from "../lib/ui-language";
+import { useAppActions, useCourseCatalogState, useProgressState } from "../state/AppStateContext";
 
-const INITIAL_VISIBLE_COUNT = 180;
-const VISIBLE_BATCH_SIZE = 120;
+const MOBILE_BREAKPOINT = 720;
+const VIRTUAL_CARD_HEIGHT = 320;
+const VIRTUAL_OVERSCAN_ROWS = 4;
+
+const getColumnCount = () => (window.innerWidth >= MOBILE_BREAKPOINT ? 2 : 1);
 
 export default function LexiconPage() {
-  const { allItems, addCustomEntry, uiLanguageStage } = useAppState();
+  const { searchEntries } = useCourseCatalogState();
+  const { addCustomEntry } = useAppActions();
+  const { uiLanguageStage } = useProgressState();
   const [search, setSearch] = useState("");
   const [malay, setMalay] = useState("");
   const [english, setEnglish] = useState("");
   const [note, setNote] = useState("");
   const [example, setExample] = useState("");
-  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
-  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const [viewport, setViewport] = useState(() => ({
+    scrollTop: typeof window === "undefined" ? 0 : window.scrollY,
+    height: typeof window === "undefined" ? 0 : window.innerHeight,
+    columns: typeof window === "undefined" ? 1 : getColumnCount(),
+    listTop: 0
+  }));
   const deferredSearch = useDeferredValue(search);
   const t = (englishText: string, malayText: string) => uiText(uiLanguageStage, englishText, malayText);
 
-  const filteredItems = useMemo(() => {
-    const query = deferredSearch.trim().toLocaleLowerCase("en-US");
-    if (!query) {
-      return allItems;
-    }
-
-    return allItems.filter((item) => {
-      const englishText = item.english.join(" ").toLocaleLowerCase("en-US");
-      return (
-        item.malay.toLocaleLowerCase("ms-MY").includes(query) ||
-        englishText.includes(query) ||
-        item.tags.join(" ").toLocaleLowerCase("en-US").includes(query)
-      );
-    });
-  }, [allItems, deferredSearch]);
-
-  useEffect(() => {
-    setVisibleCount(INITIAL_VISIBLE_COUNT);
-  }, [deferredSearch, allItems.length]);
-
-  const visibleItems = useMemo(
-    () => filteredItems.slice(0, visibleCount),
-    [filteredItems, visibleCount]
+  const filteredItems = useMemo(
+    () => searchItems(searchEntries, deferredSearch),
+    [deferredSearch, searchEntries]
   );
-  const hasMore = visibleItems.length < filteredItems.length;
 
   useEffect(() => {
-    const node = loadMoreRef.current;
+    let frameId = 0;
 
-    if (!node || !hasMore) {
-      return;
-    }
+    const updateViewport = () => {
+      frameId = 0;
+      setViewport({
+        scrollTop: window.scrollY,
+        height: window.innerHeight,
+        columns: getColumnCount(),
+        listTop: listRef.current ? listRef.current.getBoundingClientRect().top + window.scrollY : 0
+      });
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) {
-          return;
-        }
-
-        setVisibleCount((current) => Math.min(filteredItems.length, current + VISIBLE_BATCH_SIZE));
-      },
-      {
-        rootMargin: "640px 0px"
+    const queueViewportUpdate = () => {
+      if (frameId !== 0) {
+        return;
       }
-    );
 
-    observer.observe(node);
+      frameId = window.requestAnimationFrame(updateViewport);
+    };
 
-    return () => observer.disconnect();
-  }, [filteredItems.length, hasMore]);
+    updateViewport();
+    window.addEventListener("scroll", queueViewportUpdate, { passive: true });
+    window.addEventListener("resize", queueViewportUpdate);
+
+    return () => {
+      if (frameId !== 0) {
+        window.cancelAnimationFrame(frameId);
+      }
+      window.removeEventListener("scroll", queueViewportUpdate);
+      window.removeEventListener("resize", queueViewportUpdate);
+    };
+  }, []);
+
+  const totalRows = Math.ceil(filteredItems.length / viewport.columns);
+  const visibleTop = Math.max(0, viewport.scrollTop - viewport.listTop);
+  const visibleBottom = Math.max(0, viewport.scrollTop + viewport.height - viewport.listTop);
+  const rawStartRow = Math.max(0, Math.floor(visibleTop / VIRTUAL_CARD_HEIGHT) - VIRTUAL_OVERSCAN_ROWS);
+  const startRow = Math.min(rawStartRow, Math.max(0, totalRows - 1));
+  const endRow = Math.min(
+    totalRows,
+    Math.ceil(visibleBottom / VIRTUAL_CARD_HEIGHT) + VIRTUAL_OVERSCAN_ROWS
+  );
+  const startIndex = startRow * viewport.columns;
+  const endIndex = Math.min(
+    filteredItems.length,
+    Math.max(startRow + 1, endRow) * viewport.columns
+  );
+  const visibleItems = filteredItems.slice(startIndex, endIndex);
+  const topSpacerHeight = startRow * VIRTUAL_CARD_HEIGHT;
+  const bottomSpacerHeight = Math.max(0, (totalRows - endRow) * VIRTUAL_CARD_HEIGHT);
 
   return (
     <div className="page-stack">
@@ -136,8 +153,8 @@ export default function LexiconPage() {
             <h3>{filteredItems.length} {t("visible entries", "entri kelihatan")}</h3>
             <p className="muted-copy">
               {t(
-                `Showing ${visibleItems.length} now. Scroll to keep loading more.`,
-                `Memaparkan ${visibleItems.length} sekarang. Skrol untuk terus memuatkan lagi.`
+                `Rendering ${visibleItems.length} cards now. Results stay windowed for performance.`,
+                `Memaparkan ${visibleItems.length} kad sekarang. Keputusan kekal dalam tetingkap untuk prestasi.`
               )}
             </p>
           </div>
@@ -148,50 +165,50 @@ export default function LexiconPage() {
           placeholder={t("Search Malay, English, or tags", "Cari Bahasa Melayu, bahasa Inggeris, atau tag")}
           onChange={(event) => setSearch(event.target.value)}
         />
-        <div className="lexicon-list">
-          {visibleItems.map((item) => (
-            <article key={item.id} className="lexicon-card">
-              <div className="lexicon-head">
-                <div>
-                  <h4>{item.malay}</h4>
-                  <p>{item.english.join(", ")}</p>
-                </div>
-                <span className="lesson-chip">{getKindLabel(uiLanguageStage, item.kind)}</span>
-              </div>
-              <div className="chip-wrap">
-                {item.tags.slice(0, 4).map((tag) => (
-                  <span key={`${item.id}-${tag}`} className="topic-chip">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              {item.registerNote && <p className="muted-copy">{item.registerNote}</p>}
-              {item.example && <p className="example-copy">{t("Example", "Contoh")}: {item.example}</p>}
-            </article>
-          ))}
-        </div>
-        {hasMore ? (
-          <div ref={loadMoreRef} className="lexicon-footer">
-            <p className="muted-copy">
-              {t("Loading more entries as you scroll.", "Memuatkan lagi entri semasa anda menatal.")}
-            </p>
-            <button
-              type="button"
-              className="secondary-button"
-              onClick={() =>
-                setVisibleCount((current) => Math.min(filteredItems.length, current + VISIBLE_BATCH_SIZE))
-              }
-            >
-              {t("Load more now", "Muat lagi sekarang")}
-            </button>
-          </div>
-        ) : (
+        {filteredItems.length === 0 ? (
           <div className="lexicon-footer">
             <p className="muted-copy">
-              {t("All matching entries are already on screen.", "Semua entri yang sepadan sudah dipaparkan.")}
+              {t("No matching entries.", "Tiada entri yang sepadan.")}
             </p>
           </div>
+        ) : (
+          <div ref={listRef} className="lexicon-list lexicon-list-virtual">
+            {topSpacerHeight > 0 ? (
+              <div className="lexicon-spacer" style={{ height: `${topSpacerHeight}px` }} aria-hidden="true" />
+            ) : null}
+            {visibleItems.map((item) => (
+              <article key={item.id} className="lexicon-card">
+                <div className="lexicon-head">
+                  <div>
+                    <h4>{item.malay}</h4>
+                    <p>{item.english.join(", ")}</p>
+                  </div>
+                  <span className="lesson-chip">{getKindLabel(uiLanguageStage, item.kind)}</span>
+                </div>
+                <div className="chip-wrap">
+                  {item.tags.slice(0, 4).map((tag) => (
+                    <span key={`${item.id}-${tag}`} className="topic-chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                {item.registerNote && <p className="muted-copy">{item.registerNote}</p>}
+                {item.example && <p className="example-copy">{t("Example", "Contoh")}: {item.example}</p>}
+              </article>
+            ))}
+            {bottomSpacerHeight > 0 ? (
+              <div className="lexicon-spacer" style={{ height: `${bottomSpacerHeight}px` }} aria-hidden="true" />
+            ) : null}
+          </div>
         )}
+        <div className="lexicon-footer">
+          <p className="muted-copy">
+            {t(
+              `Windowed slice ${filteredItems.length === 0 ? 0 : startIndex + 1}-${endIndex} of ${filteredItems.length}.`,
+              `Tetingkap ${filteredItems.length === 0 ? 0 : startIndex + 1}-${endIndex} daripada ${filteredItems.length}.`
+            )}
+          </p>
+        </div>
       </section>
     </div>
   );

@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { uiText } from "../lib/ui-language";
-import { course, useAppState } from "../state/AppStateContext";
+import { course, useProgressState } from "../state/AppStateContext";
 import { lessonMap } from "../lib/content";
 
 export default function HomePage() {
-  const { snapshot, dueReviewItems, nextLessonId, currentUnitTitle, uiLanguageStage, learnedWordCount } = useAppState();
+  const { snapshot, dueReviewItems, nextLessonId, currentUnitTitle, uiLanguageStage, learnedWordCount } =
+    useProgressState();
   const nextLesson = nextLessonId ? lessonMap[nextLessonId] : undefined;
   const totalLessons = course.lessons.length;
   const completedLessons = snapshot.progress.completedLessons.length;

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import type {
+  AnswerJudgment,
   PairMatchQuestion,
   SessionQuestion,
   SessionQuestionResult,
-  TypedQuestion,
-  UiLanguageStage,
-  WordBankQuestion
+  UiLanguageStage
 } from "../types";
-import { isQuestionCorrect, normalizeMalayText } from "../lib/session";
+import { evaluateQuestionAnswer, evaluateTypedAnswer, normalizeMalayText } from "../lib/session";
 import { uiText } from "../lib/ui-language";
 
 interface StudySessionProps {
@@ -261,8 +260,12 @@ export default function StudySession({ title, subtitle, languageStage, questions
     matchedPairs: [],
     mistakes: 0
   });
+  const [softRetry, setSoftRetry] = useState<{
+    canonicalAnswer: string;
+  } | null>(null);
   const [feedback, setFeedback] = useState<{
     correct: boolean;
+    judgment: AnswerJudgment;
     answer: string;
     attempts: number;
   } | null>(null);
@@ -274,24 +277,27 @@ export default function StudySession({ title, subtitle, languageStage, questions
     setTypedAnswer("");
     setSelectedBankTokens([]);
     setPairState({ matchedPairs: [], mistakes: 0 });
+    setSoftRetry(null);
     setFeedback(null);
   }, [question?.id]);
 
   useEffect(() => {
-    if (!question || question.type !== "pair-match") {
+    if (!question || question.type !== "pair-match" || feedback) {
       return;
     }
 
     if (pairState.matchedPairs.length === question.pairs.length) {
       const answer = [...pairState.matchedPairs];
-      const correct = isQuestionCorrect(question, answer);
+      const evaluation = evaluateQuestionAnswer(question, answer);
+      const cleanMatch = evaluation.correct && pairState.mistakes === 0;
       setFeedback({
-        correct: correct && pairState.mistakes === 0,
+        correct: cleanMatch,
+        judgment: cleanMatch ? "correct" : "wrong",
         answer: getCorrectAnswerText(question),
         attempts: Math.max(1, pairState.mistakes + 1)
       });
     }
-  }, [pairState, question]);
+  }, [feedback, pairState, question]);
 
   if (questions.length === 0) {
     return (
@@ -302,13 +308,14 @@ export default function StudySession({ title, subtitle, languageStage, questions
     );
   }
 
-  const commitResult = (correct: boolean, attempts: number) => {
+  const commitResult = (correct: boolean, judgment: AnswerJudgment, attempts: number) => {
     const nextResults = [
       ...results,
       {
         questionId: question.id,
         itemIds: getItemIds(question),
         correct,
+        judgment,
         attempts
       }
     ];
@@ -333,25 +340,54 @@ export default function StudySession({ title, subtitle, languageStage, questions
       return;
     }
 
+    if (question.type === "typed") {
+      const evaluation = evaluateTypedAnswer(question, typedAnswer);
+
+      if (!softRetry && evaluation.judgment === "close") {
+        setSoftRetry({
+          canonicalAnswer: evaluation.canonicalAnswer
+        });
+        return;
+      }
+
+      if (softRetry) {
+        const corrected = evaluation.judgment === "correct";
+        setFeedback({
+          correct: corrected,
+          judgment: corrected ? "close" : "wrong",
+          answer: softRetry.canonicalAnswer,
+          attempts: 2
+        });
+        setSoftRetry(null);
+        return;
+      }
+
+      setFeedback({
+        correct: evaluation.correct,
+        judgment: evaluation.judgment,
+        answer: evaluation.canonicalAnswer,
+        attempts: 1
+      });
+      return;
+    }
+
     const answer =
-      question.type === "typed"
-        ? typedAnswer
-        : question.type === "word-bank"
-          ? selectedBankTokens.map((index) => question.bank[index])
-          : draftAnswer;
+      question.type === "word-bank"
+        ? selectedBankTokens.map((index) => question.bank[index])
+        : draftAnswer;
 
     if (
-      (question.type === "typed" && typedAnswer.trim().length === 0) ||
       (question.type === "word-bank" && selectedBankTokens.length === 0) ||
       ((question.type === "recognition" || question.type === "reverse-recognition") && !draftAnswer)
     ) {
       return;
     }
 
-    const correct = isQuestionCorrect(question, answer);
+    const evaluation = evaluateQuestionAnswer(question, answer);
     setFeedback({
-      correct,
-      answer: getCorrectAnswerText(question),
+      correct: evaluation.correct,
+      judgment: evaluation.judgment,
+      answer: evaluation.canonicalAnswer,
       attempts: 1
     });
   };
@@ -364,6 +400,14 @@ export default function StudySession({ title, subtitle, languageStage, questions
         : question.type === "pair-match"
           ? pairState.matchedPairs.length === question.pairs.length
           : Boolean(draftAnswer);
+
+  const feedbackToneClass = feedback
+    ? feedback.correct
+      ? feedback.judgment === "close"
+        ? "feedback-close"
+        : "feedback-correct"
+      : "feedback-wrong"
+    : "";
 
   return (
     <section className="panel session-panel">
@@ -385,9 +429,11 @@ export default function StudySession({ title, subtitle, languageStage, questions
         <h3 className="question-prompt">{question.prompt}</h3>
         {question.type === "typed" && typedAnswer && (
           <p className="answer-preview">
-            {normalizeMalayText(typedAnswer) !== typedAnswer
-              ? t("Spacing will be normalized.", "Jarak akan dinormalkan.")
-              : t("Type your best answer once.", "Taip jawapan terbaik anda sekali.")}
+            {softRetry
+              ? t("Almost correct. Fix the typo and submit once more.", "Hampir betul. Betulkan ejaan dan hantar sekali lagi.")
+              : normalizeMalayText(typedAnswer) !== typedAnswer
+                ? t("Spacing and punctuation will be normalized.", "Jarak dan tanda baca akan dinormalkan.")
+                : t("Type your best answer once.", "Taip jawapan terbaik anda sekali.")}
           </p>
         )}
         <QuestionSurface
@@ -405,14 +451,29 @@ export default function StudySession({ title, subtitle, languageStage, questions
         />
       </article>
 
+      {softRetry && !feedback ? (
+        <div className="feedback-card feedback-close">
+          <strong>{t("Almost correct.", "Hampir betul.")}</strong>
+          <p>{t("Fix the small typo and submit once more.", "Betulkan kesilapan kecil itu dan hantar sekali lagi.")}</p>
+        </div>
+      ) : null}
+
       {feedback ? (
-        <div className={`feedback-card ${feedback.correct ? "feedback-correct" : "feedback-wrong"}`}>
-          <strong>{feedback.correct ? t("Correct.", "Betul.") : t("Not quite.", "Belum tepat.")}</strong>
-          <p>{t("Answer", "Jawapan")}: {feedback.answer}</p>
+        <div className={`feedback-card ${feedbackToneClass}`}>
+          <strong>
+            {feedback.correct
+              ? feedback.judgment === "close"
+                ? t("Correct after correction.", "Betul selepas pembetulan.")
+                : t("Correct.", "Betul.")
+              : t("Not quite.", "Belum tepat.")}
+          </strong>
+          <p>
+            {t("Answer", "Jawapan")}: {feedback.answer}
+          </p>
           <button
             type="button"
             className="primary-button"
-            onClick={() => commitResult(feedback.correct, feedback.attempts)}
+            onClick={() => commitResult(feedback.correct, feedback.judgment, feedback.attempts)}
           >
             {currentIndex === questions.length - 1 ? t("Finish session", "Tamatkan sesi") : t("Next", "Seterusnya")}
           </button>
@@ -426,7 +487,7 @@ export default function StudySession({ title, subtitle, languageStage, questions
       ) : (
         <div className="session-actions">
           <button type="button" className="primary-button" onClick={submitCurrentQuestion} disabled={!canSubmit}>
-            {t("Check answer", "Semak jawapan")}
+            {softRetry ? t("Check again", "Semak lagi") : t("Check answer", "Semak jawapan")}
           </button>
         </div>
       )}

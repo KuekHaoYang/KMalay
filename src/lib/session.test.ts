@@ -1,5 +1,11 @@
 import { course, getItemMap } from "./content";
-import { buildLessonSession, buildReviewSession, isQuestionCorrect, normalizeMalayText } from "./session";
+import {
+  buildLessonSession,
+  buildReviewSession,
+  evaluateTypedAnswer,
+  isQuestionCorrect,
+  normalizeMalayText
+} from "./session";
 import type { AppSnapshot } from "../types";
 
 const emptySnapshot: AppSnapshot = {
@@ -34,6 +40,49 @@ describe("answer normalization", () => {
 
     expect(typed).toBeDefined();
     expect(isQuestionCorrect(typed!, "saya tidak faham")).toBe(true);
+  });
+
+  it("marks a one-letter single-word typo as close instead of wrong", () => {
+    const question = {
+      id: "typed-1",
+      type: "typed" as const,
+      itemId: "lx-rumah",
+      prompt: "house",
+      acceptedAnswers: ["rumah"],
+      helper: "Type the Malay answer.",
+      placeholder: "Type in Malay"
+    };
+
+    expect(evaluateTypedAnswer(question, "rumahh").judgment).toBe("close");
+  });
+
+  it("marks a one-token typo inside a phrase as close", () => {
+    const question = {
+      id: "typed-2",
+      type: "typed" as const,
+      itemId: "ph-saya-tidak-faham",
+      prompt: "I do not understand",
+      acceptedAnswers: ["saya tidak faham"],
+      helper: "Type the Malay answer.",
+      placeholder: "Type in Malay"
+    };
+
+    expect(evaluateTypedAnswer(question, "saya tidal faham").judgment).toBe("close");
+  });
+
+  it("keeps missing words and reordered phrases as wrong", () => {
+    const question = {
+      id: "typed-3",
+      type: "typed" as const,
+      itemId: "ph-saya-tidak-faham",
+      prompt: "I do not understand",
+      acceptedAnswers: ["saya tidak faham"],
+      helper: "Type the Malay answer.",
+      placeholder: "Type in Malay"
+    };
+
+    expect(evaluateTypedAnswer(question, "saya faham").judgment).toBe("wrong");
+    expect(evaluateTypedAnswer(question, "tidak saya faham").judgment).toBe("wrong");
   });
 });
 

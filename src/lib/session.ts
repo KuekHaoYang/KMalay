@@ -1,4 +1,5 @@
 import type {
+  AnswerJudgment,
   ChoiceQuestion,
   CourseItem,
   PairMatchQuestion,
@@ -18,21 +19,44 @@ import {
   uiText
 } from "./ui-language";
 
+interface SessionBuildOptions {
+  allItems?: CourseItem[];
+  wordBankTokens?: string[];
+}
+
+interface QuestionEvaluation {
+  correct: boolean;
+  judgment: AnswerJudgment;
+  canonicalAnswer: string;
+  allowRetry: boolean;
+}
+
 const hashSeed = (value: string) =>
   Array.from(value).reduce((total, char) => total + char.charCodeAt(0), 0);
+
+const nextSeed = (seed: number) => (seed * 1664525 + 1013904223) % 4294967296;
 
 const shuffle = <T,>(items: T[], seedKey: string) => {
   const copy = [...items];
   let seed = hashSeed(seedKey);
 
   for (let index = copy.length - 1; index > 0; index -= 1) {
-    seed = (seed * 1664525 + 1013904223) % 4294967296;
+    seed = nextSeed(seed);
     const swapIndex = seed % (index + 1);
     [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
   }
 
   return copy;
 };
+
+const unique = <T,>(values: T[]) => [...new Set(values)];
+
+const tokenizeMalayText = (value: string) =>
+  value
+    .replace(/[^\p{L}\p{N}\s-]/gu, " ")
+    .split(/\s+/)
+    .map((token) => token.trim())
+    .filter(Boolean);
 
 export const normalizeMalayText = (value: string) =>
   value
@@ -42,13 +66,52 @@ export const normalizeMalayText = (value: string) =>
     .replace(/\s+/g, " ")
     .trim();
 
-const getDistractors = (item: CourseItem, pool: CourseItem[], count: number) =>
-  pool
-    .filter((candidate) => candidate.id !== item.id)
-    .filter((candidate) => !candidate.english.some((word) => item.english.includes(word)))
-    .slice(0, count);
+const selectCandidates = <T,>(
+  pool: T[],
+  count: number,
+  seedKey: string,
+  isValid: (candidate: T) => boolean,
+  getKey: (candidate: T) => string
+) => {
+  if (pool.length === 0 || count <= 0) {
+    return [];
+  }
 
-const unique = <T,>(values: T[]) => [...new Set(values)];
+  const results: T[] = [];
+  const visited = new Set<string>();
+  let seed = hashSeed(seedKey) || 1;
+  let attempts = 0;
+  const maxAttempts = Math.max(pool.length * 4, count * 10);
+
+  while (results.length < count && attempts < maxAttempts && visited.size < pool.length) {
+    seed = nextSeed(seed);
+    const candidate = pool[seed % pool.length];
+    const candidateKey = getKey(candidate);
+    if (visited.has(candidateKey)) {
+      attempts += 1;
+      continue;
+    }
+
+    visited.add(candidateKey);
+    if (isValid(candidate)) {
+      results.push(candidate);
+    }
+
+    attempts += 1;
+  }
+
+  return results;
+};
+
+const getDistractors = (item: CourseItem, pool: CourseItem[], count: number, key: string) =>
+  selectCandidates(
+    pool,
+    count,
+    `${item.id}-${key}-distractors`,
+    (candidate) =>
+      candidate.id !== item.id && !candidate.english.some((word) => item.english.includes(word)),
+    (candidate) => candidate.id
+  );
 
 const makeRecognition = (
   item: CourseItem,
@@ -56,7 +119,7 @@ const makeRecognition = (
   key: string,
   languageStage: UiLanguageStage
 ): ChoiceQuestion => {
-  const distractors = getDistractors(item, shuffle(pool, `${key}-d`), 3);
+  const distractors = getDistractors(item, pool, 3, key);
   const allCandidates = [item, ...distractors];
   const usesMalayMeaning = canTeachThroughMalay(allCandidates, languageStage);
   const getMeaningOption = (candidate: CourseItem) =>
@@ -85,7 +148,7 @@ const makeReverseRecognition = (
   key: string,
   languageStage: UiLanguageStage
 ): ChoiceQuestion => {
-  const distractors = getDistractors(item, shuffle(pool, `${key}-d`), 3);
+  const distractors = getDistractors(item, pool, 3, key);
   const options = shuffle(
     [item.malay, ...distractors.map((candidate) => candidate.malay)],
     `${key}-options`
@@ -114,22 +177,19 @@ const makeTyped = (item: CourseItem, key: string, languageStage: UiLanguageStage
 
 const makeWordBank = (
   item: CourseItem,
-  pool: CourseItem[],
+  wordBankTokens: string[],
   key: string,
   languageStage: UiLanguageStage
 ): WordBankQuestion => {
-  const answerTokens = item.acceptedAnswers[0]
-    .replace(/[?!.,]/g, "")
-    .split(/\s+/)
-    .filter(Boolean);
-
-  const distractorTokens = shuffle(
-    pool
-      .filter((candidate) => candidate.id !== item.id)
-      .flatMap((candidate) => candidate.malay.split(/\s+/))
-      .filter((token) => !answerTokens.includes(token)),
-    `${key}-tokens`
-  ).slice(0, Math.max(3, answerTokens.length + 1));
+  const answerTokens = tokenizeMalayText(item.acceptedAnswers[0]);
+  const normalizedAnswerTokens = new Set(answerTokens.map((token) => normalizeMalayText(token)));
+  const distractorTokens = selectCandidates(
+    wordBankTokens,
+    Math.max(3, answerTokens.length + 1),
+    `${key}-tokens`,
+    (token) => !normalizedAnswerTokens.has(normalizeMalayText(token)),
+    (token) => token
+  );
 
   return {
     id: `${item.id}-bank-${key}`,
@@ -160,10 +220,14 @@ const makePairMatch = (items: CourseItem[], key: string, languageStage: UiLangua
   };
 };
 
+const makeWordBankTokenPool = (pool: CourseItem[]) =>
+  unique(pool.flatMap((item) => item.acceptedAnswers.flatMap((answer) => tokenizeMalayText(answer))));
+
 const buildQuestionForTemplate = (
   template: SessionQuestion["type"],
   item: CourseItem,
   pool: CourseItem[],
+  wordBankTokens: string[],
   key: string,
   languageStage: UiLanguageStage
 ) => {
@@ -175,7 +239,7 @@ const buildQuestionForTemplate = (
     case "typed":
       return makeTyped(item, key, languageStage);
     case "word-bank":
-      return makeWordBank(item, pool, key, languageStage);
+      return makeWordBank(item, wordBankTokens, key, languageStage);
     default:
       return makeRecognition(item, pool, key, languageStage);
   }
@@ -186,9 +250,11 @@ export const buildLessonSession = (
   lessonItemIds: string[],
   itemMap: Record<string, CourseItem>,
   progress: UserProgress,
-  languageStage = getUiLanguageStageForLesson(lessonId)
+  languageStage = getUiLanguageStageForLesson(lessonId),
+  options?: SessionBuildOptions
 ): SessionQuestion[] => {
-  const pool = Object.values(itemMap);
+  const pool = options?.allItems ?? Object.values(itemMap);
+  const wordBankTokens = options?.wordBankTokens ?? makeWordBankTokenPool(pool);
   const targets = lessonItemIds.map((itemId) => itemMap[itemId]).filter(Boolean);
   const dueReviewIds = getDueItemIds(progress.reviewStates)
     .filter((itemId) => !lessonItemIds.includes(itemId))
@@ -205,9 +271,7 @@ export const buildLessonSession = (
     `${lessonId}-spiral`
   ).slice(0, 2);
   const supplementalReviewIds = [...dueReviewIds, ...spiralReviewIds];
-  const supplementalReviews = supplementalReviewIds
-    .map((itemId) => itemMap[itemId])
-    .filter(Boolean);
+  const supplementalReviews = supplementalReviewIds.map((itemId) => itemMap[itemId]).filter(Boolean);
 
   const questions: SessionQuestion[] = [];
   const usableTemplates: Array<Exclude<SessionQuestion["type"], "pair-match">> = [
@@ -220,8 +284,12 @@ export const buildLessonSession = (
   targets.forEach((item, index) => {
     const primaryTemplate = usableTemplates[index % usableTemplates.length];
     const secondaryTemplate = usableTemplates[(index + 1) % usableTemplates.length];
-    questions.push(buildQuestionForTemplate(primaryTemplate, item, pool, `${lessonId}-${index}-a`, languageStage));
-    questions.push(buildQuestionForTemplate(secondaryTemplate, item, pool, `${lessonId}-${index}-b`, languageStage));
+    questions.push(
+      buildQuestionForTemplate(primaryTemplate, item, pool, wordBankTokens, `${lessonId}-${index}-a`, languageStage)
+    );
+    questions.push(
+      buildQuestionForTemplate(secondaryTemplate, item, pool, wordBankTokens, `${lessonId}-${index}-b`, languageStage)
+    );
   });
 
   if (targets.length >= 4) {
@@ -230,7 +298,9 @@ export const buildLessonSession = (
 
   supplementalReviews.forEach((item, index) => {
     const template = index === 0 ? "typed" : index % 2 === 0 ? "recognition" : "reverse-recognition";
-    questions.push(buildQuestionForTemplate(template, item, pool, `${lessonId}-review-${index}`, languageStage));
+    questions.push(
+      buildQuestionForTemplate(template, item, pool, wordBankTokens, `${lessonId}-review-${index}`, languageStage)
+    );
   });
 
   return questions;
@@ -240,13 +310,14 @@ export const buildReviewSession = (
   itemMap: Record<string, CourseItem>,
   progress: UserProgress,
   fallbackItemIds: string[],
-  languageStage = getUiLanguageStage(progress.completedLessons.length)
+  languageStage = getUiLanguageStage(progress.completedLessons.length),
+  options?: SessionBuildOptions
 ): SessionQuestion[] => {
   const dueItemIds = getDueItemIds(progress.reviewStates);
   const fallbackPool = shuffle(unique(fallbackItemIds), `review-fallback-${progress.sessionCount}`);
   const selectedIds = (dueItemIds.length > 0 ? dueItemIds : fallbackPool).slice(0, 8);
   const items = selectedIds.map((itemId) => itemMap[itemId]).filter(Boolean);
-  const pool = Object.values(itemMap);
+  const pool = options?.allItems ?? Object.values(itemMap);
 
   if (items.length === 0) {
     return [];
@@ -265,23 +336,193 @@ export const buildReviewSession = (
   return questions;
 };
 
-export const isQuestionCorrect = (question: SessionQuestion, answer: string | string[]) => {
+const isSingleAdjacentTransposition = (left: string, right: string) => {
+  if (left.length !== right.length || left.length < 2) {
+    return false;
+  }
+
+  const mismatches: number[] = [];
+  for (let index = 0; index < left.length; index += 1) {
+    if (left[index] !== right[index]) {
+      mismatches.push(index);
+      if (mismatches.length > 2) {
+        return false;
+      }
+    }
+  }
+
+  return (
+    mismatches.length === 2 &&
+    mismatches[1] === mismatches[0] + 1 &&
+    left[mismatches[0]] === right[mismatches[1]] &&
+    left[mismatches[1]] === right[mismatches[0]]
+  );
+};
+
+const isSingleEditAway = (left: string, right: string) => {
+  const lengthGap = Math.abs(left.length - right.length);
+  if (lengthGap > 1) {
+    return false;
+  }
+
+  if (left.length === right.length) {
+    let replacements = 0;
+    for (let index = 0; index < left.length; index += 1) {
+      if (left[index] !== right[index]) {
+        replacements += 1;
+        if (replacements > 1) {
+          return false;
+        }
+      }
+    }
+
+    return replacements === 1;
+  }
+
+  const shorter = left.length < right.length ? left : right;
+  const longer = left.length < right.length ? right : left;
+  let shortIndex = 0;
+  let longIndex = 0;
+  let edits = 0;
+
+  while (shortIndex < shorter.length && longIndex < longer.length) {
+    if (shorter[shortIndex] === longer[longIndex]) {
+      shortIndex += 1;
+      longIndex += 1;
+      continue;
+    }
+
+    edits += 1;
+    if (edits > 1) {
+      return false;
+    }
+
+    longIndex += 1;
+  }
+
+  return true;
+};
+
+const isCloseSingleWord = (input: string, candidate: string) =>
+  candidate.length >= 4 && (isSingleEditAway(input, candidate) || isSingleAdjacentTransposition(input, candidate));
+
+const isCloseMultiWord = (input: string, candidate: string) => {
+  const inputTokens = input.split(" ");
+  const candidateTokens = candidate.split(" ");
+
+  if (inputTokens.length !== candidateTokens.length) {
+    return false;
+  }
+
+  let mismatchCount = 0;
+
+  for (let index = 0; index < inputTokens.length; index += 1) {
+    if (inputTokens[index] === candidateTokens[index]) {
+      continue;
+    }
+
+    mismatchCount += 1;
+    if (mismatchCount > 1) {
+      return false;
+    }
+
+    const tokenMatches =
+      isSingleEditAway(inputTokens[index], candidateTokens[index]) ||
+      isSingleAdjacentTransposition(inputTokens[index], candidateTokens[index]);
+
+    if (!tokenMatches) {
+      return false;
+    }
+  }
+
+  return mismatchCount === 1;
+};
+
+export const evaluateTypedAnswer = (question: TypedQuestion, answer: string): QuestionEvaluation => {
+  const normalizedInput = normalizeMalayText(answer);
+  const normalizedAcceptedAnswers = question.acceptedAnswers.map((candidate) => ({
+    canonicalAnswer: candidate,
+    normalized: normalizeMalayText(candidate)
+  }));
+
+  const exactMatch = normalizedAcceptedAnswers.find((candidate) => candidate.normalized === normalizedInput);
+  if (exactMatch) {
+    return {
+      correct: true,
+      judgment: "correct",
+      canonicalAnswer: exactMatch.canonicalAnswer,
+      allowRetry: false
+    };
+  }
+
+  const closeMatch = normalizedAcceptedAnswers.find(({ normalized }) => {
+    if (!normalizedInput) {
+      return false;
+    }
+
+    return normalized.includes(" ")
+      ? isCloseMultiWord(normalizedInput, normalized)
+      : isCloseSingleWord(normalizedInput, normalized);
+  });
+
+  if (closeMatch) {
+    return {
+      correct: false,
+      judgment: "close",
+      canonicalAnswer: closeMatch.canonicalAnswer,
+      allowRetry: true
+    };
+  }
+
+  return {
+    correct: false,
+    judgment: "wrong",
+    canonicalAnswer: question.acceptedAnswers[0],
+    allowRetry: false
+  };
+};
+
+export const evaluateQuestionAnswer = (
+  question: SessionQuestion,
+  answer: string | string[]
+): QuestionEvaluation => {
   if (question.type === "pair-match") {
     const response = Array.isArray(answer) ? answer : [];
     const expected = question.pairs.map((pair) => `${pair.left}::${pair.right}`).sort();
-    return [...response].sort().join("|") === expected.join("|");
+    const correct = [...response].sort().join("|") === expected.join("|");
+
+    return {
+      correct,
+      judgment: correct ? "correct" : "wrong",
+      canonicalAnswer: question.pairs.map((pair) => `${pair.left} -> ${pair.right}`).join(" | "),
+      allowRetry: false
+    };
   }
 
   if (question.type === "typed") {
-    const normalized = normalizeMalayText(Array.isArray(answer) ? answer.join(" ") : answer);
-    return question.acceptedAnswers.some((candidate) => normalizeMalayText(candidate) === normalized);
+    return evaluateTypedAnswer(question, Array.isArray(answer) ? answer.join(" ") : answer);
   }
 
   if (question.type === "word-bank") {
     const normalized = normalizeMalayText(Array.isArray(answer) ? answer.join(" ") : answer);
-    return normalizeMalayText(question.answerTokens.join(" ")) === normalized;
+    const correct = normalizeMalayText(question.answerTokens.join(" ")) === normalized;
+    return {
+      correct,
+      judgment: correct ? "correct" : "wrong",
+      canonicalAnswer: question.answerTokens.join(" "),
+      allowRetry: false
+    };
   }
 
   const response = Array.isArray(answer) ? answer[0] : answer;
-  return normalizeMalayText(response) === normalizeMalayText(question.correctAnswer);
+  const correct = normalizeMalayText(response) === normalizeMalayText(question.correctAnswer);
+  return {
+    correct,
+    judgment: correct ? "correct" : "wrong",
+    canonicalAnswer: question.correctAnswer,
+    allowRetry: false
+  };
 };
+
+export const isQuestionCorrect = (question: SessionQuestion, answer: string | string[]) =>
+  evaluateQuestionAnswer(question, answer).correct;

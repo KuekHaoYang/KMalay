@@ -4,28 +4,40 @@ import StudySession from "../components/StudySession";
 import { getLessonStatus, lessonMap } from "../lib/content";
 import { buildLessonSession } from "../lib/session";
 import { getUiLanguageStageForLesson, uiText } from "../lib/ui-language";
-import { course, useAppState } from "../state/AppStateContext";
+import { course, useAppActions, useCourseCatalogState, useProgressState } from "../state/AppStateContext";
 import type { StudySessionSummary } from "../types";
 
 export default function LessonSessionPage() {
   const navigate = useNavigate();
   const { lessonId } = useParams();
-  const { itemMap, snapshot, submitStudySession } = useAppState();
+  const { itemMap, allItems, wordBankTokens } = useCourseCatalogState();
+  const { snapshot } = useProgressState();
+  const { submitStudySession } = useAppActions();
   const [completion, setCompletion] = useState<StudySessionSummary | null>(null);
   const lesson = lessonId ? lessonMap[lessonId] : undefined;
   const status = lesson ? getLessonStatus(lesson.id, snapshot.progress.completedLessons) : "locked";
   const lessonLanguageStage = getUiLanguageStageForLesson(lesson?.id);
   const t = (english: string, malay: string) => uiText(lessonLanguageStage, english, malay);
   const [questions, setQuestions] = useState(() =>
-    lesson ? buildLessonSession(lesson.id, lesson.targetItemIds, itemMap, snapshot.progress, lessonLanguageStage) : []
+    lesson
+      ? buildLessonSession(lesson.id, lesson.targetItemIds, itemMap, snapshot.progress, lessonLanguageStage, {
+          allItems,
+          wordBankTokens
+        })
+      : []
   );
 
   useEffect(() => {
     if (lesson) {
-      setQuestions(buildLessonSession(lesson.id, lesson.targetItemIds, itemMap, snapshot.progress, lessonLanguageStage));
+      setQuestions(
+        buildLessonSession(lesson.id, lesson.targetItemIds, itemMap, snapshot.progress, lessonLanguageStage, {
+          allItems,
+          wordBankTokens
+        })
+      );
       setCompletion(null);
     }
-  }, [lessonId, lessonLanguageStage]);
+  }, [allItems, itemMap, lesson, lessonId, lessonLanguageStage, snapshot.progress, wordBankTokens]);
 
   if (!lesson) {
     return (

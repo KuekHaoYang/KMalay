@@ -565,6 +565,11 @@ a {
   border-color: rgba(51, 137, 82, 0.2);
 }
 
+.feedback-close {
+  background: rgba(255, 183, 3, 0.16);
+  border-color: rgba(186, 127, 18, 0.24);
+}
+
 .feedback-wrong {
   background: rgba(244, 111, 56, 0.12);
   border-color: rgba(244, 111, 56, 0.24);
@@ -573,12 +578,21 @@ a {
 .lexicon-card {
   display: grid;
   gap: 0.8rem;
+  min-height: 18rem;
   border-radius: 1.2rem;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(16, 37, 66, 0.08);
   content-visibility: auto;
   contain-intrinsic-size: 18rem;
+}
+
+.lexicon-list-virtual {
+  align-items: start;
+}
+
+.lexicon-spacer {
+  grid-column: 1 / -1;
 }
 
 .lexicon-head h4 {

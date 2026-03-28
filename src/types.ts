@@ -84,7 +84,7 @@ export interface ReviewState {
   dueDate: string;
   repetitions: number;
   lapses: number;
-  lastResult: "fresh" | "correct" | "incorrect";
+  lastResult: "fresh" | "correct" | "close" | "incorrect";
   lastReviewedAt?: string;
 }
 
@@ -157,10 +157,13 @@ export type SessionQuestion =
   | WordBankQuestion
   | PairMatchQuestion;
 
+export type AnswerJudgment = "correct" | "close" | "wrong";
+
 export interface SessionQuestionResult {
   questionId: string;
   itemIds: string[];
   correct: boolean;
+  judgment: AnswerJudgment;
   attempts: number;
 }
 
