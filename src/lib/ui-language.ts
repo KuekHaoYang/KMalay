@@ -1,16 +1,21 @@
 import type { CourseItem, UiLanguageStage } from "../types";
 import { pathLessonOrder } from "./content";
 
+const totalPathLessons = Math.max(pathLessonOrder.length, 1);
+const bilingualThreshold = Math.ceil(totalPathLessons * 0.35);
+const malayGuidedThreshold = Math.ceil(totalPathLessons * 0.65);
+const malayThreshold = Math.ceil(totalPathLessons * 0.85);
+
 export const getUiLanguageStage = (completedLessonCount: number): UiLanguageStage => {
-  if (completedLessonCount >= 200) {
+  if (completedLessonCount >= malayThreshold) {
     return "malay";
   }
 
-  if (completedLessonCount >= 150) {
+  if (completedLessonCount >= malayGuidedThreshold) {
     return "malay-guided";
   }
 
-  if (completedLessonCount >= 100) {
+  if (completedLessonCount >= bilingualThreshold) {
     return "bilingual";
   }
 
@@ -27,7 +32,7 @@ export const getUiLanguageStageForLesson = (lessonId?: string): UiLanguageStage 
     return "english";
   }
 
-  return getUiLanguageStage(lessonIndex);
+  return getUiLanguageStage(lessonIndex + 1);
 };
 
 export const uiText = (stage: UiLanguageStage, english: string, malay: string) => {

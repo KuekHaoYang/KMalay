@@ -6,7 +6,7 @@ It is designed around a Duolingo-like path, but the goal is not to imitate Duoli
 
 The current app includes:
 
-- A structured course path with 370 lessons across 60 units
+- A structured course path with 910 lessons across 78 units
 - Lesson sessions with multiple exercise types
 - Spiral review inside later lessons so old material keeps resurfacing
 - Progressive interface language stages from English to bilingual to Malay-only
@@ -89,6 +89,16 @@ KMalay tracks learnable Malay words by counting Malay word tokens across unique 
 - A phrase like `kawalan politik itu ketat` counts as 4 words
 - The Home screen shows learned words based on completed lessons plus custom entries
 - The seeded curriculum now exceeds 5,000 learnable Malay words by that item-token count
+
+### Lexeme Scale
+
+The seeded deck is no longer a small starter lexicon.
+
+- Seeded lexeme entries: `5,037`
+- Seeded phrase entries: `1,135`
+- Total seeded items: `6,172`
+
+That `5,037` number is actual lexeme-entry count, not a token-count trick.
 
 ## Tech Stack
 

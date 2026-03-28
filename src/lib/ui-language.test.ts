@@ -1,18 +1,29 @@
+import { pathLessonOrder } from "./content";
 import { getUiLanguageStage, getUiLanguageStageForLesson, uiText } from "./ui-language";
 
 describe("ui language stages", () => {
   it("moves through the staged language thresholds", () => {
+    const totalLessons = pathLessonOrder.length;
+    const bilingualStart = Math.ceil(totalLessons * 0.35);
+    const malayGuidedStart = Math.ceil(totalLessons * 0.65);
+    const malayStart = Math.ceil(totalLessons * 0.85);
+
     expect(getUiLanguageStage(0)).toBe("english");
-    expect(getUiLanguageStage(100)).toBe("bilingual");
-    expect(getUiLanguageStage(150)).toBe("malay-guided");
-    expect(getUiLanguageStage(200)).toBe("malay");
+    expect(getUiLanguageStage(bilingualStart)).toBe("bilingual");
+    expect(getUiLanguageStage(malayGuidedStart)).toBe("malay-guided");
+    expect(getUiLanguageStage(malayStart)).toBe("malay");
   });
 
   it("maps late lessons to Malay immersion", () => {
-    expect(getUiLanguageStageForLesson("lesson-1")).toBe("english");
-    expect(getUiLanguageStageForLesson("lesson-101")).toBe("bilingual");
-    expect(getUiLanguageStageForLesson("lesson-151")).toBe("malay-guided");
-    expect(getUiLanguageStageForLesson("lesson-201")).toBe("malay");
+    const totalLessons = pathLessonOrder.length;
+    const bilingualLessonId = pathLessonOrder[Math.ceil(totalLessons * 0.35) - 1];
+    const malayGuidedLessonId = pathLessonOrder[Math.ceil(totalLessons * 0.65) - 1];
+    const malayLessonId = pathLessonOrder[Math.ceil(totalLessons * 0.85) - 1];
+
+    expect(getUiLanguageStageForLesson(pathLessonOrder[0])).toBe("english");
+    expect(getUiLanguageStageForLesson(bilingualLessonId)).toBe("bilingual");
+    expect(getUiLanguageStageForLesson(malayGuidedLessonId)).toBe("malay-guided");
+    expect(getUiLanguageStageForLesson(malayLessonId)).toBe("malay");
   });
 
   it("formats bilingual bridge text in the right order", () => {

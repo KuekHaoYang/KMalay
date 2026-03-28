@@ -296,6 +296,10 @@ a {
   align-items: flex-start;
 }
 
+.unit-header {
+  flex-wrap: wrap;
+}
+
 .lesson-highlight {
   align-items: center;
   border-radius: 1.3rem;
@@ -321,6 +325,52 @@ a {
   background:
     linear-gradient(155deg, color-mix(in srgb, var(--unit-color) 12%, #ffffff), rgba(255, 255, 255, 0.92)),
     var(--bg-panel);
+}
+
+.unit-actions,
+.unit-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.unit-actions {
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+.unit-summary {
+  justify-content: space-between;
+  margin-top: 0.85rem;
+}
+
+.unit-summary .text-link {
+  font-weight: 700;
+}
+
+.unit-summary .lesson-meta {
+  flex: 1 1 16rem;
+}
+
+.path-page .unit-panel {
+  contain: layout paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 20rem;
+}
+
+.path-page .unit-panel,
+.path-page .lesson-card {
+  backdrop-filter: none;
+  box-shadow: 0 14px 30px rgba(16, 37, 66, 0.08);
+}
+
+.path-page .lesson-grid {
+  margin-top: 0.85rem;
+}
+
+.path-page .unit-actions .secondary-button {
+  min-height: 2.75rem;
 }
 
 .unit-icon {
@@ -636,5 +686,16 @@ a {
     left: 50%;
     width: min(760px, calc(100vw - 2rem));
     transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 719px) {
+  .unit-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .unit-summary {
+    align-items: flex-start;
   }
 }

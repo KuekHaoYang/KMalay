@@ -71,11 +71,15 @@ describe("lesson session builder", () => {
   });
 
   it("uses Malay teaching prompts in immersive lessons when Malay hints exist", () => {
+    const immersiveLesson = course.lessons.find((lesson) => lesson.targetItemIds.includes("lx-petikan"));
+    expect(immersiveLesson).toBeDefined();
+
     const session = buildLessonSession(
-      "lesson-201",
-      course.lessons[200].targetItemIds,
+      immersiveLesson!.id,
+      immersiveLesson!.targetItemIds,
       getItemMap([]),
-      emptySnapshot.progress
+      emptySnapshot.progress,
+      "malay"
     );
 
     const promptDrivenQuestion = session.find(
